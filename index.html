@@ -333,6 +333,46 @@
     <footer>
         &copy; 2026 I.E. Santa Rosa de Santo Domingo - Huarmey. Todos los derechos reservados.
     </footer>
+<script>
+        // 1. Bloquear el clic derecho (evita que le den a "Inspeccionar")
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert("Contenido protegido por la I.E. Santa Rosa");
+        });
 
+        // 2. Bloquear atajos de teclado comunes para inspeccionar o copiar
+        document.addEventListener('keydown', function(e) {
+            // Bloquear F12
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Bloquear Ctrl+Shift+I (Inspeccionar)
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+                return false;
+            }
+
+            // Bloquear Ctrl+Shift+C (Inspeccionar elemento)
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+                return false;
+            }
+
+            // Bloquear Ctrl+U (Ver código fuente)
+            if (e.ctrlKey && e.key === 'u') {
+                e.preventDefault();
+                return false;
+            }
+
+            // Bloquear Ctrl+C (Copiar textos)
+            if (e.ctrlKey && e.key === 'c') {
+                e.preventDefault();
+                alert("La copia de texto está deshabilitada en esta plataforma.");
+                return false;
+            }
+        });
+    </script>
 </body>
 </html>
