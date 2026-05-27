@@ -81,12 +81,30 @@
             background-color: #ffa6b7;
         }
 
-        /* 2. BARRA DE PESTAÑAS INTERACTIVAS (Estilo UCV) */
+        /* 2. VIDEO DE CABECERA (HERO VIDEO) */
+        .hero-container {
+            width: 100%;
+            background-color: #000000;
+            overflow: hidden;
+            line-height: 0; /* Remueve espacios fantasmas debajo del video */
+        }
+
+        .hero_video {
+            width: 100%;
+            height: auto;
+            max-height: 500px; /* Limita la altura en pantallas grandes para que no ocupe demasiado espacio vertical */
+            object-fit: cover;
+        }
+
+        /* 3. BARRA DE PESTAÑAS INTERACTIVAS */
         .tabs-container {
             background-color: #fff0f2;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             border-bottom: 4px solid #ffb7c5;
+            position: sticky;
+            top: 78px; /* Se queda fijo justo debajo de la navbar al hacer scroll */
+            z-index: 999;
         }
 
         .tab-item {
@@ -123,7 +141,7 @@
             background-color: #ffe3e7;
         }
 
-        /* 3. CONTENEDOR CENTRAL DINÁMICO */
+        /* 4. ÁREA DE CONTENIDOS DINÁMICOS */
         .dynamic-content-area {
             background-color: #333538; /* Fondo oscuro elegante */
             padding: 55px 5%;
@@ -265,7 +283,7 @@
         }
 
         .badge-highlight {
-            background-color: #333538;
+            background-color: #333333;
             border-left: 4px solid #fff3b0;
             padding: 12px;
             margin-top: 15px;
@@ -285,7 +303,7 @@
         @media (max-width: 900px) {
             .navbar { flex-direction: column; gap: 15px; text-align: center; }
             .video-grid { grid-template-columns: 1fr; }
-            .tabs-container { grid-template-columns: repeat(3, 1fr); }
+            .tabs-container { grid-template-columns: repeat(3, 1fr); top: 130px; }
             .tab-item { padding: 15px 5px; font-size: 0.8em; }
             .dynamic-content-area { padding: 30px 4%; }
         }
@@ -306,6 +324,10 @@
             <li><a href="#" class="btn-portal">Intranet / Matrícula</a></li>
         </ul>
     </nav>
+
+    <div class="hero-container">
+        <video _ngcontent-ng-c1241722522="" autoplay="" playsinline="" class="hero_video" src="https://webadminportal.ucv.edu.pe/uploads/videos/videos-home/tu-f_20260209102230.mp4" muted="" loop=""></video>
+    </div>
 
     <div class="tabs-container">
         <div class="tab-item active" onclick="cambiarPestana(event, 'contenido-conocenos')">
@@ -333,7 +355,6 @@
     <div class="dynamic-content-area">
 
         <div id="contenido-conocenos" class="tab-content video-grid active">
-            
             <div class="main-video-box">
                 <iframe 
                     id="reproductor-principal"
@@ -355,7 +376,6 @@
                     <div class="item-text">Nuestra historia y valores en Santo Domingo - Huarmey</div>
                 </div>
             </div>
-
         </div>
 
         <div id="contenido-aip" class="tab-content cards-grid">
