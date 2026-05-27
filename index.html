@@ -13,14 +13,9 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Desplazamiento suave al hacer clic en las pestañas */
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            background-color: #fcf8f8; /* Blanco con un levísimo matiz rosa */
-            color: #333333; /* Negro suave para los textos */
+            background-color: #fcf8f8; /* Blanco con matiz rosa */
+            color: #333333;
         }
 
         /* 1. BARRA DE NAVEGACIÓN SUPERIOR */
@@ -31,10 +26,7 @@
             align-items: center;
             padding: 15px 5%;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border-bottom: 3px solid #ffb7c5; /* Línea rosa bebé */
-            position: sticky; /* Se mantiene fija al bajar la página */
-            top: 0;
-            z-index: 1000;
+            border-bottom: 3px solid #ffb7c5;
         }
 
         .logo-area {
@@ -43,7 +35,6 @@
             font-weight: bold;
             color: #4a4a4a;
             font-size: 1.4em;
-            letter-spacing: 0.5px;
         }
 
         .logo-area i {
@@ -68,25 +59,20 @@
         }
 
         .nav-links a:hover {
-            color: #e56b6f; /* Coral suave al pasar el cursor */
+            color: #e56b6f;
         }
 
         .btn-portal {
-            background-color: #ffb7c5; /* Botón Rosa Bebé */
+            background-color: #ffb7c5;
             color: #333333 !important;
             padding: 8px 18px;
             border-radius: 20px;
             font-weight: 600 !important;
-            transition: background 0.3s;
         }
 
-        .btn-portal:hover {
-            background-color: #ffa6b7;
-        }
-
-        /* 2. BARRA DE PESTAÑAS (Estilo UCV con redirección) */
+        /* 2. BARRA DE PESTAÑAS (Estilo UCV) */
         .tabs-container {
-            background-color: #fff0f2; /* Fondo rosa pastel extra suave */
+            background-color: #fff0f2;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             border-bottom: 4px solid #ffb7c5;
@@ -96,7 +82,7 @@
             text-align: center;
             padding: 22px 10px;
             color: #4a4a4a;
-            text-decoration: none;
+            cursor: pointer;
             transition: all 0.3s;
             font-weight: 600;
             font-size: 0.9em;
@@ -104,25 +90,50 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
+            user-select: none;
         }
 
         .tab-item i {
             font-size: 1.8em;
-            color: #e56b6f; /* Íconos en coral/rojo suave */
+            color: #e56b6f;
         }
 
-        .tab-item:hover {
+        /* Clase cuando la pestaña está seleccionada (Como la UCV) */
+        .tab-item.active {
+            background-color: #ffb7c5;
+            color: #222222;
+        }
+
+        .tab-item.active i {
+            color: #222222;
+        }
+
+        .tab-item:hover:not(.active) {
             background-color: #ffe3e7;
         }
 
-        /* 3. CONTENEDOR MULTIMEDIA PRINCIPAL */
-        .media-section {
-            background-color: #333538; /* Antracita suave para que resalte el video */
+        /* 3. CONTENEDOR MULTIMEDIA PRINCIPAL / ÁREA DE CONTENEDORES ACTIVOS */
+        .dynamic-content-area {
+            background-color: #333538; /* Fondo antracita de la sección */
             padding: 55px 5%;
+            border-bottom: 5px solid #fff3b0;
+            min-height: 480px;
+        }
+
+        /* Ocultar por defecto los bloques de contenido que no están activos */
+        .tab-content {
+            display: none;
+        }
+
+        /* Mostrar solo el bloque que tenga la clase active */
+        .tab-content.active {
             display: grid;
+        }
+
+        /* Estructura interna de la pestaña de Video (Inicio / Conócenos) */
+        .video-grid {
             grid-template-columns: 2fr 1fr;
             gap: 35px;
-            border-bottom: 5px solid #fff3b0; /* Detalle Amarillo Suave */
         }
 
         .main-video-box {
@@ -134,7 +145,6 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
             border: 3px solid #ffffff;
         }
 
@@ -148,15 +158,8 @@
         .play-button {
             position: absolute;
             font-size: 4.5em;
-            color: #fff3b0; /* Amarillo suave para el Play */
-            cursor: pointer;
-            transition: transform 0.2s, color 0.2s;
+            color: #fff3b0;
             text-shadow: 0 4px 12px rgba(0,0,0,0.4);
-        }
-
-        .play-button:hover {
-            transform: scale(1.1);
-            color: #ffffff;
         }
 
         .playlist-container {
@@ -167,8 +170,6 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            max-height: 450px;
-            overflow-y: auto;
         }
 
         .playlist-title {
@@ -186,14 +187,8 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-left: 4px solid transparent;
-        }
-
-        .playlist-item:hover {
-            background-color: #3e4145;
-            border-left-color: #ffb7c5; /* Ilumina con Rosa Bebé */
+            color: #e0e0e0;
+            font-size: 0.85em;
         }
 
         .thumb-box {
@@ -205,52 +200,42 @@
             justify-content: center;
             align-items: center;
             color: #fff3b0;
-            font-size: 0.9em;
             flex-shrink: 0;
         }
 
-        .item-text {
-            color: #e0e0e0;
-            font-size: 0.85em;
-            font-weight: 500;
-            line-height: 1.4;
+        /* Estilos de las Tarjetas Informativas de las Otras Pestañas (Estilo UCV) */
+        .cards-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
         }
 
-        /* 4. SECCIONES DE CONTENIDO DE LAS PESTAÑAS */
-        .content-section {
-            padding: 90px 8% 60px 8%; /* Margen amplio para el desplazamiento fijo */
-            border-bottom: 1px solid #ffe3e7;
+        .info-card {
+            background-color: #252629;
+            border-top: 4px solid #ffb7c5;
+            border-radius: 10px;
+            padding: 25px;
+            color: #ffffff;
+            transition: transform 0.3s;
         }
 
-        .content-section:nth-child(even) {
-            background-color: #ffffff;
+        .info-card:hover {
+            transform: translateY(-5px);
         }
 
-        .content-section h2 {
-            color: #4a4a4a;
-            font-size: 2em;
-            margin-bottom: 20px;
+        .info-card h3 {
+            color: #fff3b0; /* Amarillo suave */
+            margin-bottom: 12px;
+            font-size: 1.2em;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
         }
 
-        .content-section h2 i {
-            color: #e56b6f;
-        }
-
-        .content-section p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #555555;
-        }
-
-        .highlight-box {
-            background-color: #fff0f2;
-            border-left: 5px solid #ffb7c5;
-            padding: 20px;
-            margin-top: 15px;
-            border-radius: 0 8px 8px 0;
+        .info-card p {
+            color: #d0d0d0;
+            font-size: 0.9em;
+            line-height: 1.6;
         }
 
         footer {
@@ -261,12 +246,10 @@
             font-size: 0.9em;
         }
 
-        /* Responsivo para dispositivos móviles */
         @media (max-width: 900px) {
-            .navbar { flex-direction: column; gap: 15px; text-align: center; }
-            .media-section { grid-template-columns: 1fr; padding: 25px 3%; }
+            .navbar { flex-direction: column; gap: 15px; }
+            .video-grid { grid-template-columns: 1fr; }
             .tabs-container { grid-template-columns: repeat(3, 1fr); }
-            .tab-item { padding: 15px 5px; font-size: 0.8em; }
         }
     </style>
 </head>
@@ -279,130 +262,143 @@
         </div>
         <ul class="nav-links">
             <li><a href="#">Inicio</a></li>
-            <li><a href="#conocenos">Nosotros</a></li>
-            <li><a href="#aip">Innovación</a></li>
-            <li><a href="#comunicados">Noticias</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Innovación</a></li>
+            <li><a href="#">Noticias</a></li>
             <li><a href="#" class="btn-portal">Intranet / Matrícula</a></li>
         </ul>
     </nav>
 
     <div class="tabs-container">
-        <a href="#conocenos" class="tab-item">
+        <div class="tab-item active" onclick="cambiarPestana(event, 'contenido-conocenos')">
             <i class="fa-solid fa-circle-info"></i>
             <span>Conócenos</span>
-        </a>
-        <a href="#aip" class="tab-item">
+        </div>
+        <div class="tab-item" onclick="cambiarPestana(event, 'contenido-aip')">
             <i class="fa-solid fa-book-open"></i>
             <span>Propuesta AIP</span>
-        </a>
-        <a href="#infraestructura" class="tab-item">
+        </div>
+        <div class="tab-item" onclick="cambiarPestana(event, 'contenido-infraestructura')">
             <i class="fa-solid fa-school"></i>
             <span>Infraestructura</span>
-        </a>
-        <a href="#proyectos" class="tab-item">
+        </div>
+        <div class="tab-item" onclick="cambiarPestana(event, 'contenido-proyectos')">
             <i class="fa-solid fa-flask-vial"></i>
             <span>Proyectos</span>
-        </a>
-        <a href="#comunicados" class="tab-item">
+        </div>
+        <div class="tab-item" onclick="cambiarPestana(event, 'contenido-comunicados')">
             <i class="fa-solid fa-newspaper"></i>
             <span>Comunicados</span>
-        </a>
-    </div>
-
-    <div class="media-section">
-        <div class="main-video-box">
-            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000" alt="Estudiantes">
-            <div class="play-button"><i class="fa-solid fa-circle-play"></i></div>
-        </div>
-
-        <div class="playlist-container">
-            <div class="playlist-title">Nuestra propuesta educativa:</div>
-            <div class="playlist-item">
-                <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                <div class="item-text">¡Bienvenidos al año escolar en la I.E. Santa Rosa!</div>
-            </div>
-            <div class="playlist-item">
-                <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                <div class="item-text">Tecnologías e Innovación Pedagógica (AIP)</div>
-            </div>
-            <div class="playlist-item">
-                <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                <div class="item-text">Proyectos de Innovación dentro del CNEB</div>
-            </div>
         </div>
     </div>
 
-    <main>
-        <section id="conocenos" class="content-section">
-            <h2><i class="fa-solid fa-circle-info"></i> Conócenos</h2>
-            <p>La Institución Educativa "Santa Rosa" de Santo Domingo, ubicada en la provincia de Huarmey, cuenta con una trayectoria comprometida con el desarrollo académico y moral de nuestros estudiantes. Nos enfocamos en guiar a los jóvenes hacia un futuro lleno de oportunidades, cimentando bases sólidas en valores cívicos y pensamiento crítico.</p>
-        </section>
+    <div class="dynamic-content-area">
 
-        <section id="aip" class="content-section">
-            <h2><i class="fa-solid fa-book-open"></i> Propuesta AIP (Aula de Innovación Pedagógica)</h2>
-            <p>Nuestra propuesta se centra en la integración activa de las Tecnologías de la Información y Comunicación dentro del marco del Currículo Nacional (CNEB). Buscamos transformar las aulas tradicionales en ecosistemas digitales donde el estudiante es el protagonista de su aprendizaje.</p>
-            <div class="highlight-box">
-                <strong>Enfoque clave:</strong> Alfabetización digital, ciudadanía digital, robótica educativa básica y entornos virtuales colaborativos guiados por docentes especializados.
+        <div id="contenido-conocenos" class="tab-content video-grid active">
+            <div class="main-video-box">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000" alt="Estudiantes">
+                <div class="play-button"><i class="fa-solid fa-circle-play"></i></div>
             </div>
-        </section>
+            <div class="playlist-container">
+                <div class="playlist-title">Vídeos de Bienvenida:</div>
+                <div class="playlist-item">
+                    <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
+                    <div>¡Bienvenidos al año escolar en la I.E. Santa Rosa!</div>
+                </div>
+                <div class="playlist-item">
+                    <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
+                    <div>Nuestra historia en Santo Domingo - Huarmey</div>
+                </div>
+            </div>
+        </div>
 
-        <section id="infraestructura" class="content-section">
-            <h2><i class="fa-solid fa-school"></i> Nuestra Infraestructura</h2>
-            <p>Contamos con ambientes óptimos diseñados para favorecer la concentración y la recreación sana de los alumnos. Disponemos de laboratorios equipados, aulas amplias, espacios deportivos para los Juegos Escolares y un Aula de Innovación de última generación.</p>
-        </section>
+        <div id="contenido-aip" class="tab-content cards-grid">
+            <div class="info-card">
+                <h3><i class="fa-solid fa-laptop-code"></i> Alfabetización Digital</h3>
+                <p>Inserción activa de los estudiantes en el uso de herramientas de ofimática avanzada, programación y entornos virtuales de aprendizaje aplicados al CNEB.</p>
+            </div>
+            <div class="info-card">
+                <h3><i class="fa-solid fa-robot"></i> Robótica Educativa</h3>
+                <p>Talleres prácticos empleando kits tecnológicos para desarrollar el pensamiento lógico-matemático y la resolución de problemas comunitarios.</p>
+            </div>
+            <div class="info-card">
+                <h3><i class="fa-solid fa-users-gear"></i> Ecosistema Digital</h3>
+                <p>Capacitación continua a nuestro cuerpo docente para la integración de Inteligencia Artificial y metodologías pedagógicas interactivas.</p>
+            </div>
+        </div>
 
-        <section id="proyectos" class="content-section">
-            <h2><i class="fa-solid fa-flask-vial"></i> Proyectos de Innovación</h2>
-            <p>Fomentamos la investigación científica y pedagógica a través de proyectos anuales en los que participan tanto estudiantes como el cuerpo docente. Nos enfocamos en resolver problemáticas de nuestra comunidad de Huarmey haciendo uso de la ciencia y la tecnología adaptada.</p>
-        </section>
+        <div id="contenido-infraestructura" class="tab-content cards-grid">
+            <div class="info-card">
+                <h3><i class="fa-solid fa-desktop"></i> Aula de Innovación (AIP)</h3>
+                <p>Ambiente totalmente equipado con computadoras de última generación, conectividad estable y proyectores multimedia.</p>
+            </div>
+            <div class="info-card">
+                <h3><i class="fa-solid fa-gavel"></i> Laboratorio de Ciencias</h3>
+                <p>Espacios seguros e implementados para la experimentación en biología, química y física experimental.</p>
+            </div>
+            <div class="info-card">
+                <h3><i class="fa-solid fa-basketball"></i> Losas Deportivas</h3>
+                <p>Instalaciones óptimas para la preparación de nuestros alumnos de cara a los Juegos Escolares Deportivos (JEDPA).</p>
+            </div>
+        </div>
 
-        <section id="comunicados" class="content-section">
-            <h2><i class="fa-solid fa-newspaper"></i> Comunicados Oficiales</h2>
-            <p>Manténgase al tanto de las últimas directivas de la dirección, reuniones de padres de familia, cronogramas de evaluación y actividades extracurriculares institucionales.</p>
-        </section>
-    </main>
+        <div id="contenido-proyectos" class="tab-content cards-grid">
+            <div class="info-card">
+                <h3><i class="fa-solid fa-lightbulb"></i> Club de Ciencias</h3>
+                <p>Iniciativa estudiantil enfocada en el diseño de prototipos ecológicos para dar soluciones sostenibles a la zona de Huarmey.</p>
+            </div>
+            <div class="info-card">
+                <h3><i class="fa-solid fa-earth-americas"></i> Cuidado Ambiental</h3>
+                <p>Proyecto institucional de reciclaje tecnológico y optimización de recursos hídricos escolares.</p>
+            </div>
+        </div>
+
+        <div id="contenido-comunicados" class="tab-content cards-grid">
+            <div class="info-card">
+                <h3><i class="fa-solid fa-calendar-day"></i> Inicio del Año Escolar</h3>
+                <p>Publicación oficial de los horarios de ingreso, listas de secciones y distribución de las aulas virtuales del presente ciclo.</p>
+            </div>
+            <div class="info-card">
+                <h3><i class="fa-solid fa-trophy"></i> Convocatoria JEDPA</h3>
+                <p>Bases e inscripciones abiertas para las disciplinas de fútbol, atletismo y ajedrez en las etapas institucionales.</p>
+            </div>
+        </div>
+
+    </div>
 
     <footer>
         &copy; 2026 I.E. Santa Rosa de Santo Domingo - Huarmey. Todos los derechos reservados.
     </footer>
 
     <script>
-        // Bloquear clic derecho
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            alert("Contenido protegido por la I.E. Santa Rosa");
-        });
+        function cambiarPestana(evento, idContenido) {
+            // 1. Conseguir todos los bloques de contenido y ocultarlos
+            const contenidos = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < contenidos.length; i++) {
+                contenidos[i].classList.remove('active');
+            }
 
-        // Bloquear atajos de teclado del navegador
+            // 2. Conseguir todas las pestañas de botones y quitarles el color rosa encendido
+            const pestanas = document.getElementsByClassName('tab-item');
+            for (let i = 0; i < pestanas.length; i++) {
+                pestanas[i].classList.remove('active');
+            }
+
+            // 3. Mostrar el bloque de contenido seleccionado
+            document.getElementById(idContenido).classList.add('active');
+
+            // 4. Pintar de color rosa la pestaña a la que se le hizo clic
+            evento.currentTarget.classList.add('active');
+        }
+
+        // CÓDIGO EXTRA: Bloqueo básico de seguridad contra inspección
+        document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', function(e) {
-            // Bloquear F12
-            if (e.key === 'F12') {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','C'].includes(e.key)) || (e.ctrlKey && ['u','c'].includes(e.key))) {
                 e.preventDefault();
-                return false;
-            }
-            // Bloquear Ctrl+Shift+I (Inspeccionar)
-            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-                e.preventDefault();
-                return false;
-            }
-            // Bloquear Ctrl+Shift+C (Inspeccionar elemento)
-            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-                e.preventDefault();
-                return false;
-            }
-            // Bloquear Ctrl+U (Ver código fuente)
-            if (e.ctrlKey && e.key === 'u') {
-                e.preventDefault();
-                return false;
-            }
-            // Bloquear Ctrl+C (Copiar)
-            if (e.ctrlKey && e.key === 'c') {
-                e.preventDefault();
-                alert("La copia de texto está deshabilitada en esta plataforma.");
                 return false;
             }
         });
     </script>
-
 </body>
 </html>
