@@ -14,8 +14,8 @@
         }
 
         body {
-            background-color: #fcf8f8; /* Blanco con un levísimo matiz rosa */
-            color: #333333; /* Negro suave para los textos */
+            background-color: #fcf8f8; /* Blanco con matiz rosa institucional */
+            color: #333333;
         }
 
         /* 1. BARRA DE NAVEGACIÓN SUPERIOR */
@@ -26,13 +26,12 @@
             align-items: center;
             padding: 10px 5%;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border-bottom: 3px solid #ffb7c5; /* Línea rosa bebé */
-            position: sticky; /* Se mantiene fija al bajar la página */
+            border-bottom: 3px solid #ffb7c5; /* Línea Rosa Bebé de la I.E. */
+            position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        /* Contenedor alineado para la Insignia y el Nombre */
         .logo-area {
             display: flex;
             align-items: center;
@@ -43,10 +42,10 @@
             letter-spacing: 0.5px;
         }
 
-        /* Estilo controlado para la insignia institucional */
+        /* Control de tamaño de la Insignia oficial */
         .insignia-img {
-            height: 55px; /* Altura ideal para la barra de navegación */
-            width: auto;  /* Mantiene la proporción original del escudo */
+            height: 55px; 
+            width: auto;  
             object-fit: contain;
         }
 
@@ -66,11 +65,11 @@
         }
 
         .nav-links a:hover {
-            color: #e56b6f; /* Coral suave al pasar el cursor */
+            color: #e56b6f; /* Coral */
         }
 
         .btn-portal {
-            background-color: #ffb7c5; /* Botón Rosa Bebé */
+            background-color: #ffb7c5;
             color: #333333 !important;
             padding: 8px 18px;
             border-radius: 20px;
@@ -82,9 +81,9 @@
             background-color: #ffa6b7;
         }
 
-        /* 2. BARRA DE PESTAÑAS (Estilo dinámico UCV) */
+        /* 2. BARRA DE PESTAÑAS INTERACTIVAS (Estilo UCV) */
         .tabs-container {
-            background-color: #fff0f2; /* Fondo rosa pastel extra suave */
+            background-color: #fff0f2;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             border-bottom: 4px solid #ffb7c5;
@@ -107,10 +106,10 @@
 
         .tab-item i {
             font-size: 1.8em;
-            color: #e56b6f; /* Íconos en coral/rojo suave */
+            color: #e56b6f;
         }
 
-        /* Pestaña seleccionada activa (Fondo Rosa Bebé, igual que la sección activa de la UCV) */
+        /* Pestaña activa (Color Rosa Fuerte Institucional) */
         .tab-item.active {
             background-color: #ffb7c5;
             color: #222222;
@@ -124,21 +123,19 @@
             background-color: #ffe3e7;
         }
 
-        /* 3. CONTENEDOR CENTRAL DINÁMICO (El recuadro grande que cambia de contenido) */
+        /* 3. CONTENEDOR CENTRAL DINÁMICO */
         .dynamic-content-area {
-            background-color: #333538; /* Antracita oscuro para que resalte el contenido visual */
+            background-color: #333538; /* Fondo oscuro elegante */
             padding: 55px 5%;
-            border-bottom: 5px solid #fff3b0; /* Detalle Amarillo Suave */
+            border-bottom: 5px solid #fff3b0; /* Detalle Amarillo de la insignia */
             min-height: 480px;
         }
 
-        /* Ocultar por defecto los bloques que no están seleccionados */
         .tab-content {
             display: none;
-            animation: fadeIn 0.4s ease-in-out; /* Suave transición al cambiar */
+            animation: fadeIn 0.4s ease-in-out;
         }
 
-        /* Mostrar solo el bloque de contenido que tenga la clase activa */
         .tab-content.active {
             display: grid;
         }
@@ -148,44 +145,24 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Estructura interna para la sección de Videos (Conócenos) */
+        /* REPRODUCTOR DE VIDEO Y LISTA (Pestaña Conócenos) */
         .video-grid {
             grid-template-columns: 2fr 1fr;
             gap: 35px;
         }
 
         .main-video-box {
-            background-color: #1a1a1a;
             border-radius: 15px;
             overflow: hidden;
             aspect-ratio: 16 / 9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-            border: 3px solid #ffffff;
+            background-color: #000000;
         }
 
-        .main-video-box img {
+        .main-video-box iframe {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            opacity: 0.75;
-        }
-
-        .play-button {
-            position: absolute;
-            font-size: 4.5em;
-            color: #fff3b0; /* Amarillo suave para el Play */
-            cursor: pointer;
-            transition: transform 0.2s, color 0.2s;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
-        }
-
-        .play-button:hover {
-            transform: scale(1.1);
-            color: #ffffff;
+            border: none;
         }
 
         .playlist-container {
@@ -245,7 +222,7 @@
             line-height: 1.4;
         }
 
-        /* Estructura en Tarjetas para las otras pestañas (Propuesta, Infraestructura, etc.) */
+        /* TARJETAS INFORMATIVAS DE LAS OTRAS PESTAÑAS */
         .cards-grid {
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
@@ -269,7 +246,7 @@
         }
 
         .info-card h3 {
-            color: #fff3b0; /* Amarillo crema */
+            color: #fff3b0;
             margin-bottom: 14px;
             font-size: 1.25em;
             display: flex;
@@ -287,7 +264,6 @@
             line-height: 1.6;
         }
 
-        /* Cuadro destacado para resaltar datos importantes */
         .badge-highlight {
             background-color: #333538;
             border-left: 4px solid #fff3b0;
@@ -306,7 +282,6 @@
             font-size: 0.9em;
         }
 
-        /* Ajustes responsivos para celulares y tablets */
         @media (max-width: 900px) {
             .navbar { flex-direction: column; gap: 15px; text-align: center; }
             .video-grid { grid-template-columns: 1fr; }
@@ -358,21 +333,29 @@
     <div class="dynamic-content-area">
 
         <div id="contenido-conocenos" class="tab-content video-grid active">
+            
             <div class="main-video-box">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000" alt="Estudiantes">
-                <div class="play-button"><i class="fa-solid fa-circle-play"></i></div>
+                <iframe 
+                    id="reproductor-principal"
+                    src="https://www.youtube.com/embed/p3X_S65pGZ8?enablejsapi=1" 
+                    title="Video Institucional I.E. Santa Rosa" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
             </div>
+
             <div class="playlist-container">
-                <div class="playlist-title">Videos Institucionales:</div>
-                <div class="playlist-item">
+                <div class="playlist-title">Videos Disponibles:</div>
+                <div class="playlist-item" onclick="cargarVideo('p3X_S65pGZ8')">
                     <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
                     <div class="item-text">¡Bienvenidos al año escolar en la I.E. Santa Rosa!</div>
                 </div>
-                <div class="playlist-item">
+                <div class="playlist-item" onclick="cargarVideo('dQw4w9WgXcQ')">
                     <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
                     <div class="item-text">Nuestra historia y valores en Santo Domingo - Huarmey</div>
                 </div>
             </div>
+
         </div>
 
         <div id="contenido-aip" class="tab-content cards-grid">
@@ -436,52 +419,47 @@
     </footer>
 
     <script>
-        // 1. FUNCIÓN INTERACTIVA DE PESTAÑAS (Estilo UCV sin recargar)
+        // Cambiar entre pestañas principales de contenido (Estilo UCV)
         function cambiarPestana(evento, idContenido) {
-            // Ocultar todos los bloques de información
             const contenidos = document.getElementsByClassName('tab-content');
             for (let i = 0; i < contenidos.length; i++) {
                 contenidos[i].classList.remove('active');
             }
 
-            // Quitar el color rosa encendido de los botones superiores
             const pestanas = document.getElementsByClassName('tab-item');
             for (let i = 0; i < pestanas.length; i++) {
                 pestanas[i].classList.remove('active');
             }
 
-            // Mostrar el bloque de información seleccionado
             document.getElementById(idContenido).classList.add('active');
-
-            // Encender el botón superior que fue presionado
             evento.currentTarget.classList.add('active');
         }
 
-        // 2. SISTEMA DE SEGURIDAD ANTI-INSPECCIÓN
-        // Bloquear clic derecho
+        // Cambiar el video de YouTube dinámicamente al presionar elementos de la lista
+        function cargarVideo(idVideo) {
+            const iframe = document.getElementById('reproductor-principal');
+            iframe.src = "https://www.youtube.com/embed/" + idVideo + "?enablejsapi=1&autoplay=1";
+        }
+
+        // SISTEMA DE SEGURIDAD ANTI-INSPECCIÓN
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             alert("Contenido protegido por la I.E. Santa Rosa");
         });
 
-        // Bloquear atajos de teclado para desarrolladores e inspección
         document.addEventListener('keydown', function(e) {
-            // Bloquear F12
             if (e.key === 'F12') {
                 e.preventDefault();
                 return false;
             }
-            // Bloquear Ctrl+Shift+I y Ctrl+Shift+C (Inspeccionar)
             if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'i' || e.key === 'c')) {
                 e.preventDefault();
                 return false;
             }
-            // Bloquear Ctrl+U (Ver código fuente)
             if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
                 e.preventDefault();
                 return false;
             }
-            // Bloquear Ctrl+C (Copiar texto)
             if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) {
                 e.preventDefault();
                 alert("La copia de texto está deshabilitada en esta plataforma.");
