@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I.E. Santa Rosa - Huarmey</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #003366; /* Azul Institucional */
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid #d4af37; /* Detalle Dorado */
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2em;
+            font-style: italic;
+            color: #e0e0e0;
+        }
+        .main-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #003366;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+        footer {
+            background-color: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Institución Educativa "Santa Rosa"</h1>
+        <p>Santo Domingo - Huarmey</p>
+    </header>
+
+    <div class="main-container">
+        
+        <div class="card">
+            <h2>Bienvenidos</h2>
+            <p>Bienvenidos al portal web oficial de nuestra institución. Aquí compartiremos los comunicados, proyectos pedagógicos, logros y actividades de nuestra querida comunidad educativa.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Misión</h2>
+                <p>Brindar una educación integral y de calidad a nuestros estudiantes, fomentando la innovación pedagógica, los valores cívicos y el uso responsable de la tecnología para el desarrollo regional.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Visión</h2>
+                <p>Ser reconocidos como una institución educativa líder en la región Ancash, referente en innovación y formación de ciudadanos comprometidos con el progreso de su sociedad.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 I.E. Santa Rosa de Santo Domingo - Huarmey. Todos los derechos reservados.
+    </footer>
+
+</body>
+</html>
