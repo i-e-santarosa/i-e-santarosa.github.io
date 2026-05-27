@@ -13,14 +13,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Efecto de desplazamiento suave al hacer clic en los enlaces */
+        /* Desplazamiento suave al hacer clic en las pestañas */
         html {
             scroll-behavior: smooth;
         }
 
         body {
-            background-color: #fcf8f8;
-            color: #333333;
+            background-color: #fcf8f8; /* Blanco con un levísimo matiz rosa */
+            color: #333333; /* Negro suave para los textos */
         }
 
         /* 1. BARRA DE NAVEGACIÓN SUPERIOR */
@@ -31,8 +31,8 @@
             align-items: center;
             padding: 15px 5%;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border-bottom: 3px solid #ffb7c5;
-            position: sticky; /* Se queda fija arriba al bajar la página */
+            border-bottom: 3px solid #ffb7c5; /* Línea rosa bebé */
+            position: sticky; /* Se mantiene fija al bajar la página */
             top: 0;
             z-index: 1000;
         }
@@ -43,6 +43,7 @@
             font-weight: bold;
             color: #4a4a4a;
             font-size: 1.4em;
+            letter-spacing: 0.5px;
         }
 
         .logo-area i {
@@ -67,20 +68,25 @@
         }
 
         .nav-links a:hover {
-            color: #e56b6f;
+            color: #e56b6f; /* Coral suave al pasar el cursor */
         }
 
         .btn-portal {
-            background-color: #ffb7c5;
+            background-color: #ffb7c5; /* Botón Rosa Bebé */
             color: #333333 !important;
             padding: 8px 18px;
             border-radius: 20px;
             font-weight: 600 !important;
+            transition: background 0.3s;
         }
 
-        /* 2. BARRA DE PESTAÑAS (Enlaces con ID) */
+        .btn-portal:hover {
+            background-color: #ffa6b7;
+        }
+
+        /* 2. BARRA DE PESTAÑAS (Estilo UCV con redirección) */
         .tabs-container {
-            background-color: #fff0f2;
+            background-color: #fff0f2; /* Fondo rosa pastel extra suave */
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             border-bottom: 4px solid #ffb7c5;
@@ -90,7 +96,7 @@
             text-align: center;
             padding: 22px 10px;
             color: #4a4a4a;
-            text-decoration: none; /* Quitamos la línea de enlace tradicional */
+            text-decoration: none;
             transition: all 0.3s;
             font-weight: 600;
             font-size: 0.9em;
@@ -102,21 +108,21 @@
 
         .tab-item i {
             font-size: 1.8em;
-            color: #e56b6f;
+            color: #e56b6f; /* Íconos en coral/rojo suave */
         }
 
         .tab-item:hover {
             background-color: #ffe3e7;
         }
 
-        /* 3. CONTENEDOR MULTIMEDIA INICIAL */
+        /* 3. CONTENEDOR MULTIMEDIA PRINCIPAL */
         .media-section {
-            background-color: #333538;
+            background-color: #333538; /* Antracita suave para que resalte el video */
             padding: 55px 5%;
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 35px;
-            border-bottom: 5px solid #fff3b0;
+            border-bottom: 5px solid #fff3b0; /* Detalle Amarillo Suave */
         }
 
         .main-video-box {
@@ -128,6 +134,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
             border: 3px solid #ffffff;
         }
 
@@ -141,8 +148,15 @@
         .play-button {
             position: absolute;
             font-size: 4.5em;
-            color: #fff3b0;
+            color: #fff3b0; /* Amarillo suave para el Play */
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
             text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            color: #ffffff;
         }
 
         .playlist-container {
@@ -153,6 +167,8 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            max-height: 450px;
+            overflow-y: auto;
         }
 
         .playlist-title {
@@ -170,8 +186,14 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            color: #e0e0e0;
-            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .playlist-item:hover {
+            background-color: #3e4145;
+            border-left-color: #ffb7c5; /* Ilumina con Rosa Bebé */
         }
 
         .thumb-box {
@@ -183,16 +205,23 @@
             justify-content: center;
             align-items: center;
             color: #fff3b0;
+            font-size: 0.9em;
             flex-shrink: 0;
+        }
+
+        .item-text {
+            color: #e0e0e0;
+            font-size: 0.85em;
+            font-weight: 500;
+            line-height: 1.4;
         }
 
         /* 4. SECCIONES DE CONTENIDO DE LAS PESTAÑAS */
         .content-section {
-            padding: 80px 8%; /* Margen interno alto para dar espacio al desplazarse */
+            padding: 90px 8% 60px 8%; /* Margen amplio para el desplazamiento fijo */
             border-bottom: 1px solid #ffe3e7;
         }
 
-        /* Alternamos colores de fondo para que se distingan las secciones */
         .content-section:nth-child(even) {
             background-color: #ffffff;
         }
@@ -213,10 +242,9 @@
         .content-section p {
             font-size: 1.1em;
             line-height: 1.8;
-            color: #555;
+            color: #555555;
         }
 
-        /* Estilo especial para destacar la propuesta AIP */
         .highlight-box {
             background-color: #fff0f2;
             border-left: 5px solid #ffb7c5;
@@ -233,10 +261,12 @@
             font-size: 0.9em;
         }
 
+        /* Responsivo para dispositivos móviles */
         @media (max-width: 900px) {
-            .navbar { flex-direction: column; gap: 15px; }
-            .media-section { grid-template-columns: 1fr; }
+            .navbar { flex-direction: column; gap: 15px; text-align: center; }
+            .media-section { grid-template-columns: 1fr; padding: 25px 3%; }
             .tabs-container { grid-template-columns: repeat(3, 1fr); }
+            .tab-item { padding: 15px 5px; font-size: 0.8em; }
         }
     </style>
 </head>
@@ -289,84 +319,83 @@
             <div class="playlist-title">Nuestra propuesta educativa:</div>
             <div class="playlist-item">
                 <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                <div>¡Bienvenidos al año escolar en la I.E. Santa Rosa!</div>
+                <div class="item-text">¡Bienvenidos al año escolar en la I.E. Santa Rosa!</div>
             </div>
             <div class="playlist-item">
                 <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                <div>Tecnologías e Innovación Pedagógica (AIP)</div>
+                <div class="item-text">Tecnologías e Innovación Pedagógica (AIP)</div>
             </div>
             <div class="playlist-item">
                 <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                <div>Proyectos de Innovación dentro del CNEB</div>
+                <div class="item-text">Proyectos de Innovación dentro del CNEB</div>
             </div>
         </div>
     </div>
 
-    <section id="conocenos" class="content-section">
-        <h2><i class="fa-solid fa-circle-info"></i> Conócenos</h2>
-        <p>La Institución Educativa "Santa Rosa" de Santo Domingo, ubicada en la provincia de Huarmey, cuenta con una trayectoria comprometida con el desarrollo académico y moral de nuestros estudiantes. Nos enfocamos en guiar a los jóvenes hacia un futuro lleno de oportunidades, cimentando bases sólidas en valores cívicos y pensamiento crítico.</p>
-    </section>
+    <main>
+        <section id="conocenos" class="content-section">
+            <h2><i class="fa-solid fa-circle-info"></i> Conócenos</h2>
+            <p>La Institución Educativa "Santa Rosa" de Santo Domingo, ubicada en la provincia de Huarmey, cuenta con una trayectoria comprometida con el desarrollo académico y moral de nuestros estudiantes. Nos enfocamos en guiar a los jóvenes hacia un futuro lleno de oportunidades, cimentando bases sólidas en valores cívicos y pensamiento crítico.</p>
+        </section>
 
-    <section id="aip" class="content-section">
-        <h2><i class="fa-solid fa-book-open"></i> Propuesta AIP (Aula de Innovación Pedagógica)</h2>
-        <p>Nuestra propuesta se centra en la integración activa de las Tecnologías de la Información y Comunicación dentro del marco del Currículo Nacional (CNEB). Buscamos transformar las aulas tradicionales en ecosistemas digitales donde el estudiante es el protagonista de su aprendizaje.</p>
-        <div class="highlight-box">
-            <strong>Enfoque clave:</strong> Alfabetización digital, ciudadanía digital, robótica educativa básica y entornos virtuales colaborativos guiados por docentes especializados.
-        </div>
-    </section>
+        <section id="aip" class="content-section">
+            <h2><i class="fa-solid fa-book-open"></i> Propuesta AIP (Aula de Innovación Pedagógica)</h2>
+            <p>Nuestra propuesta se centra en la integración activa de las Tecnologías de la Información y Comunicación dentro del marco del Currículo Nacional (CNEB). Buscamos transformar las aulas tradicionales en ecosistemas digitales donde el estudiante es el protagonista de su aprendizaje.</p>
+            <div class="highlight-box">
+                <strong>Enfoque clave:</strong> Alfabetización digital, ciudadanía digital, robótica educativa básica y entornos virtuales colaborativos guiados por docentes especializados.
+            </div>
+        </section>
 
-    <section id="infraestructura" class="content-section">
-        <h2><i class="fa-solid fa-school"></i> Nuestra Infraestructura</h2>
-        <p>Contamos con ambientes óptimos diseñados para favorecer la concentración y la recreación sana de los alumnos. Disponemos de laboratorios equipados, aulas amplias, espacios deportivos para los Juegos Escolares y un Aula de Innovación de última generación.</p>
-    </section>
+        <section id="infraestructura" class="content-section">
+            <h2><i class="fa-solid fa-school"></i> Nuestra Infraestructura</h2>
+            <p>Contamos con ambientes óptimos diseñados para favorecer la concentración y la recreación sana de los alumnos. Disponemos de laboratorios equipados, aulas amplias, espacios deportivos para los Juegos Escolares y un Aula de Innovación de última generación.</p>
+        </section>
 
-    <section id="proyectos" class="content-section">
-        <h2><i class="fa-solid fa-flask-vial"></i> Proyectos de Innovación</h2>
-        <p>Fomentamos la investigación científica y pedagógica a través de proyectos anuales en los que participan tanto estudiantes como el cuerpo docente. Nos enfocamos en resolver problemáticas de nuestra comunidad de Huarmey haciendo uso de la ciencia y la tecnología adaptada.</p>
-    </section>
+        <section id="proyectos" class="content-section">
+            <h2><i class="fa-solid fa-flask-vial"></i> Proyectos de Innovación</h2>
+            <p>Fomentamos la investigación científica y pedagógica a través de proyectos anuales en los que participan tanto estudiantes como el cuerpo docente. Nos enfocamos en resolver problemáticas de nuestra comunidad de Huarmey haciendo uso de la ciencia y la tecnología adaptada.</p>
+        </section>
 
-    <section id="comunicados" class="content-section">
-        <h2><i class="fa-solid fa-newspaper"></i> Comunicados Oficiales</h2>
-        <p>Manténgase al tanto de las últimas directivas de la dirección, reuniones de padres de familia, cronogramas de evaluación y actividades extracurriculares institucionales.</p>
-    </section>
+        <section id="comunicados" class="content-section">
+            <h2><i class="fa-solid fa-newspaper"></i> Comunicados Oficiales</h2>
+            <p>Manténgase al tanto de las últimas directivas de la dirección, reuniones de padres de familia, cronogramas de evaluación y actividades extracurriculares institucionales.</p>
+        </section>
+    </main>
 
     <footer>
         &copy; 2026 I.E. Santa Rosa de Santo Domingo - Huarmey. Todos los derechos reservados.
     </footer>
-<script>
-        // 1. Bloquear el clic derecho (evita que le den a "Inspeccionar")
+
+    <script>
+        // Bloquear clic derecho
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             alert("Contenido protegido por la I.E. Santa Rosa");
         });
 
-        // 2. Bloquear atajos de teclado comunes para inspeccionar o copiar
+        // Bloquear atajos de teclado del navegador
         document.addEventListener('keydown', function(e) {
             // Bloquear F12
             if (e.key === 'F12') {
                 e.preventDefault();
                 return false;
             }
-            
             // Bloquear Ctrl+Shift+I (Inspeccionar)
             if (e.ctrlKey && e.shiftKey && e.key === 'I') {
                 e.preventDefault();
                 return false;
             }
-
             // Bloquear Ctrl+Shift+C (Inspeccionar elemento)
             if (e.ctrlKey && e.shiftKey && e.key === 'C') {
                 e.preventDefault();
                 return false;
             }
-
             // Bloquear Ctrl+U (Ver código fuente)
             if (e.ctrlKey && e.key === 'u') {
                 e.preventDefault();
                 return false;
             }
-
-            // Bloquear Ctrl+C (Copiar textos)
+            // Bloquear Ctrl+C (Copiar)
             if (e.ctrlKey && e.key === 'c') {
                 e.preventDefault();
                 alert("La copia de texto está deshabilitada en esta plataforma.");
@@ -374,5 +403,6 @@
             }
         });
     </script>
+
 </body>
 </html>
