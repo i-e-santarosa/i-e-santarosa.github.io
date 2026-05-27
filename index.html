@@ -13,9 +13,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* Efecto de desplazamiento suave al hacer clic en los enlaces */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #f4f6f9;
-            color: #333;
+            background-color: #fcf8f8;
+            color: #333333;
         }
 
         /* 1. BARRA DE NAVEGACIÓN SUPERIOR */
@@ -25,61 +30,67 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-bottom: 3px solid #ffb7c5;
+            position: sticky; /* Se queda fija arriba al bajar la página */
+            top: 0;
+            z-index: 1000;
         }
 
         .logo-area {
             display: flex;
             align-items: center;
             font-weight: bold;
-            color: #002e63;
+            color: #4a4a4a;
             font-size: 1.4em;
         }
 
         .logo-area i {
-            font-size: 1.6em;
-            color: #cc0000;
+            font-size: 1.5em;
+            color: #ff8fa3;
             margin-right: 10px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 25px;
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #555;
+            color: #555555;
             font-weight: 500;
             font-size: 0.95em;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: #cc0000;
+            color: #e56b6f;
         }
 
         .btn-portal {
-            background-color: #cc0000;
-            color: white !important;
-            padding: 8px 16px;
+            background-color: #ffb7c5;
+            color: #333333 !important;
+            padding: 8px 18px;
             border-radius: 20px;
+            font-weight: 600 !important;
         }
 
-        /* 2. SECCIÓN DE ICONOS / PESTAÑAS (Estilo UCV) */
+        /* 2. BARRA DE PESTAÑAS (Enlaces con ID) */
         .tabs-container {
-            background-color: #e9ecef;
+            background-color: #fff0f2;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            border-bottom: 4px solid #002e63;
+            border-bottom: 4px solid #ffb7c5;
         }
 
         .tab-item {
             text-align: center;
-            padding: 20px 10px;
-            color: #002e63;
-            cursor: pointer;
+            padding: 22px 10px;
+            color: #4a4a4a;
+            text-decoration: none; /* Quitamos la línea de enlace tradicional */
             transition: all 0.3s;
             font-weight: 600;
             font-size: 0.9em;
@@ -90,31 +101,26 @@
         }
 
         .tab-item i {
-            font-size: 2em;
+            font-size: 1.8em;
+            color: #e56b6f;
         }
 
-        /* Pestaña activa (Color Azul Completo) */
-        .tab-item.active {
-            background-color: #002e63;
-            color: white;
+        .tab-item:hover {
+            background-color: #ffe3e7;
         }
 
-        .tab-item:hover:not(.active) {
-            background-color: #dee2e6;
-        }
-
-        /* 3. CONTENEDOR PRINCIPAL AZUL (MULTIMEDIA) */
+        /* 3. CONTENEDOR MULTIMEDIA INICIAL */
         .media-section {
-            background-color: #002e63;
-            padding: 50px 5%;
+            background-color: #333538;
+            padding: 55px 5%;
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 30px;
+            gap: 35px;
+            border-bottom: 5px solid #fff3b0;
         }
 
-        /* Cuadro de Video Principal Izquierdo */
         .main-video-box {
-            background-color: #111;
+            background-color: #1a1a1a;
             border-radius: 15px;
             overflow: hidden;
             aspect-ratio: 16 / 9;
@@ -122,93 +128,114 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 3px solid #ffffff;
         }
 
-        /* Imagen de marcador de posición emulando el video */
         .main-video-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.7;
+            opacity: 0.75;
         }
 
         .play-button {
             position: absolute;
             font-size: 4.5em;
-            color: white;
-            cursor: pointer;
-            transition: transform 0.2s;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            color: #fff3b0;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
-        .play-button:hover {
-            transform: scale(1.1);
-        }
-
-        /* Lista de Videos / Noticias Derecha */
         .playlist-container {
-            background-color: #001f42;
+            background-color: #252629;
             border-radius: 12px;
-            border-top: 4px solid #cc0000;
-            padding: 15px;
+            border-top: 4px solid #fff3b0;
+            padding: 18px;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            max-height: 450px;
-            overflow-y: auto;
         }
 
         .playlist-title {
-            color: white;
+            color: #ffffff;
             font-size: 0.95em;
             font-weight: bold;
-            margin-bottom: 5px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #002e63;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #444;
         }
 
         .playlist-item {
-            background-color: #002e63;
+            background-color: #333538;
             border-radius: 8px;
-            padding: 10px;
+            padding: 12px;
             display: flex;
             align-items: center;
             gap: 12px;
-            cursor: pointer;
-            transition: background 0.3s;
-            border-left: 4px solid transparent;
-        }
-
-        .playlist-item:hover {
-            background-color: #003b7e;
-            border-left-color: #cc0000;
+            color: #e0e0e0;
+            font-size: 0.85em;
         }
 
         .thumb-box {
             width: 80px;
             height: 50px;
-            background-color: #222;
+            background-color: #1a1a1a;
             border-radius: 4px;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            font-size: 0.9em;
+            color: #fff3b0;
             flex-shrink: 0;
         }
 
-        .item-text {
-            color: white;
-            font-size: 0.85em;
-            font-weight: 500;
-            line-height: 1.3;
+        /* 4. SECCIONES DE CONTENIDO DE LAS PESTAÑAS */
+        .content-section {
+            padding: 80px 8%; /* Margen interno alto para dar espacio al desplazarse */
+            border-bottom: 1px solid #ffe3e7;
         }
 
-        /* Responsivo para celulares */
+        /* Alternamos colores de fondo para que se distingan las secciones */
+        .content-section:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .content-section h2 {
+            color: #4a4a4a;
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .content-section h2 i {
+            color: #e56b6f;
+        }
+
+        .content-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Estilo especial para destacar la propuesta AIP */
+        .highlight-box {
+            background-color: #fff0f2;
+            border-left: 5px solid #ffb7c5;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        footer {
+            background-color: #252629;
+            color: #aaa;
+            text-align: center;
+            padding: 25px;
+            font-size: 0.9em;
+        }
+
         @media (max-width: 900px) {
             .navbar { flex-direction: column; gap: 15px; }
-            .media-section { grid-template-columns: 1fr; padding: 20px 3%; }
+            .media-section { grid-template-columns: 1fr; }
             .tabs-container { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
@@ -222,70 +249,90 @@
         </div>
         <ul class="nav-links">
             <li><a href="#">Inicio</a></li>
-            <li><a href="#">Nosotros</a></li>
-            <li><a href="#">Innovación</a></li>
-            <li><a href="#">Noticias</a></li>
+            <li><a href="#conocenos">Nosotros</a></li>
+            <li><a href="#aip">Innovación</a></li>
+            <li><a href="#comunicados">Noticias</a></li>
             <li><a href="#" class="btn-portal">Intranet / Matrícula</a></li>
         </ul>
     </nav>
 
     <div class="tabs-container">
-        <div class="tab-item active">
+        <a href="#conocenos" class="tab-item">
             <i class="fa-solid fa-circle-info"></i>
             <span>Conócenos</span>
-        </div>
-        <div class="tab-item">
+        </a>
+        <a href="#aip" class="tab-item">
             <i class="fa-solid fa-book-open"></i>
             <span>Propuesta AIP</span>
-        </div>
-        <div class="tab-item">
+        </a>
+        <a href="#infraestructura" class="tab-item">
             <i class="fa-solid fa-school"></i>
-            <span>Nuestra Infraestructura</span>
-        </div>
-        <div class="tab-item">
+            <span>Infraestructura</span>
+        </a>
+        <a href="#proyectos" class="tab-item">
             <i class="fa-solid fa-flask-vial"></i>
-            <span>Proyectos de Innovación</span>
-        </div>
-        <div class="tab-item">
+            <span>Proyectos</span>
+        </a>
+        <a href="#comunicados" class="tab-item">
             <i class="fa-solid fa-newspaper"></i>
-            <span>Comunicados oficiales</span>
-        </div>
+            <span>Comunicados</span>
+        </a>
     </div>
 
     <div class="media-section">
-        
         <div class="main-video-box">
             <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000" alt="Estudiantes">
-            <div class="play-button">
-                <i class="fa-solid fa-circle-play"></i>
-            </div>
+            <div class="play-button"><i class="fa-solid fa-circle-play"></i></div>
         </div>
 
         <div class="playlist-container">
-            <div class="playlist-title">Conoce nuestra propuesta educativa:</div>
-            
+            <div class="playlist-title">Nuestra propuesta educativa:</div>
             <div class="playlist-item">
                 <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                <div class="item-text">¡Bienvenidos al año escolar 2026 en la I.E. Santa Rosa!</div>
+                <div>¡Bienvenidos al año escolar en la I.E. Santa Rosa!</div>
             </div>
-
             <div class="playlist-item">
                 <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                <div class="item-text">Uso de Tecnologías e Innovación Pedagógica (AIP)</div>
+                <div>Tecnologías e Innovación Pedagógica (AIP)</div>
             </div>
-
             <div class="playlist-item">
                 <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                <div class="item-text">Proyectos ganadores en el marco del CNEB</div>
-            </div>
-
-            <div class="playlist-item">
-                <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                <div class="item-text">Inscripciones abiertas para los Juegos Deportivos Escolares</div>
+                <div>Proyectos de Innovación dentro del CNEB</div>
             </div>
         </div>
-
     </div>
+
+    <section id="conocenos" class="content-section">
+        <h2><i class="fa-solid fa-circle-info"></i> Conócenos</h2>
+        <p>La Institución Educativa "Santa Rosa" de Santo Domingo, ubicada en la provincia de Huarmey, cuenta con una trayectoria comprometida con el desarrollo académico y moral de nuestros estudiantes. Nos enfocamos en guiar a los jóvenes hacia un futuro lleno de oportunidades, cimentando bases sólidas en valores cívicos y pensamiento crítico.</p>
+    </section>
+
+    <section id="aip" class="content-section">
+        <h2><i class="fa-solid fa-book-open"></i> Propuesta AIP (Aula de Innovación Pedagógica)</h2>
+        <p>Nuestra propuesta se centra en la integración activa de las Tecnologías de la Información y Comunicación dentro del marco del Currículo Nacional (CNEB). Buscamos transformar las aulas tradicionales en ecosistemas digitales donde el estudiante es el protagonista de su aprendizaje.</p>
+        <div class="highlight-box">
+            <strong>Enfoque clave:</strong> Alfabetización digital, ciudadanía digital, robótica educativa básica y entornos virtuales colaborativos guiados por docentes especializados.
+        </div>
+    </section>
+
+    <section id="infraestructura" class="content-section">
+        <h2><i class="fa-solid fa-school"></i> Nuestra Infraestructura</h2>
+        <p>Contamos con ambientes óptimos diseñados para favorecer la concentración y la recreación sana de los alumnos. Disponemos de laboratorios equipados, aulas amplias, espacios deportivos para los Juegos Escolares y un Aula de Innovación de última generación.</p>
+    </section>
+
+    <section id="proyectos" class="content-section">
+        <h2><i class="fa-solid fa-flask-vial"></i> Proyectos de Innovación</h2>
+        <p>Fomentamos la investigación científica y pedagógica a través de proyectos anuales en los que participan tanto estudiantes como el cuerpo docente. Nos enfocamos en resolver problemáticas de nuestra comunidad de Huarmey haciendo uso de la ciencia y la tecnología adaptada.</p>
+    </section>
+
+    <section id="comunicados" class="content-section">
+        <h2><i class="fa-solid fa-newspaper"></i> Comunicados Oficiales</h2>
+        <p>Manténgase al tanto de las últimas directivas de la dirección, reuniones de padres de familia, cronogramas de evaluación y actividades extracurriculares institucionales.</p>
+    </section>
+
+    <footer>
+        &copy; 2026 I.E. Santa Rosa de Santo Domingo - Huarmey. Todos los derechos reservados.
+    </footer>
 
 </body>
 </html>
