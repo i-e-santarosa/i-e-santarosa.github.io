@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I.E. Santa Rosa - Plataforma Institucional</title>
+    <title>I.E. Santa Rosa de Santo Domingo | Inicio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --rosa-principal: #e56b6f;
+            --rosa-suave: #fff0f2;
+            --rosa-borde: #ffb7c5;
+            --oscuro: #252629;
+            --oscuro-suave: #333538;
+            --amarillo-crema: #fff3b0;
+            --blanco: #ffffff;
+            --texto-oscuro: #333333;
+            --texto-mutado: #666666;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -14,478 +26,487 @@
         }
 
         body {
-            background-color: #fcf8f8; /* Blanco con matiz rosa institucional */
-            color: #333333;
+            background-color: #fcf8f8;
+            color: var(--texto-oscuro);
+            line-height: 1.6;
         }
 
-        /* 1. BARRA DE NAVEGACIÓN SUPERIOR */
-        .navbar {
-            background-color: #ffffff;
+        /* BANNER INFORMATIVO SUPERIOR */
+        .top-info-bar {
+            background-color: var(--oscuro);
+            color: var(--blanco);
+            font-size: 0.85em;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-info-bar span i {
+            color: var(--rosa-borde);
+            margin-right: 5px;
+        }
+
+        /* BARRA DE NAVEGACIÓN */
+        .main-navbar {
+            background-color: var(--blanco);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 5%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border-bottom: 3px solid #ffb7c5; /* Línea Rosa Bebé de la I.E. */
+            padding: 12px 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--rosa-borde);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .logo-area {
+        .navbar-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: bold;
-            color: #4a4a4a;
-            font-size: 1.3em;
-            letter-spacing: 0.5px;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--texto-oscuro);
         }
 
-        /* Control de tamaño de la Insignia oficial */
-        .insignia-img {
-            height: 55px; 
-            width: auto;  
+        .navbar-brand img {
+            height: 60px;
+            width: auto;
             object-fit: contain;
         }
 
-        .nav-links {
+        .brand-text h2 {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--oscuro-suave);
+            line-height: 1.2;
+        }
+
+        .brand-text p {
+            font-size: 0.75em;
+            color: var(--texto-mutated);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 20px;
             align-items: center;
         }
 
-        .nav-links a {
+        .nav-menu a {
             text-decoration: none;
-            color: #555555;
+            color: var(--oscuro-suave);
             font-weight: 500;
             font-size: 0.95em;
             transition: color 0.3s;
+            padding: 5px 0;
         }
 
-        .nav-links a:hover {
-            color: #e56b6f; /* Coral */
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--rosa-principal);
+            border-bottom: 2px solid var(--rosa-principal);
         }
 
-        .btn-portal {
-            background-color: #ffb7c5;
-            color: #333333 !important;
-            padding: 8px 18px;
-            border-radius: 20px;
+        .btn-admin {
+            background-color: var(--oscuro);
+            color: var(--amarillo-crema) !important;
+            padding: 8px 16px;
+            border-radius: 4px;
             font-weight: 600 !important;
-            transition: background 0.3s;
+            border: 1px solid var(--amarillo-crema);
         }
 
-        .btn-portal:hover {
-            background-color: #ffa6b7;
+        .btn-admin:hover {
+            background-color: var(--oscuro-suave);
+            border-bottom: none !important;
         }
 
-        /* 2. VIDEO DE CABECERA (HERO VIDEO) */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--oscuro);
+        }
+
+        /* SECCIÓN HERO (PORTADA PRINCIPAL) */
+        .hero-section {
+            background: linear-gradient(rgba(255, 240, 242, 0.9), rgba(255, 240, 242, 0.4)), url('assets/img/colegio-santa-rosa.jpg') no-repeat center center/cover;
+            padding: 80px 5%;
+            text-align: center;
+            border-bottom: 4px solid var(--rosa-borde);
+        }
+
         .hero-container {
-            width: 100%;
-            background-color: #000000;
-            overflow: hidden;
-            line-height: 0; /* Remueve espacios fantasmas debajo del video */
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .hero_video {
+        .hero-badge {
+            background-color: var(--rosa-principal);
+            color: var(--blanco);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5em;
+            color: var(--oscuro);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .hero-section p {
+            font-size: 1.1em;
+            color: var(--texto-oscuro);
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: var(--rosa-principal);
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(229, 107, 111, 0.3);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #d4575b;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--blanco);
+            color: var(--oscuro);
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            border: 2px solid var(--rosa-borde);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--rosa-suave);
+            transform: translateY(-2px);
+        }
+
+        /* SECCIÓN DE CARACTERÍSTICAS (PILARES) */
+        .features-section {
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--blanco);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--rosa-borde);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            color: var(--rosa-principal);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2em;
+            color: var(--oscuro);
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 0.9em;
+            color: var(--texto-mutado);
+        }
+
+        /* SECCIÓN PROYECTO INSTITUCIONAL */
+        .project-section {
+            background-color: var(--oscuro-suave);
+            color: var(--blanco);
+            padding: 60px 5%;
+        }
+
+        .project-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .project-text h2 {
+            font-size: 2em;
+            color: var(--amarillo-crema);
+            margin-bottom: 20px;
+        }
+
+        .project-text p {
+            font-size: 1.05em;
+            color: #d5d5d5;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .project-image-box {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .project-image-box img {
             width: 100%;
             height: auto;
-            max-height: 500px; /* Limita la altura en pantallas grandes para que no ocupe demasiado espacio vertical */
-            object-fit: cover;
+            display: block;
         }
 
-        /* 3. BARRA DE PESTAÑAS INTERACTIVAS */
-        .tabs-container {
-            background-color: #fff0f2;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            border-bottom: 4px solid #ffb7c5;
-            position: sticky;
-            top: 78px; /* Se queda fijo justo debajo de la navbar al hacer scroll */
-            z-index: 999;
-        }
-
-        .tab-item {
-            text-align: center;
-            padding: 22px 10px;
-            color: #4a4a4a;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            font-size: 0.9em;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            user-select: none;
-        }
-
-        .tab-item i {
-            font-size: 1.8em;
-            color: #e56b6f;
-        }
-
-        /* Pestaña activa (Color Rosa Fuerte Institucional) */
-        .tab-item.active {
-            background-color: #ffb7c5;
-            color: #222222;
-        }
-
-        .tab-item.active i {
-            color: #222222;
-        }
-
-        .tab-item:hover:not(.active) {
-            background-color: #ffe3e7;
-        }
-
-        /* 4. ÁREA DE CONTENIDOS DINÁMICOS */
-        .dynamic-content-area {
-            background-color: #333538; /* Fondo oscuro elegante */
-            padding: 55px 5%;
-            border-bottom: 5px solid #fff3b0; /* Detalle Amarillo de la insignia */
-            min-height: 480px;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .tab-content.active {
-            display: grid;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* REPRODUCTOR DE VIDEO Y LISTA (Pestaña Conócenos) */
-        .video-grid {
-            grid-template-columns: 2fr 1fr;
-            gap: 35px;
-        }
-
-        .main-video-box {
-            border-radius: 15px;
-            overflow: hidden;
-            aspect-ratio: 16 / 9;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-            background-color: #000000;
-        }
-
-        .main-video-box iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .playlist-container {
-            background-color: #252629;
-            border-radius: 12px;
-            border-top: 4px solid #fff3b0;
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-height: 450px;
-            overflow-y: auto;
-        }
-
-        .playlist-title {
-            color: #ffffff;
+        /* PIE DE PÁGINA (FOOTER) */
+        .main-footer {
+            background-color: var(--oscuro);
+            color: #aaa;
+            padding: 50px 5% 20px 5%;
             font-size: 0.95em;
-            font-weight: bold;
-            padding-bottom: 8px;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            padding-bottom: 30px;
             border-bottom: 1px solid #444;
         }
 
-        .playlist-item {
-            background-color: #333538;
-            border-radius: 8px;
-            padding: 12px;
+        .footer-info {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-left: 4px solid transparent;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .playlist-item:hover {
-            background-color: #3e4145;
-            border-left-color: #ffb7c5;
-        }
-
-        .thumb-box {
-            width: 80px;
-            height: 50px;
-            background-color: #1a1a1a;
-            border-radius: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff3b0;
-            font-size: 0.9em;
-            flex-shrink: 0;
-        }
-
-        .item-text {
-            color: #e0e0e0;
-            font-size: 0.85em;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* TARJETAS INFORMATIVAS DE LAS OTRAS PESTAÑAS */
-        .cards-grid {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            width: 100%;
-            align-items: start;
-        }
-
-        .info-card {
-            background-color: #252629;
-            border-top: 4px solid #ffb7c5;
-            border-radius: 10px;
-            padding: 25px;
-            color: #ffffff;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-        }
-
-        .info-card h3 {
-            color: #fff3b0;
-            margin-bottom: 14px;
-            font-size: 1.25em;
+        .footer-logo {
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--blanco);
         }
 
-        .info-card h3 i {
-            color: #ffb7c5;
+        .footer-logo img {
+            height: 45px;
+            width: auto;
         }
 
-        .info-card p {
-            color: #d5d5d5;
-            font-size: 0.95em;
-            line-height: 1.6;
+        .footer-box h3 {
+            color: var(--blanco);
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            position: relative;
         }
 
-        .badge-highlight {
-            background-color: #333333;
-            border-left: 4px solid #fff3b0;
-            padding: 12px;
-            margin-top: 15px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            color: #fff3b0;
+        .footer-box h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 30px;
+            height: 2px;
+            background-color: var(--rosa-principal);
         }
 
-        footer {
-            background-color: #252629;
+        .footer-box ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-box ul a {
             color: #aaa;
-            text-align: center;
-            padding: 25px;
-            font-size: 0.9em;
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        @media (max-width: 900px) {
-            .navbar { flex-direction: column; gap: 15px; text-align: center; }
-            .video-grid { grid-template-columns: 1fr; }
-            .tabs-container { grid-template-columns: repeat(3, 1fr); top: 130px; }
-            .tab-item { padding: 15px 5px; font-size: 0.8em; }
-            .dynamic-content-area { padding: 30px 4%; }
+        .footer-box ul a:hover {
+            color: var(--amarillo-crema);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.85em;
+            color: #777;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* Ocultar menú para versión móvil (requiere lógica js para abrir) */
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .project-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .hero-section h1 {
+                font-size: 1.8em;
+            }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo-area">
-            <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa" class="insignia-img">
-            <span>I.E. SANTA ROSA</span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Nosotros</a></li>
-            <li><a href="#">Innovación</a></li>
-            <li><a href="#">Noticias</a></li>
-            <li><a href="#" class="btn-portal">Intranet / Matrícula</a></li>
+    <div class="top-info-bar">
+        <span><i class="fa-solid fa-location-dot"></i> A.H. Santo Domingo, Huarmey - Áncash</span>
+        <span><i class="fa-solid fa-school"></i> Institución Educativa Pública | Construyendo nuestro futuro</span>
+    </div>
+
+    <nav class="main-navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="assets/img/insignia-santa-rosa.jpg" alt="Insignia I.E. Santa Rosa">
+            <div class="brand-text">
+                <h2>I.E. Santa Rosa</h2>
+                <p>Santo Domingo - Huarmey</p>
+            </div>
+        </a>
+
+        <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+
+        <ul class="nav-menu">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="niveles.html">Niveles</a></li>
+            <li><a href="elecciones.html">Elecciones</a></li>
+            <li><a href="noticias.html">Noticias</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="documentos.html">Documentos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="admin-login.html" class="btn-admin"><i class="fa-solid fa-lock"></i> Admin</a></li>
         </ul>
     </nav>
 
-    <div class="hero-container">
-        <video _ngcontent-ng-c1241722522="" autoplay="" playsinline="" class="hero_video" src="https://webadminportal.ucv.edu.pe/uploads/videos/videos-home/tu-f_20260209102230.mp4" muted="" loop=""></video>
-    </div>
-
-    <div class="tabs-container">
-        <div class="tab-item active" onclick="cambiarPestana(event, 'contenido-conocenos')">
-            <i class="fa-solid fa-circle-info"></i>
-            <span>Conócenos</span>
-        </div>
-        <div class="tab-item" onclick="cambiarPestana(event, 'contenido-aip')">
-            <i class="fa-solid fa-book-open"></i>
-            <span>Propuesta AIP</span>
-        </div>
-        <div class="tab-item" onclick="cambiarPestana(event, 'contenido-infraestructura')">
-            <i class="fa-solid fa-school"></i>
-            <span>Infraestructura</span>
-        </div>
-        <div class="tab-item" onclick="cambiarPestana(event, 'contenido-proyectos')">
-            <i class="fa-solid fa-flask-vial"></i>
-            <span>Proyectos</span>
-        </div>
-        <div class="tab-item" onclick="cambiarPestana(event, 'contenido-comunicados')">
-            <i class="fa-solid fa-newspaper"></i>
-            <span>Comunicados</span>
-        </div>
-    </div>
-
-    <div class="dynamic-content-area">
-
-        <div id="contenido-conocenos" class="tab-content video-grid active">
-            <div class="main-video-box">
-                <iframe 
-                    id="reproductor-principal"
-                    src="https://youtu.be/L58S46jZt0o?si=CekrgVHPWn5kGvqo" 
-                    title="Video Institucional I.E. Santa Rosa" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+    <header class="hero-section">
+        <div class="hero-container">
+            <span class="hero-badge"><i class="fa-solid fa-rose"></i> Colegio público de Huarmey</span>
+            <h1>Formación escolar con identidad, valores y participación democrática</h1>
+            <p>Plataforma institucional para comunicar actividades, documentos y gestionar elecciones escolares mediante voto digital con código QR.</p>
+            <div class="hero-buttons">
+                <a href="elecciones.html" class="btn-primary">Ir a elecciones →</a>
+                <a href="nosotros.html" class="btn-secondary">Conocer la institución</a>
             </div>
+        </div>
+    </header>
 
-            <div class="playlist-container">
-                <div class="playlist-title">Videos Disponibles:</div>
-                <div class="playlist-item" onclick="cargarVideo('p3X_S65pGZ8')">
-                    <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                    <div class="item-text">¡Bienvenidos al año escolar en la I.E. Santa Rosa!</div>
+    <section class="features-section">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-seedling"></i></div>
+            <h3>Identidad institucional</h3>
+            <p>Diseño adaptado a la insignia, colores rosado, negro, rojo y dorado.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-qrcode"></i></div>
+            <h3>Voto escolar digital</h3>
+            <p>Lectura de QR, cédula digital y control de voto único.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-file-invoice"></i></div>
+            <h3>Documentos</h3>
+            <p>Espacio para comunicados, reglamentos y formatos oficiales.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-users-gear"></i></div>
+            <h3>Gestión interna</h3>
+            <p>Panel administrador para docentes, candidatos, votantes y resultados.</p>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="project-container">
+            <div class="project-text">
+                <h2>Proyecto institucional</h2>
+                <p>Esta plataforma fue preparada para la I.E. Santa Rosa de Santo Domingo, ubicada en Huarmey, con un enfoque moderno y participativo. La sección de elecciones permite organizar procesos escolares como Municipio Escolar, brigadas u otras consultas internas.</p>
+                <p>La primera versión funciona como prototipo local. Luego puede conectarse con GitHub Pages y Firebase para que los datos se actualicen en tiempo real.</p>
+                <a href="elecciones.html" class="btn-primary" style="background-color: var(--amarillo-crema); color: var(--oscuro); box-shadow: none;">Probar módulo de votación</a>
+            </div>
+            <div class="project-image-box">
+                <img src="assets/img/colegio-santa-rosa.jpg" alt="Patio de la I.E. Santa Rosa de Santo Domingo">
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="assets/img/insignia-santa-rosa.jpg" alt="Insignia I.E. Santa Rosa">
+                    <h3>I.E. Santa Rosa</h3>
                 </div>
-                <div class="playlist-item" onclick="cargarVideo('dQw4w9WgXcQ')">
-                    <div class="thumb-box"><i class="fa-solid fa-play"></i></div>
-                    <div class="item-text">Nuestra historia y valores en Santo Domingo - Huarmey</div>
-                </div>
+                <p style="font-size: 0.85em; color: #888;">Santo Domingo - Huarmey<br>Portal institucional y módulo de voto escolar digital.</p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Menú</h3>
+                <ul>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="niveles.html">Niveles</a></li>
+                    <li><a href="elecciones.html">Elecciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-box">
+                <h3>Gestión</h3>
+                <ul>
+                    <li><a href="documentos.html">Documentos</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="admin-login.html">Administrador</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-box">
+                <h3>Contacto</h3>
+                <p style="font-size: 0.9em; color: #aaa;"><i class="fa-solid fa-location-dot" style="color: var(--rosa-principal); margin-right: 5px;"></i> A.H. Santo Domingo, Huarmey - Áncash</p>
             </div>
         </div>
 
-        <div id="contenido-aip" class="tab-content cards-grid">
-            <div class="info-card">
-                <h3><i class="fa-solid fa-laptop-code"></i> Alfabetización Digital</h3>
-                <p>Inserción activa de los estudiantes en el uso de herramientas de ofimática avanzada, navegación segura y uso de entornos virtuales de aprendizaje aplicados al CNEB.</p>
-            </div>
-            <div class="info-card">
-                <h3><i class="fa-solid fa-robot"></i> Robótica Educativa</h3>
-                <p>Talleres tecnológicos empleando kits educativos para desarrollar el pensamiento lógico-matemático y dar solución a problemas cotidianos de la comunidad.</p>
-            </div>
-            <div class="info-card">
-                <h3><i class="fa-solid fa-graduation-cap"></i> Ecosistema Digital</h3>
-                <p>Capacitación continua en herramientas tecnológicas y metodologías interactivas guiadas por nuestro equipo pedagógico especializado.</p>
-            </div>
+        <div class="footer-bottom">
+            &copy; 2026 I.E. Santa Rosa de Santo Domingo. Todos los derechos reservados.
         </div>
-
-        <div id="contenido-infraestructura" class="tab-content cards-grid">
-            <div class="info-card">
-                <h3><i class="fa-solid fa-desktop"></i> Aula de Innovación (AIP)</h3>
-                <p>Ambiente totalmente acondicionado con estaciones de cómputo, conectividad estable a internet y sistemas multimedia para sesiones interactivas.</p>
-            </div>
-            <div class="info-card">
-                <h3><i class="fa-solid fa-flask"></i> Laboratorio de Ciencias</h3>
-                <p>Espacios equipados y seguros que permiten la experimentación práctica en las áreas de biología, química y física experimental.</p>
-            </div>
-            <div class="info-card">
-                <h3><i class="fa-solid fa-volleyball"></i> Complejo Deportivo</h3>
-                <p>Losas multiusos optimizadas para la recreación saludable y el entrenamiento técnico de cara a los Juegos Escolares Deportivos (JEDPA).</p>
-            </div>
-        </div>
-
-        <div id="contenido-proyectos" class="tab-content cards-grid">
-            <div class="info-card">
-                <h3><i class="fa-solid fa-lightbulb"></i> Club de Ciencias</h3>
-                <p>Iniciativa estudiantil enfocada en la investigación científica y el diseño de prototipos para dar soluciones viables a la provincia de Huarmey.</p>
-            </div>
-            <div class="info-card">
-                <h3><i class="fa-solid fa-leaf"></i> Cuidado Ambiental</h3>
-                <p>Proyecto institucional enfocado en la cultura del reciclaje tecnológico y la preservación de áreas verdes escolares.</p>
-            </div>
-        </div>
-
-        <div id="contenido-comunicados" class="tab-content cards-grid">
-            <div class="info-card">
-                <h3><i class="fa-solid fa-calendar-check"></i> Inicio del Año Escolar</h3>
-                <p>Consulte los horarios oficiales de entrada, las listas por secciones y las pautas para el uso correcto del Aula de Innovación.</p>
-                <div class="badge-highlight">Estado: Publicado</div>
-            </div>
-            <div class="info-card">
-                <h3><i class="fa-solid fa-trophy"></i> Convocatoria JEDPA 2026</h3>
-                <p>Inscripciones abiertas para las disciplinas de fútbol, atletismo y ajedrez en las etapas internas de nuestra institución educativa.</p>
-                <div class="badge-highlight">Estado: En Inscripciones</div>
-            </div>
-        </div>
-
-    </div>
-
-    <footer>
-        &copy; 2026 I.E. Santa Rosa de Santo Domingo - Huarmey. Todos los derechos reservados.
     </footer>
 
-    <script>
-        // Cambiar entre pestañas principales de contenido (Estilo UCV)
-        function cambiarPestana(evento, idContenido) {
-            const contenidos = document.getElementsByClassName('tab-content');
-            for (let i = 0; i < contenidos.length; i++) {
-                contenidos[i].classList.remove('active');
-            }
-
-            const pestanas = document.getElementsByClassName('tab-item');
-            for (let i = 0; i < pestanas.length; i++) {
-                pestanas[i].classList.remove('active');
-            }
-
-            document.getElementById(idContenido).classList.add('active');
-            evento.currentTarget.classList.add('active');
-        }
-
-        // Cambiar el video de YouTube dinámicamente al presionar elementos de la lista
-        function cargarVideo(idVideo) {
-            const iframe = document.getElementById('reproductor-principal');
-            iframe.src = "https://www.youtube.com/embed/" + idVideo + "?enablejsapi=1&autoplay=1";
-        }
-
-        // SISTEMA DE SEGURIDAD ANTI-INSPECCIÓN
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            alert("Contenido protegido por la I.E. Santa Rosa");
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12') {
-                e.preventDefault();
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'i' || e.key === 'c')) {
-                e.preventDefault();
-                return false;
-            }
-            if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
-                e.preventDefault();
-                return false;
-            }
-            if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) {
-                e.preventDefault();
-                alert("La copia de texto está deshabilitada en esta plataforma.");
-                return false;
-            }
-        });
-    </script>
 </body>
 </html>
