@@ -124,16 +124,16 @@
             text-decoration: none;
         }
 
-        /* ENCABEZADO CON FONDO DINÁMICO REESTRUCTURADO */
+        /* MODIFICACIÓN: ALINEACIÓN DEL HERO TOTALMENTE A LA IZQUIERDA */
         .hero-section {
             position: relative;
             padding: 120px 5%;
-            text-align: center;
+            text-align: left; /* Cambiado de center a left */
             border-bottom: 4px solid var(--rosa-borde);
             min-height: 540px;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* Cambiado de center para empujar el bloque al inicio */
             overflow: hidden;
         }
 
@@ -155,7 +155,7 @@
             width: 100%;
             height: 100%;
             background-size: cover;
-            background-position: center 30%; /* Ajuste leve para centrar mejor el encuadre de las formaciones */
+            background-position: center 30%;
             background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.8s ease-in-out;
@@ -173,13 +173,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(45, 15, 23, 0.68); /* Tonalidad guinda oscura armónica */
+            background: rgba(45, 15, 23, 0.68);
             z-index: 2;
         }
 
         .hero-container {
             max-width: 850px;
-            margin: 0 auto;
+            margin: 0; /* Cambiado de "0 auto" para que no se centre en pantallas anchas */
             position: relative;
             z-index: 3;
         }
@@ -213,7 +213,7 @@
 
         .hero-buttons {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start; /* Cambiado de center a flex-start para alinear los botones a la izquierda */
             gap: 20px;
             flex-wrap: wrap;
         }
@@ -503,9 +503,11 @@
     </nav>
 
     <header class="hero-section">
+        <div class="hero-bg-slider">
             <div class="slide active" style="background-image: url('FRONTIS.jpg');"></div>
             <div class="slide" style="background-image: url('Primaria1.jpg');"></div>
             <div class="slide" style="background-image: url('Secundaria2.jpg');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200');"></div>
         </div>
 
         <div class="hero-overlay"></div>
@@ -516,7 +518,7 @@
             <p>Plataforma institucional para comunicar actividades, documentos y gestionar elecciones escolares mediante voto digital con código QR.</p>
             <div class="hero-buttons">
                 <a href="elecciones.html" class="btn-primary">Ir a elecciones →</a>
-                <a href="nosotros.html" class="btn-secondary">Conecer la institución</a>
+                <a href="nosotros.html" class="btn-secondary">Conocer la institución</a>
             </div>
         </div>
     </header>
