@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I.E. Santa Rosa de Santo Domingo | Plataforma Institucional</title>
+    <title>I.E. Santa Rosa de Santo Domingo | Inicio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -23,7 +23,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Deshabilitar selección de texto por seguridad base */
+            /* Capa de protección base para evitar copia simple de textos */
             user-select: none;
             -webkit-user-select: none;
         }
@@ -121,21 +121,23 @@
             border-radius: 4px;
             font-weight: 600 !important;
             border: 1px solid var(--amarillo-crema);
+            text-decoration: none;
         }
 
-        /* 1. CABECERA: CARRUSEL DE IMÁGENES DEL PATIO CON TRANSICIÓN */
+        /* ENCABEZADO CON FONDO DINÁMICO REESTRUCTURADO */
         .hero-section {
             position: relative;
-            padding: 100px 5%;
+            padding: 120px 5%;
             text-align: center;
             border-bottom: 4px solid var(--rosa-borde);
-            min-height: 480px;
+            min-height: 540px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
 
+        /* Contenedor del control deslizante detrás del texto */
         .hero-bg-slider {
             position: absolute;
             top: 0;
@@ -145,6 +147,7 @@
             z-index: 1;
         }
 
+        /* Estilo para las imágenes asignadas */
         .slide {
             position: absolute;
             top: 0;
@@ -152,23 +155,25 @@
             width: 100%;
             height: 100%;
             background-size: cover;
-            background-position: center;
+            background-position: center 30%; /* Ajuste leve para centrar mejor el encuadre de las formaciones */
             background-repeat: no-repeat;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            transition: opacity 1.8s ease-in-out;
         }
 
+        /* Activa la transición de visibilidad de la imagen actual */
         .slide.active {
             opacity: 1;
         }
 
+        /* Filtro de contraste elegante (Oscurecedor traslúcido) */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(69, 13, 31, 0.65); /* Filtro oscuro/borgoña elegante para contraste nítido */
+            background: rgba(45, 15, 23, 0.68); /* Tonalidad guinda oscura armónica */
             z-index: 2;
         }
 
@@ -187,23 +192,23 @@
             font-size: 0.85em;
             font-weight: 600;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .hero-section h1 {
             font-size: 2.8em;
             color: var(--blanco);
             margin-bottom: 20px;
-            line-height: 1.2;
+            line-height: 1.3;
             font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 15px rgba(0,0,0,0.7);
         }
 
         .hero-section p {
             font-size: 1.15em;
-            color: #eaeaea;
+            color: #f4f4f4;
             margin-bottom: 35px;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.4);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.6);
         }
 
         .hero-buttons {
@@ -214,13 +219,14 @@
         }
 
         .btn-primary {
-            background-color: #FFCD3F; /* Amarillo UCV/Institucional */
+            background-color: #FFCD3F;
             color: var(--oscuro);
             text-decoration: none;
             padding: 12px 28px;
             border-radius: 25px;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 205, 63, 0.3);
         }
 
         .btn-primary:hover {
@@ -235,7 +241,7 @@
             padding: 12px 28px;
             border-radius: 25px;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .btn-secondary:hover {
@@ -259,7 +265,7 @@
             background-color: var(--blanco);
             border-radius: 10px;
             padding: 25px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             border-top: 4px solid var(--rosa-principal);
             transition: transform 0.3s;
         }
@@ -274,20 +280,9 @@
             margin-bottom: 12px;
         }
 
-        .feature-card h3 {
-            font-size: 1.1em;
-            color: var(--oscuro);
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            font-size: 0.88em;
-            color: var(--texto-mutated);
-        }
-
-        /* 2. APARTADO: PROYECTO INSTITUCIONAL + MULTIMEDIA ESTILO UCV */
+        /* APARTADO: PROYECTO INSTITUCIONAL + MULTIMEDIA ESTILO UCV */
         .project-section {
-            background-color: #1a1b1e; /* Fondo oscuro idéntico a la sección de videos de la UCV */
+            background-color: #1a1b1e;
             color: var(--blanco);
             padding: 70px 5%;
         }
@@ -313,10 +308,9 @@
             font-size: 1.05em;
         }
 
-        /* CONTENEDOR MULTIMEDIA EN DOS COLUMNAS (VIDEO + PLAYLIST) */
         .ucv-video-layout {
             display: grid;
-            grid-template-columns: 2fr 1fr; /* 2 partes para video, 1 parte para lista */
+            grid-template-columns: 2fr 1fr;
             gap: 30px;
             background-color: #111214;
             padding: 25px;
@@ -325,15 +319,13 @@
             border-left: 5px solid var(--rosa-principal);
         }
 
-        /* Caja del reproductor principal de video (Izquierda) */
         .video-player-box {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9; /* Mantiene la proporción del video perfecta */
+            aspect-ratio: 16 / 9;
             background-color: #000;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
         .video-player-box iframe {
@@ -345,28 +337,25 @@
             border: none;
         }
 
-        /* Contenedor de la lista de videos (Derecha) */
         .ucv-playlist-side {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            max-height: 480px;
-            overflow-y: auto; /* Scroll vertical si hay muchos videos */
+            max-height: 450px;
+            overflow-y: auto;
             padding-right: 5px;
         }
 
         .playlist-header-title {
-            background-color: #cc1829; /* Cabecera roja como la referencia */
+            background-color: #cc1829;
             color: var(--blanco);
             padding: 12px 15px;
             font-size: 0.9em;
             font-weight: bold;
             border-radius: 6px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        /* Elemento individual de la lista */
         .playlist-video-item {
             background-color: #202226;
             border-radius: 6px;
@@ -384,10 +373,9 @@
             border-color: var(--rosa-principal);
         }
 
-        /* Icono miniatura de reproducción rápida */
         .video-item-thumb {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background-color: #111214;
             border-radius: 50%;
             display: flex;
@@ -395,39 +383,24 @@
             align-items: center;
             color: var(--amarillo-crema);
             flex-shrink: 0;
-            font-size: 1.1em;
-            border: 1px solid #3a3f47;
         }
 
         .playlist-video-item.playing-now .video-item-thumb {
             color: var(--blanco);
             background-color: var(--rosa-principal);
-            border-color: var(--rosa-principal);
         }
 
         .video-item-details {
             color: #e0e0e0;
             font-size: 0.88em;
-            font-weight: 500;
             line-height: 1.4;
         }
 
-        /* Personalización de la barra de scroll de la lista */
-        .ucv-playlist-side::-webkit-scrollbar {
-            width: 6px;
-        }
-        .ucv-playlist-side::-webkit-scrollbar-thumb {
-            background-color: #3a3f47;
-            border-radius: 4px;
-        }
-
-        /* BOTÓN DE ACCIÓN COMPLEMENTARIO */
         .action-footer-box {
             margin-top: 30px;
-            text-align: left;
         }
 
-        /* PIE DE PÁGINA (FOOTER) */
+        /* PIE DE PÁGINA */
         .main-footer {
             background-color: var(--oscuro);
             color: #aaa;
@@ -443,12 +416,6 @@
             gap: 40px;
             padding-bottom: 30px;
             border-bottom: 1px solid #444;
-        }
-
-        .footer-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
         }
 
         .footer-logo {
@@ -490,11 +457,6 @@
         .footer-box ul a {
             color: #aaa;
             text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-box ul a:hover {
-            color: var(--amarillo-crema);
         }
 
         .footer-bottom {
@@ -504,7 +466,6 @@
             color: #777;
         }
 
-        /* RESPONSIVIDAD ADAPTATIVA */
         @media (max-width: 950px) {
             .ucv-video-layout { grid-template-columns: 1fr; }
             .hero-section h1 { font-size: 2em; }
@@ -543,10 +504,10 @@
 
     <header class="hero-section">
         <div class="hero-bg-slider">
-            <div class="slide active" style="background-image: url('assets/img/colegio-santa-rosa.jpg');"></div>
+            <div class="slide active" style="background-image: url('FRONTIS.jpg');"></div>
+            <div class="slide" style="background-image: url('Primaria1.jpg');"></div>
+            <div class="slide" style="background-image: url('Secundaria2.jpg');"></div>
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1560785496-d6b97621f3d8?q=80&w=1200');"></div>
         </div>
 
         <div class="hero-overlay"></div>
@@ -557,7 +518,7 @@
             <p>Plataforma institucional para comunicar actividades, documentos y gestionar elecciones escolares mediante voto digital con código QR.</p>
             <div class="hero-buttons">
                 <a href="elecciones.html" class="btn-primary">Ir a elecciones →</a>
-                <a href="nosotros.html" class="btn-secondary">Conocer la institución</a>
+                <a href="nosotros.html" class="btn-secondary">Conecer la institución</a>
             </div>
         </div>
     </header>
@@ -594,7 +555,6 @@
             </div>
 
             <div class="ucv-video-layout">
-                
                 <div class="video-player-box">
                     <iframe 
                         id="ucv-main-player"
@@ -606,7 +566,7 @@
                 </div>
 
                 <div class="ucv-playlist-side">
-                    <div class="playlist-header-title">Videos del Proyecto e Innovación:</div>
+                    <div class="playlist-header-title">Videos del Proyecto:</div>
                     
                     <div class="playlist-video-item playing-now" onclick="cambiarVideoUCV(this, 'p3X_S65pGZ8')">
                         <div class="video-item-thumb"><i class="fa-solid fa-play"></i></div>
@@ -628,7 +588,6 @@
                         <div class="video-item-details">Desarrollo de competencias y proyectos del CNEB</div>
                     </div>
                 </div>
-
             </div>
 
             <div class="action-footer-box">
@@ -674,55 +633,48 @@
     </footer>
 
     <script>
-        // 1. SISTEMA DE SEGURIDAD ANTI-INSPECCIÓN (Protección contra espías)
+        // 1. ESCUDO PROTECTOR ANTI-ESPIAS (Desactiva inspecciones del navegador)
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
         document.addEventListener('keydown', function(e) {
-            // Deshabilitar F12
             if (e.key === 'F12') {
                 e.preventDefault();
                 return false;
             }
-            // Deshabilitar Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
             if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J' || e.key === 'i' || e.key === 'c' || e.key === 'j')) {
                 e.preventDefault();
                 return false;
             }
-            // Deshabilitar Ctrl+U (Ver código fuente)
             if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
                 e.preventDefault();
                 return false;
             }
         });
 
-        // 2. LÓGICA DEL REPRODUCTOR PLAYLIST (Estilo UCV)
-        function cambiarVideoUCV(elementoClidkeado, idVideoYoutube) {
-            // Remover estado activo de todos los items de la lista
-            const items = document.querySelectorAll('.playlist-video-item');
-            items.forEach(item => item.classList.remove('playing-now'));
-            
-            // Asignar estado activo al seleccionado
-            elementoClidkeado.classList.add('playing-now');
-            
-            // Cambiar la fuente del reproductor incrustado
-            const reproductor = document.getElementById('ucv-main-player');
-            reproductor.src = "https://www.youtube.com/embed/" + idVideoYoutube + "?enablejsapi=1&autoplay=1";
-        }
-
-        // 3. AUTOMATIZACIÓN DEL CARRUSEL DE IMÁGENES DE CABECERA
+        // 2. CICLO AUTOMÁTICO DEL CARRUSEL (Transiciones cada 5 segundos)
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
-        const tiempoCambio = 5000; // 5 segundos
+        const slideInterval = 5000;
 
-        function transicionPatio() {
+        function rotarImagenesPatio() {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }
+        setInterval(rotarImagenesPatio, slideInterval);
 
-        setInterval(transicionPatio, tiempoCambio);
+        // 3. CONTROLADOR DE PLAYLIST INTERACTIVA (Estilo UCV)
+        function cambiarVideoUCV(elemento, idVideo) {
+            const items = document.querySelectorAll('.playlist-video-item');
+            items.forEach(item => item.classList.remove('playing-now'));
+            
+            elemento.classList.add('playing-now');
+            
+            const player = document.getElementById('ucv-main-player');
+            player.src = "https://www.youtube.com/embed/" + idVideo + "?enablejsapi=1&autoplay=1";
+        }
     </script>
 
 </body>
