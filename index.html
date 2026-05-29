@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I.E. Santa Rosa de Santo Domingo - Huarmey</title>
+    <title>I.E. Santa Rosa de Santo Domingo | Plataforma Institucional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --rosa-principal: #e56b6f;
             --rosa-suave: #fff0f2;
             --rosa-borde: #ffb7c5;
-            --oscuro: #1d1e20;
-            --oscuro-suave: #2a2b2e;
-            --azul-ucv-fondos: #002e6e; /* Azul profundo para emular la sección multimedia */
+            --oscuro: #252629;
+            --oscuro-suave: #333538;
             --amarillo-crema: #fff3b0;
             --blanco: #ffffff;
             --texto-oscuro: #333333;
+            --texto-mutado: #666666;
         }
 
         * {
@@ -23,6 +23,9 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Deshabilitar selección de texto por seguridad base */
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         body {
@@ -31,7 +34,7 @@
             line-height: 1.6;
         }
 
-        /* 1. CINTA INFORMATIVA SUPERIOR */
+        /* BANNER INFORMATIVO SUPERIOR */
         .top-info-bar {
             background-color: var(--oscuro);
             color: var(--blanco);
@@ -40,6 +43,7 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            gap: 10px;
         }
 
         .top-info-bar span i {
@@ -47,7 +51,7 @@
             margin-right: 5px;
         }
 
-        /* 2. BARRA DE NAVEGACIÓN */
+        /* BARRA DE NAVEGACIÓN */
         .main-navbar {
             background-color: var(--blanco);
             display: flex;
@@ -70,20 +74,23 @@
         }
 
         .navbar-brand img {
-            height: 55px;
+            height: 60px;
             width: auto;
+            object-fit: contain;
         }
 
         .brand-text h2 {
-            font-size: 1.15em;
+            font-size: 1.2em;
             font-weight: 700;
             color: var(--oscuro-suave);
+            line-height: 1.2;
         }
 
         .brand-text p {
             font-size: 0.75em;
-            color: #777;
+            color: var(--texto-mutado);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .nav-menu {
@@ -99,10 +106,12 @@
             font-weight: 500;
             font-size: 0.95em;
             transition: color 0.3s;
+            padding: 5px 0;
         }
 
         .nav-menu a:hover, .nav-menu a.active {
             color: var(--rosa-principal);
+            border-bottom: 2px solid var(--rosa-principal);
         }
 
         .btn-admin {
@@ -111,19 +120,20 @@
             padding: 8px 16px;
             border-radius: 4px;
             font-weight: 600 !important;
+            border: 1px solid var(--amarillo-crema);
         }
 
-        /* 3. SECCIÓN HÉROE (CARRUSEL DE IMÁGENES) */
+        /* 1. CABECERA: CARRUSEL DE IMÁGENES DEL PATIO CON TRANSICIÓN */
         .hero-section {
             position: relative;
             padding: 100px 5%;
             text-align: center;
-            height: 520px;
+            border-bottom: 4px solid var(--rosa-borde);
+            min-height: 480px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border-bottom: 4px solid var(--rosa-borde);
         }
 
         .hero-bg-slider {
@@ -143,6 +153,7 @@
             height: 100%;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
         }
@@ -157,15 +168,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(69, 13, 31, 0.65), rgba(0, 0, 0, 0.75)); /* Degradado elegante */
+            background: rgba(69, 13, 31, 0.65); /* Filtro oscuro/borgoña elegante para contraste nítido */
             z-index: 2;
         }
 
         .hero-container {
             max-width: 850px;
+            margin: 0 auto;
             position: relative;
             z-index: 3;
-            color: var(--blanco);
         }
 
         .hero-badge {
@@ -180,29 +191,31 @@
         }
 
         .hero-section h1 {
-            font-size: 2.6em;
-            margin-bottom: 18px;
-            line-height: 1.25;
+            font-size: 2.8em;
+            color: var(--blanco);
+            margin-bottom: 20px;
+            line-height: 1.2;
             font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .hero-section p {
-            font-size: 1.1em;
+            font-size: 1.15em;
+            color: #eaeaea;
             margin-bottom: 35px;
-            color: #f0f0f0;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 0 1px 5px rgba(0,0,0,0.4);
         }
 
         .hero-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .btn-yellow {
-            background-color: #ffcd3f;
-            color: #450d1f;
+        .btn-primary {
+            background-color: #FFCD3F; /* Amarillo UCV/Institucional */
+            color: var(--oscuro);
             text-decoration: none;
             padding: 12px 28px;
             border-radius: 25px;
@@ -210,181 +223,292 @@
             transition: all 0.3s;
         }
 
-        .btn-yellow:hover {
+        .btn-primary:hover {
             background-color: #e6b835;
             transform: translateY(-2px);
         }
 
-        .btn-outline {
-            background-color: transparent;
-            color: var(--blanco);
+        .btn-secondary {
+            background-color: var(--blanco);
+            color: var(--oscuro);
             text-decoration: none;
             padding: 12px 28px;
             border-radius: 25px;
             font-weight: 600;
-            border: 2px solid var(--blanco);
             transition: all 0.3s;
         }
 
-        .btn-outline:hover {
-            background-color: rgba(255,255,255,0.15);
+        .btn-secondary:hover {
+            background-color: var(--rosa-suave);
             transform: translateY(-2px);
         }
 
-        /* 4. BARRA DE PESTAÑAS (ESTILO UCV) */
-        .tabs-container {
-            background-color: var(--blanco);
+        /* SECCIÓN DE CUADROS DE PILARES */
+        .features-section {
+            padding: 50px 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            border-bottom: 3px solid var(--rosa-borde);
-            position: sticky;
-            top: 82px;
-            z-index: 999;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: -40px auto 0 auto;
+            position: relative;
+            z-index: 10;
         }
 
-        .tab-item {
-            text-align: center;
-            padding: 18px 10px;
-            color: #555;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            font-size: 0.9em;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 4px solid transparent;
+        .feature-card {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--rosa-principal);
+            transition: transform 0.3s;
         }
 
-        .tab-item i {
-            font-size: 1.5em;
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.2em;
             color: var(--rosa-principal);
+            margin-bottom: 12px;
         }
 
-        .tab-item.active {
-            background-color: var(--rosa-suave);
+        .feature-card h3 {
+            font-size: 1.1em;
             color: var(--oscuro);
-            border-bottom-color: var(--rosa-principal);
+            margin-bottom: 10px;
         }
 
-        /* 5. ÁREA MULTIMEDIA AZUL DE VIDEOS (ESTILO UCV) */
-        .multimedia-section {
-            background-color: #0b1b3d; /* Azul noche profundo idéntico a las capturas */
-            padding: 60px 5%;
+        .feature-card p {
+            font-size: 0.88em;
+            color: var(--texto-mutated);
         }
 
-        .multimedia-container {
+        /* 2. APARTADO: PROYECTO INSTITUCIONAL + MULTIMEDIA ESTILO UCV */
+        .project-section {
+            background-color: #1a1b1e; /* Fondo oscuro idéntico a la sección de videos de la UCV */
+            color: var(--blanco);
+            padding: 70px 5%;
+        }
+
+        .project-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.8fr 1.2fr;
-            gap: 30px;
         }
 
-        /* Contenedor del Reproductor */
-        .video-player-box {
-            background-color: #000;
+        .project-intro-text {
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .project-intro-text h2 {
+            font-size: 2.2em;
+            color: var(--amarillo-crema);
+            margin-bottom: 15px;
+        }
+
+        .project-intro-text p {
+            color: #cdcdcd;
+            font-size: 1.05em;
+        }
+
+        /* CONTENEDOR MULTIMEDIA EN DOS COLUMNAS (VIDEO + PLAYLIST) */
+        .ucv-video-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* 2 partes para video, 1 parte para lista */
+            gap: 30px;
+            background-color: #111214;
+            padding: 25px;
             border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border-left: 5px solid var(--rosa-principal);
+        }
+
+        /* Caja del reproductor principal de video (Izquierda) */
+        .video-player-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Mantiene la proporción del video perfecta */
+            background-color: #000;
+            border-radius: 8px;
             overflow: hidden;
-            aspect-ratio: 16 / 9;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
         .video-player-box iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
         }
 
-        /* Contenedor de la Lista de Reproducción */
-        .playlist-wrapper {
-            background-color: #081229;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
+        /* Contenedor de la lista de videos (Derecha) */
+        .ucv-playlist-side {
             display: flex;
             flex-direction: column;
+            gap: 12px;
             max-height: 480px;
-            overflow: hidden;
+            overflow-y: auto; /* Scroll vertical si hay muchos videos */
+            padding-right: 5px;
         }
 
-        .playlist-header {
-            background-color: #ff1e27; /* Barra roja distintiva de la playlist */
+        .playlist-header-title {
+            background-color: #cc1829; /* Cabecera roja como la referencia */
             color: var(--blanco);
-            padding: 12px 20px;
-            font-weight: 600;
-            font-size: 0.95em;
+            padding: 12px 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .playlist-scroll {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            overflow-y: auto;
-        }
-
-        /* Elemento de la lista */
-        .playlist-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 8px;
+        /* Elemento individual de la lista */
+        .playlist-video-item {
+            background-color: #202226;
+            border-radius: 6px;
             padding: 12px;
             display: flex;
             align-items: center;
             gap: 15px;
             cursor: pointer;
             transition: all 0.2s ease;
+            border: 1px solid #2d3035;
         }
 
-        .playlist-card:hover {
-            background-color: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255,255,255,0.2);
+        .playlist-video-item:hover, .playlist-video-item.playing-now {
+            background-color: #2b2e34;
+            border-color: var(--rosa-principal);
         }
 
-        .playlist-card.playing {
-            background-color: rgba(255, 255, 255, 0.15);
-            border-left: 4px solid #ff1e27;
-        }
-
-        .thumb-area {
-            position: relative;
-            width: 90px;
-            height: 55px;
-            background-color: #000;
-            border-radius: 4px;
-            flex-shrink: 0;
+        /* Icono miniatura de reproducción rápida */
+        .video-item-thumb {
+            width: 50px;
+            height: 50px;
+            background-color: #111214;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: var(--amarillo-crema);
+            flex-shrink: 0;
+            font-size: 1.1em;
+            border: 1px solid #3a3f47;
         }
 
-        .thumb-area i {
+        .playlist-video-item.playing-now .video-item-thumb {
             color: var(--blanco);
-            font-size: 1.2em;
+            background-color: var(--rosa-principal);
+            border-color: var(--rosa-principal);
         }
 
-        .video-info-text {
-            color: #ffffff;
+        .video-item-details {
+            color: #e0e0e0;
             font-size: 0.88em;
             font-weight: 500;
             line-height: 1.4;
         }
 
-        /* PIE DE PÁGINA */
+        /* Personalización de la barra de scroll de la lista */
+        .ucv-playlist-side::-webkit-scrollbar {
+            width: 6px;
+        }
+        .ucv-playlist-side::-webkit-scrollbar-thumb {
+            background-color: #3a3f47;
+            border-radius: 4px;
+        }
+
+        /* BOTÓN DE ACCIÓN COMPLEMENTARIO */
+        .action-footer-box {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        /* PIE DE PÁGINA (FOOTER) */
         .main-footer {
             background-color: var(--oscuro);
             color: #aaa;
-            text-align: center;
-            padding: 25px;
-            font-size: 0.9em;
+            padding: 50px 5% 20px 5%;
+            font-size: 0.95em;
         }
 
-        @media (max-width: 900px) {
-            .multimedia-container { grid-template-columns: 1fr; }
-            .tabs-container { grid-template-columns: repeat(3, 1fr); top: 130px; }
-            .main-navbar { flex-direction: column; gap: 15px; }
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #444;
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--blanco);
+        }
+
+        .footer-logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .footer-box h3 {
+            color: var(--blanco);
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            position: relative;
+        }
+
+        .footer-box h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 30px;
+            height: 2px;
+            background-color: var(--rosa-principal);
+        }
+
+        .footer-box ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-box ul a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-box ul a:hover {
+            color: var(--amarillo-crema);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.85em;
+            color: #777;
+        }
+
+        /* RESPONSIVIDAD ADAPTATIVA */
+        @media (max-width: 950px) {
+            .ucv-video-layout { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2em; }
+            .nav-menu { display: none; }
         }
     </style>
 </head>
@@ -392,149 +516,214 @@
 
     <div class="top-info-bar">
         <span><i class="fa-solid fa-location-dot"></i> A.H. Santo Domingo, Huarmey - Áncash</span>
-        <span><i class="fa-solid fa-graduation-cap"></i> Portal Institucional 2026</span>
+        <span><i class="fa-solid fa-school"></i> Institución Educativa Pública | Construyendo nuestro futuro</span>
     </div>
 
     <nav class="main-navbar">
-        <a href="#" class="navbar-brand">
+        <a href="index.html" class="navbar-brand">
             <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
             <div class="brand-text">
                 <h2>I.E. Santa Rosa</h2>
                 <p>Santo Domingo - Huarmey</p>
             </div>
         </a>
+
         <ul class="nav-menu">
-            <li><a href="#" class="active">Inicio</a></li>
-            <li><a href="#">Nosotros</a></li>
-            <li><a href="#">Niveles</a></li>
-            <li><a href="#">Elecciones</a></li>
-            <li><a href="documentos.html" class="btn-admin"><i class="fa-solid fa-lock"></i> Intranet</a></li>
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="niveles.html">Niveles</a></li>
+            <li><a href="elecciones.html">Elecciones</a></li>
+            <li><a href="noticias.html">Noticias</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="documentos.html">Documentos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="admin-login.html" class="btn-admin"><i class="fa-solid fa-lock"></i> Admin</a></li>
         </ul>
     </nav>
 
     <header class="hero-section">
         <div class="hero-bg-slider">
             <div class="slide active" style="background-image: url('assets/img/colegio-santa-rosa.jpg');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1920');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1920');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1560785496-d6b97621f3d8?q=80&w=1920');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1560785496-d6b97621f3d8?q=80&w=1200');"></div>
         </div>
 
         <div class="hero-overlay"></div>
 
         <div class="hero-container">
-            <span class="hero-badge">Colegio público de Huarmey</span>
+            <span class="hero-badge"><i class="fa-solid fa-rose"></i> Colegio público de Huarmey</span>
             <h1>Formación escolar con identidad, valores y participación democrática</h1>
             <p>Plataforma institucional para comunicar actividades, documentos y gestionar elecciones escolares mediante voto digital con código QR.</p>
             <div class="hero-buttons">
-                <a href="#" class="btn-yellow">Ir a elecciones →</a>
-                <a href="#" class="btn-outline">Conocer la institución</a>
+                <a href="elecciones.html" class="btn-primary">Ir a elecciones →</a>
+                <a href="nosotros.html" class="btn-secondary">Conocer la institución</a>
             </div>
         </div>
     </header>
 
-    <div class="tabs-container">
-        <div class="tab-item active">
-            <i class="fa-solid fa-circle-info"></i>
-            <span>Conócenos</span>
+    <section class="features-section">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-seedling"></i></div>
+            <h3>Identidad institucional</h3>
+            <p>Diseño adaptado a la insignia, colores rosado, negro, rojo y dorado.</p>
         </div>
-        <div class="tab-item">
-            <i class="fa-solid fa-book-open"></i>
-            <span>Propuesta AIP</span>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-qrcode"></i></div>
+            <h3>Voto escolar digital</h3>
+            <p>Lectura de QR, cédula digital y control de voto único.</p>
         </div>
-        <div class="tab-item">
-            <i class="fa-solid fa-school"></i>
-            <span>Infraestructura</span>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-file-invoice"></i></div>
+            <h3>Documentos</h3>
+            <p>Espacio para comunicados, reglamentos y formatos oficiales.</p>
         </div>
-        <div class="tab-item">
-            <i class="fa-solid fa-flask-vial"></i>
-            <span>Proyectos</span>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-users-gear"></i></div>
+            <h3>Gestión interna</h3>
+            <p>Panel administrador para docentes, candidatos, votantes y resultados.</p>
         </div>
-        <div class="tab-item">
-            <i class="fa-solid fa-newspaper"></i>
-            <span>Noticias</span>
-        </div>
-    </div>
+    </section>
 
-    <section class="multimedia-section">
-        <div class="multimedia-container">
+    <section class="project-section">
+        <div class="project-container">
             
-            <div class="video-player-box">
-                <iframe 
-                    id="main-video-player"
-                    src="https://www.youtube.com/embed/p3X_S65pGZ8?enablejsapi=1" 
-                    title="Reproductor Institucional"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+            <div class="project-intro-text">
+                <h2>Proyecto Institucional</h2>
+                <p>Esta plataforma fue preparada para la I.E. Santa Rosa de Santo Domingo, ubicada en la provincia de Huarmey, con un enfoque moderno y altamente participativo. Centraliza la comunicación y optimiza los procesos de elecciones estudiantiles mediante tecnología digital avanzada.</p>
             </div>
 
-            <div class="playlist-wrapper">
-                <div class="playlist-header">
-                    Conoce nuestra institución y disfruta los videos
+            <div class="ucv-video-layout">
+                
+                <div class="video-player-box">
+                    <iframe 
+                        id="ucv-main-player"
+                        src="https://www.youtube.com/embed/p3X_S65pGZ8?enablejsapi=1" 
+                        title="Reproductor Institucional Santa Rosa"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
-                <div class="playlist-scroll">
+
+                <div class="ucv-playlist-side">
+                    <div class="playlist-header-title">Videos del Proyecto e Innovación:</div>
                     
-                    <div class="playlist-card playing" onclick="playVideo('p3X_S65pGZ8', this)">
-                        <div class="thumb-area"><i class="fa-solid fa-play"></i></div>
-                        <div class="video-info-text">¡Bienvenidos al año escolar en la I.E. Santa Rosa!</div>
+                    <div class="playlist-video-item playing-now" onclick="cambiarVideoUCV(this, 'p3X_S65pGZ8')">
+                        <div class="video-item-thumb"><i class="fa-solid fa-play"></i></div>
+                        <div class="video-item-details">¡Bienvenidos al año escolar en la I.E. Santa Rosa!</div>
                     </div>
 
-                    <div class="playlist-card" onclick="playVideo('dQw4w9WgXcQ', this)">
-                        <div class="thumb-area"><i class="fa-solid fa-play"></i></div>
-                        <div class="video-info-text">Uso y normas de convivencia en las Aulas de Innovación (AIP)</div>
+                    <div class="playlist-video-item" onclick="cambiarVideoUCV(this, 'dQw4w9WgXcQ')">
+                        <div class="video-item-thumb"><i class="fa-solid fa-play"></i></div>
+                        <div class="video-item-details">Uso del Aula de Innovación Pedagógica (AIP)</div>
                     </div>
 
-                    <div class="playlist-card" onclick="playVideo('p8T41_K84uU', this)">
-                        <div class="thumb-area"><i class="fa-solid fa-play"></i></div>
-                        <div class="video-info-text">Tutorial: Cómo votar electrónicamente usando tu código QR asignado</div>
+                    <div class="playlist-video-item" onclick="cambiarVideoUCV(this, 'p3X_S65pGZ8')">
+                        <div class="video-item-thumb"><i class="fa-solid fa-play"></i></div>
+                        <div class="video-item-details">Simulacro y respuesta ante emergencias en Huarmey</div>
                     </div>
 
-                    <div class="playlist-card" onclick="playVideo('J---aiyznGQ', this)">
-                        <div class="thumb-area"><i class="fa-solid fa-play"></i></div>
-                        <div class="video-info-text">Participación de la comunidad educativa en el Simulacro Nacional</div>
+                    <div class="playlist-video-item" onclick="cambiarVideoUCV(this, 'dQw4w9WgXcQ')">
+                        <div class="video-item-thumb"><i class="fa-solid fa-play"></i></div>
+                        <div class="video-item-details">Desarrollo de competencias y proyectos del CNEB</div>
                     </div>
-
                 </div>
+
+            </div>
+
+            <div class="action-footer-box">
+                <a href="elecciones.html" class="btn-primary" style="background-color: var(--rosa-principal); color: white;">Probar módulo de votación</a>
             </div>
 
         </div>
     </section>
 
     <footer class="main-footer">
-        &copy; 2026 I.E. Santa Rosa de Santo Domingo. Todos los derechos reservados.
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
+                    <h3>I.E. Santa Rosa</h3>
+                </div>
+                <p style="font-size: 0.85em; color: #888;">Santo Domingo - Huarmey<br>Portal institucional y módulo de voto escolar digital.</p>
+            </div>
+            <div class="footer-box">
+                <h3>Menú</h3>
+                <ul>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="niveles.html">Niveles</a></li>
+                    <li><a href="elecciones.html">Elecciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h3>Gestión</h3>
+                <ul>
+                    <li><a href="documentos.html">Documentos</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="admin-login.html">Administrador</a></li>
+                </ul>
+            </div>
+            <div class="footer-box">
+                <h3>Contacto</h3>
+                <p style="font-size: 0.9em; color: #aaa;"><i class="fa-solid fa-location-dot" style="color: var(--rosa-principal); margin-right: 5px;"></i> A.H. Santo Domingo, Huarmey - Áncash</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 I.E. Santa Rosa de Santo Domingo. Todos los derechos reservados.
+        </div>
     </footer>
 
     <script>
-        // 1. CONTROL DEL CARRUSEL DE IMÁGENES AUTOMÁTICO
+        // 1. SISTEMA DE SEGURIDAD ANTI-INSPECCIÓN (Protección contra espías)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            // Deshabilitar F12
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+            // Deshabilitar Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J' || e.key === 'i' || e.key === 'c' || e.key === 'j')) {
+                e.preventDefault();
+                return false;
+            }
+            // Deshabilitar Ctrl+U (Ver código fuente)
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 2. LÓGICA DEL REPRODUCTOR PLAYLIST (Estilo UCV)
+        function cambiarVideoUCV(elementoClidkeado, idVideoYoutube) {
+            // Remover estado activo de todos los items de la lista
+            const items = document.querySelectorAll('.playlist-video-item');
+            items.forEach(item => item.classList.remove('playing-now'));
+            
+            // Asignar estado activo al seleccionado
+            elementoClidkeado.classList.add('playing-now');
+            
+            // Cambiar la fuente del reproductor incrustado
+            const reproductor = document.getElementById('ucv-main-player');
+            reproductor.src = "https://www.youtube.com/embed/" + idVideoYoutube + "?enablejsapi=1&autoplay=1";
+        }
+
+        // 3. AUTOMATIZACIÓN DEL CARRUSEL DE IMÁGENES DE CABECERA
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
-        const intervalTime = 5000; // Cambio cada 5 segundos
+        const tiempoCambio = 5000; // 5 segundos
 
-        function startImageCarousel() {
-            setInterval(() => {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }, intervalTime);
+        function transicionPatio() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
         }
 
-        // 2. CONTROL DEL REPRODUCTOR DE VIDEOS
-        function playVideo(youtubeId, cardElement) {
-            // Actualizar la URL del Frame
-            const player = document.getElementById('main-video-player');
-            player.src = `https://www.youtube.com/embed/${youtubeId}?enablejsapi=1&autoplay=1`;
-
-            // Cambiar estados visuales en la lista
-            const cards = document.querySelectorAll('.playlist-card');
-            cards.forEach(card => card.classList.remove('playing'));
-            cardElement.classList.add('playing');
-        }
-
-        // Inicializar funciones al cargar la página
-        window.onload = () => {
-            startImageCarousel();
-        };
+        setInterval(transicionPatio, tiempoCambio);
     </script>
+
 </body>
 </html>
