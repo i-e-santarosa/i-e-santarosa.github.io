@@ -16,6 +16,12 @@
             --blanco: #ffffff;
             --texto-oscuro: #333333;
             --texto-mutado: #666666;
+            
+            /* Colores vivos añadidos para iconos llamativos */
+            --pilar-identidad: #e56b6f;
+            --pilar-voto: #ffb703;
+            --pilar-doc: #219ebc;
+            --pilar-gestion: #4ade80;
         }
 
         * {
@@ -124,20 +130,19 @@
             text-decoration: none;
         }
 
-        /* MODIFICACIÓN: ALINEACIÓN DEL HERO TOTALMENTE A LA IZQUIERDA */
+        /* ENCABEZADO CON IMÁGENES MUCHO MÁS CLARAS Y VISIBLES */
         .hero-section {
             position: relative;
-            padding: 120px 5%;
-            text-align: left; /* Cambiado de center a left */
+            padding: 130px 5%;
+            text-align: left;
             border-bottom: 4px solid var(--rosa-borde);
-            min-height: 540px;
+            min-height: 560px;
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Cambiado de center para empujar el bloque al inicio */
+            justify-content: flex-start;
             overflow: hidden;
         }
 
-        /* Contenedor del control deslizante detrás del texto */
         .hero-bg-slider {
             position: absolute;
             top: 0;
@@ -147,7 +152,6 @@
             z-index: 1;
         }
 
-        /* Estilo para las imágenes asignadas */
         .slide {
             position: absolute;
             top: 0;
@@ -155,31 +159,30 @@
             width: 100%;
             height: 100%;
             background-size: cover;
-            background-position: center 30%;
+            background-position: center 35%;
             background-repeat: no-repeat;
             opacity: 0;
-            transition: opacity 1.8s ease-in-out;
+            transition: opacity 1.5s ease-in-out;
         }
 
-        /* Activa la transición de visibilidad de la imagen actual */
         .slide.active {
             opacity: 1;
         }
 
-        /* Filtro de contraste elegante (Oscurecedor traslúcido) */
+        /* SOLUCIÓN AL PROBLEMA DE OPACIDAD: Filtro mucho más claro (0.35) y con degradado hacia la izquierda */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(45, 15, 23, 0.68);
+            background: linear-gradient(90deg, rgba(30, 5, 10, 0.55) 0%, rgba(0, 0, 0, 0.25) 100%);
             z-index: 2;
         }
 
         .hero-container {
-            max-width: 850px;
-            margin: 0; /* Cambiado de "0 auto" para que no se centre en pantallas anchas */
+            max-width: 800px;
+            margin: 0;
             position: relative;
             z-index: 3;
         }
@@ -187,104 +190,144 @@
         .hero-badge {
             background-color: var(--rosa-principal);
             color: var(--blanco);
-            padding: 6px 16px;
+            padding: 6px 18px;
             border-radius: 20px;
             font-size: 0.85em;
-            font-weight: 600;
+            font-weight: 700;
             display: inline-block;
             margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
+        /* Textos con sombras más fuertes para compensar la claridad del fondo */
         .hero-section h1 {
-            font-size: 2.8em;
+            font-size: 3em;
             color: var(--blanco);
             margin-bottom: 20px;
             line-height: 1.3;
-            font-weight: 700;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+            font-weight: 800;
+            text-shadow: 2px 2px 18px rgba(0, 0, 0, 0.95), 0 0 5px rgba(0,0,0,0.5);
         }
 
         .hero-section p {
-            font-size: 1.15em;
-            color: #f4f4f4;
-            margin-bottom: 35px;
-            text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+            font-size: 1.2em;
+            color: #ffffff;
+            margin-bottom: 40px;
+            font-weight: 500;
+            text-shadow: 1px 1px 12px rgba(0, 0, 0, 0.95);
         }
 
+        /* BOTONES MÁS LLAMATIVOS Y VISUALES */
         .hero-buttons {
             display: flex;
-            justify-content: flex-start; /* Cambiado de center a flex-start para alinear los botones a la izquierda */
+            justify-content: flex-start;
             gap: 20px;
             flex-wrap: wrap;
         }
 
         .btn-primary {
-            background-color: #FFCD3F;
-            color: var(--oscuro);
+            background-color: #ffb703; /* Amarillo más intenso y llamativo */
+            color: #000000;
             text-decoration: none;
-            padding: 12px 28px;
+            padding: 14px 32px;
             border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(255, 205, 63, 0.3);
+            font-weight: 700;
+            font-size: 1.05em;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 20px rgba(255, 183, 3, 0.5);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-primary:hover {
-            background-color: #e6b835;
-            transform: translateY(-2px);
+            background-color: #ffcc00;
+            transform: scale(1.05); /* Efecto de crecimiento suave */
+            box-shadow: 0 8px 25px rgba(255, 183, 3, 0.7);
         }
 
         .btn-secondary {
             background-color: var(--blanco);
             color: var(--oscuro);
             text-decoration: none;
-            padding: 12px 28px;
+            padding: 14px 32px;
             border-radius: 25px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.05em;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .btn-secondary:hover {
             background-color: var(--rosa-suave);
+            color: var(--rosa-principal);
             transform: translateY(-2px);
         }
 
-        /* SECCIÓN DE CUADROS DE PILARES */
+        /* ICONOS Y CUADROS DE PILARES RE-DISEÑADOS PARA SER MUY LLAMATIVOS */
         .features-section {
             padding: 50px 5%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 25px;
             max-width: 1200px;
-            margin: -40px auto 0 auto;
+            margin: -50px auto 0 auto;
             position: relative;
             z-index: 10;
         }
 
         .feature-card {
             background-color: var(--blanco);
-            border-radius: 10px;
-            padding: 25px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            border-top: 4px solid var(--rosa-principal);
-            transition: transform 0.3s;
+            border-radius: 12px;
+            padding: 30px 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--rosa-principal);
+            transition: all 0.3s ease;
+            text-align: center;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(229, 107, 111, 0.2);
         }
 
-        .feature-icon {
-            font-size: 2.2em;
-            color: var(--rosa-principal);
+        /* Círculos llamativos e individuales para cada icono */
+        .feature-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px auto;
+            font-size: 1.8em;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Colores y fondos vivos para cada pilar */
+        .pilar-1 { background-color: #fff0f2; color: var(--pilar-identidad); border: 1px solid #ffccd5; }
+        .pilar-2 { background-color: #fefae0; color: var(--pilar-voto); border: 1px solid #e9d8a6; }
+        .pilar-3 { background-color: #e0f2fe; color: var(--pilar-doc); border: 1px solid #bae6fd; }
+        .pilar-4 { background-color: #dcfce7; color: var(--pilar-gestion); border: 1px solid #bbf7d0; }
+
+        .feature-card h3 {
+            font-size: 1.15em;
+            color: var(--oscuro);
             margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 0.9em;
+            color: var(--texto-mutado);
+            line-height: 1.5;
         }
 
         /* APARTADO: PROYECTO INSTITUCIONAL + MULTIMEDIA ESTILO UCV */
         .project-section {
             background-color: #1a1b1e;
             color: var(--blanco);
-            padding: 70px 5%;
+            padding: 80px 5%;
         }
 
         .project-container {
@@ -298,9 +341,10 @@
         }
 
         .project-intro-text h2 {
-            font-size: 2.2em;
+            font-size: 2.4em;
             color: var(--amarillo-crema);
             margin-bottom: 15px;
+            font-weight: 700;
         }
 
         .project-intro-text p {
@@ -354,6 +398,7 @@
             font-weight: bold;
             border-radius: 6px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .playlist-video-item {
@@ -397,7 +442,7 @@
         }
 
         .action-footer-box {
-            margin-top: 30px;
+            margin-top: 35px;
         }
 
         /* PIE DE PÁGINA */
@@ -468,7 +513,7 @@
 
         @media (max-width: 950px) {
             .ucv-video-layout { grid-template-columns: 1fr; }
-            .hero-section h1 { font-size: 2em; }
+            .hero-section h1 { font-size: 2.2em; }
             .nav-menu { display: none; }
         }
     </style>
@@ -507,7 +552,7 @@
             <div class="slide active" style="background-image: url('FRONTIS.jpg');"></div>
             <div class="slide" style="background-image: url('Primaria1.jpg');"></div>
             <div class="slide" style="background-image: url('Secundaria2.jpg');"></div>
-            <div class="slide" style="background-image: url('Frontal - Formacion.jpg');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200');"></div>
         </div>
 
         <div class="hero-overlay"></div>
@@ -517,7 +562,7 @@
             <h1>Formación escolar con identidad, valores y participación democrática</h1>
             <p>Plataforma institucional para comunicar actividades, documentos y gestionar elecciones escolares mediante voto digital con código QR.</p>
             <div class="hero-buttons">
-                <a href="elecciones.html" class="btn-primary">Ir a elecciones →</a>
+                <a href="elecciones.html" class="btn-primary">Ir a elecciones <i class="fa-solid fa-arrow-right"></i></a>
                 <a href="nosotros.html" class="btn-secondary">Conocer la institución</a>
             </div>
         </div>
@@ -525,22 +570,22 @@
 
     <section class="features-section">
         <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-seedling"></i></div>
+            <div class="feature-icon-wrapper pilar-1"><i class="fa-solid fa-seedling"></i></div>
             <h3>Identidad institucional</h3>
             <p>Diseño adaptado a la insignia, colores rosado, negro, rojo y dorado.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-qrcode"></i></div>
+            <div class="feature-icon-wrapper pilar-2"><i class="fa-solid fa-qrcode"></i></div>
             <h3>Voto escolar digital</h3>
             <p>Lectura de QR, cédula digital y control de voto único.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-file-invoice"></i></div>
+            <div class="feature-icon-wrapper pilar-3"><i class="fa-solid fa-file-invoice"></i></div>
             <h3>Documentos</h3>
             <p>Espacio para comunicados, reglamentos y formatos oficiales.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-users-gear"></i></div>
+            <div class="feature-icon-wrapper pilar-4"><i class="fa-solid fa-users-gear"></i></div>
             <h3>Gestión interna</h3>
             <p>Panel administrador para docentes, candidatos, votantes y resultados.</p>
         </div>
@@ -591,7 +636,7 @@
             </div>
 
             <div class="action-footer-box">
-                <a href="elecciones.html" class="btn-primary" style="background-color: var(--rosa-principal); color: white;">Probar módulo de votación</a>
+                <a href="elecciones.html" class="btn-primary" style="background-color: var(--rosa-principal); color: white; box-shadow: 0 5px 15px rgba(229,107,111,0.4);">Probar módulo de votación</a>
             </div>
 
         </div>
@@ -633,7 +678,7 @@
     </footer>
 
     <script>
-        // 1. ESCUDO PROTECTOR ANTI-ESPIAS (Desactiva inspecciones del navegador)
+        // 1. ESCUDO PROTECTOR ANTI-ESPIAS
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
@@ -653,7 +698,7 @@
             }
         });
 
-        // 2. CICLO AUTOMÁTICO DEL CARRUSEL (Transiciones cada 5 segundos)
+        // 2. CICLO AUTOMÁTICO DEL CARRUSEL (Cada 5 segundos)
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         const slideInterval = 5000;
@@ -665,7 +710,7 @@
         }
         setInterval(rotarImagenesPatio, slideInterval);
 
-        // 3. CONTROLADOR DE PLAYLIST INTERACTIVA (Estilo UCV)
+        // 3. CONTROLADOR DE PLAYLIST INTERACTIVA
         function cambiarVideoUCV(elemento, idVideo) {
             const items = document.querySelectorAll('.playlist-video-item');
             items.forEach(item => item.classList.remove('playing-now'));
