@@ -17,6 +17,8 @@
             --blanco: #ffffff;
             --texto-oscuro: #333333;
             --texto-mutado: #666666;
+            --azul-3d: #4ea8de;
+            --dorado-3d: #f39c12;
         }
 
         /* SEGURIDAD CSS: Evita la selección de texto en toda la página */
@@ -125,7 +127,7 @@
 
         .brand-text p {
             font-size: 0.75em;
-            color: var(--texto-mutated);
+            color: var(--texto-mutado);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -223,13 +225,14 @@
             100% { box-shadow: 0 4px 15px rgba(255, 205, 63, 0.35); transform: scale(1.05); }
         }
 
-        /* HERO SLIDER */
+        /* HERO SLIDER (Diseñado para albergar elementos 3D con perspectiva) */
         .hero-section {
             position: relative;
             border-bottom: 4px solid var(--rosa-borde);
-            height: 480px;
+            height: 560px;
             overflow: hidden;
             background-color: #000;
+            perspective: 1000px;
         }
 
         .hero-bg-slider, .slide {
@@ -246,55 +249,117 @@
             background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
+            filter: brightness(0.75); /* Incrementa el contraste de los contadores */
         }
 
         .slide.active { opacity: 1; }
 
-        /* SECCIÓN NUEVA: CONTADORES ESTILO ELEMENTOR */
-        .counters-section {
-            padding: 40px 5%;
-            background-color: var(--blanco);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .counters-container {
-            max-width: 1000px;
-            margin: 0 auto;
+        /* CONTADORES PREMIUM FLOTANTES EN 3D (Estilo Glassmorphism) */
+        .hero-counters-overlay {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 950px;
             display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
+            justify-content: center;
+            gap: 50px;
+            z-index: 10;
         }
 
         .elementor-counter {
-            text-align: center;
             flex: 1;
-            min-width: 200px;
-            padding: 20px;
-            background: var(--fcf8f8);
-            border-radius: 12px;
-            border: 1px solid var(--rosa-borde);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            position: relative;
+            background: rgba(20, 21, 23, 0.65); /* Cristal esmerilado oscuro */
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 30px 20px 20px 20px;
+            text-align: center;
+            color: var(--blanco);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .elementor-counter-title {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: var(--oscuro-suave);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+        .elementor-counter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 183, 197, 0.4);
         }
 
-        .elementor-counter-number-wrapper {
-            font-size: 2.8em;
-            font-weight: 800;
-            color: var(--rosa-principal);
-            line-height: 1;
+        /* CONTENEDOR E ICONOS 3D IMPACTANTES */
+        .icon-3d-container {
+            position: absolute;
+            top: -65px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
             display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 15;
+            filter: drop-shadow(0 15px 15px rgba(0,0,0,0.4));
+        }
+
+        .icon-3d-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        /* Animaciones fluidas 3D individuales */
+        .student-3d-anim {
+            animation: float3DStudent 4s ease-in-out infinite alternate;
+        }
+
+        .teacher-3d-anim {
+            animation: float3DTeacher 4.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes float3DStudent {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-12px) rotate(3deg); }
+        }
+
+        @keyframes float3DTeacher {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(-3deg); }
+        }
+
+        .elementor-counter-title {
+            font-size: 1em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            margin-top: 50px; /* Margen para respetar el icono flotante superior */
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .elementor-counter-number-wrapper {
+            font-size: 3.2em;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Colores tipográficos diferenciados para impacto visual */
+        .color-estudiantes {
+            background: linear-gradient(135deg, #aed8f2 0%, #4ea8de 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .color-docentes {
+            background: linear-gradient(135deg, #ffeaa7 0%, #f39c12 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* SECCIÓN MULTIMEDIA DEL PROYECTO INSTITUCIONAL */
@@ -362,9 +427,15 @@
 
         .footer-bottom { text-align: center; padding-top: 20px; font-size: 0.85em; color: #6c7075; }
 
+        /* ADAPTACIÓN RESPONSIVE EXCEPCIONAL */
         @media (max-width: 950px) {
             .ucv-video-layout { grid-template-columns: 1fr; }
-            .hero-section { height: 320px; }
+            .hero-section { height: 620px; }
+            .hero-counters-overlay { gap: 85px; bottom: 25px; flex-direction: column; width: 85%; }
+            .elementor-counter { padding: 20px 15px 15px 15px; }
+            .icon-3d-container { width: 90px; height: 90px; top: -50px; }
+            .elementor-counter-title { margin-top: 35px; font-size: 0.9em; }
+            .elementor-counter-number-wrapper { font-size: 2.5em; }
             .nav-menu { display: none; }
             .top-info-bar { flex-direction: column; text-align: center; justify-content: center; gap: 10px; padding: 10px 5%; }
             .footer-container { grid-template-columns: 1fr; gap: 30px; }
@@ -419,39 +490,41 @@
         </ul>
     </nav>
 
-    <!-- GALERÍA DE IMÁGENES -->
+    <!-- GALERÍA DE IMÁGENES CON CONTADORES PREMIUM INTEGRADOS EN 3D -->
     <header class="hero-section">
         <div class="hero-bg-slider">
             <div class="slide active" style="background-image: url('FRONTIS.jpg');"></div>
             <div class="slide" style="background-image: url('Primaria1.jpg');"></div>
             <div class="slide" style="background-image: url('Secundaria2.jpg');"></div>
         </div>
-    </header>
 
-    <!-- SECCIÓN CONTADORES DE ESTUDIANTES Y DOCENTES -->
-    <section class="counters-section">
-        <div class="counters-container">
-            <!-- Contador Estudiantes (Tu código adaptado) -->
+        <!-- Capa superpuesta con los contadores y modelados 3D -->
+        <div class="hero-counters-overlay">
+            
+            <!-- Contador Estudiantes (Efecto Cristal + Icono 3D Neón) -->
             <div class="elementor-counter">
+                <div class="icon-3d-container student-3d-anim">
+                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/graduation-cap-5374026-4496030.png" alt="Estudiantes 3D" class="icon-3d-img">
+                </div>
                 <div class="elementor-counter-title">ESTUDIANTES</div>
                 <div class="elementor-counter-number-wrapper">
-                    <span class="elementor-counter-number-prefix"></span>
-                    <span class="elementor-counter-number" data-duration="2000" data-to-value="683" data-from-value="0" data-delimiter=",">0</span>
-                    <span class="elementor-counter-number-suffix"></span>
+                    <span class="elementor-counter-number color-estudiantes" data-duration="2500" data-to-value="380" data-from-value="0" data-delimiter=",">0</span>
                 </div>
             </div>
 
-            <!-- Contador Docentes (Duplicado y personalizado) -->
+            <!-- Contador Docentes (Efecto Cristal + Pizarra / Profesor 3D Realista) -->
             <div class="elementor-counter">
+                <div class="icon-3d-container teacher-3d-anim">
+                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/teacher-writing-on-board-11232810-9017688.png" alt="Docentes 3D" class="icon-3d-img">
+                </div>
                 <div class="elementor-counter-title">DOCENTES</div>
                 <div class="elementor-counter-number-wrapper">
-                    <span class="elementor-counter-number-prefix"></span>
-                    <span class="elementor-counter-number" data-duration="2000" data-to-value="25" data-from-value="0" data-delimiter=",">0</span>
-                    <span class="elementor-counter-number-suffix"></span>
+                    <span class="elementor-counter-number color-docentes" data-duration="2500" data-to-value="25" data-from-value="0" data-delimiter=",">0</span>
                 </div>
             </div>
+
         </div>
-    </section>
+    </header>
 
     <!-- SECCIÓN MULTIMEDIA DEL PROYECTO INSTITUCIONAL -->
     <section class="project-section">
@@ -536,7 +609,7 @@
             e.preventDefault();
         }, false);
 
-        // 2. Deshabilitar atajos de teclado de copia e inspección
+        // 2. Deshabilitar atajos de teclado de copia e inspección técnica
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12') { e.preventDefault(); return false; }
             if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return false; }
@@ -564,12 +637,12 @@
             document.getElementById('ucv-main-player').src = "https://www.youtube.com/embed/" + idVideo + "?enablejsapi=1&autoplay=1";
         }
 
-        // SCRIPT ANIMACIÓN CONTADOR (ELEMENTOR STYLE)
+        // SCRIPT ANIMACIÓN CONTADOR MATEMÁTICO AVANZADO
         document.addEventListener("DOMContentLoaded", () => {
             const counters = document.querySelectorAll('.elementor-counter-number');
             counters.forEach(counter => {
                 const toValue = parseInt(counter.getAttribute('data-to-value'));
-                const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
+                const duration = parseInt(counter.getAttribute('data-duration')) || 2500;
                 let startTime = null;
 
                 const animateCounter = (timestamp) => {
@@ -582,7 +655,7 @@
                     if (progress < duration) {
                         requestAnimationFrame(animateCounter);
                     } else {
-                        counter.textContent = toValue; // Asegura el valor final exacto
+                        counter.textContent = toValue;
                     }
                 };
                 requestAnimationFrame(animateCounter);
