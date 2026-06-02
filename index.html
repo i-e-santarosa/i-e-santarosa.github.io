@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I.E. Santa Rosa de Santo Domingo | Inicio</title>
+    <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -38,6 +39,7 @@
             background-color: #fcf8f8;
             color: var(--texto-oscuro);
             line-height: 1.6;
+            top: 0 !important; /* Corrige desfase visual que genera Google Translate */
         }
 
         /* BANNER INFORMATIVO SUPERIOR */
@@ -68,6 +70,7 @@
         .top-social-links {
             display: flex;
             gap: 12px;
+            align-items: center;
         }
 
         .top-social-links a {
@@ -80,34 +83,66 @@
             color: var(--rosa-principal);
         }
 
-        /* DISEÑO INTEGRADO DEL REPRODUCTOR EN LA BARRA SUPERIOR */
+        /* TRADUCTOR MULTILINGÜE COMPACTO */
+        .lang-selector-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .lang-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .lang-link:hover {
+            color: var(--amarillo-crema);
+        }
+        .lang-divider {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        /* Ocultar el banner y elementos nativos feos de Google Translate */
+        .goog-te-banner-frame, .goog-te-balloon-frame, #goog-gt-tt { display: none !important; }
+        .goog-te-gadget { display: none !important; }
+        body { position: static !important; }
+
+        /* CONTROLLER FLOTANTE FIJO DEL HIMNO */
         .himno-player-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
-            background: rgba(255, 255, 255, 0.07);
-            padding: 4px 14px 4px 6px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: var(--oscuro-suave);
+            padding: 6px 16px 6px 8px;
+            border-radius: 30px;
+            border: 2px solid var(--rosa-borde);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 2000;
             transition: all 0.3s ease;
         }
         
         .himno-player-widget:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: var(--rosa-borde);
+            background: var(--oscuro);
+            transform: translateY(-2px);
         }
 
         .himno-btn {
             background: #d90429;
             border: none;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.85em;
+            font-size: 0.9em;
             transition: transform 0.2s, background-color 0.2s;
         }
 
@@ -118,7 +153,7 @@
 
         #textHimno {
             font-weight: 600;
-            font-size: 0.95em;
+            font-size: 0.85em;
             letter-spacing: 0.3px;
             color: #f1f5f9;
             display: flex;
@@ -165,7 +200,7 @@
 
         .brand-text p {
             font-size: 0.75em;
-            color: var(--texto-mutado);
+            color: var(--texto-mutated);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -243,7 +278,7 @@
             background-color: var(--rosa-suave) !important;
         }
 
-        /* PORTAL ADMIN: SIMPLIFICADO A SOLO ICONO */
+        /* PORTAL ADMIN */
         .btn-admin {
             background: linear-gradient(135deg, var(--oscuro) 0%, #3e4145 100%);
             color: #ffcd3f !important;
@@ -265,12 +300,6 @@
             100% { box-shadow: 0 4px 15px rgba(255, 205, 63, 0.35); transform: scale(1.05); }
         }
 
-        .btn-admin:hover {
-            background: linear-gradient(135deg, #3e4145 0%, var(--oscuro) 100%) !important;
-            color: #ffffff !important;
-            border-color: #ffffff;
-        }
-
         /* ENCABEZADO DE GALERÍA LIMPIO */
         .hero-section {
             position: relative;
@@ -288,8 +317,6 @@
             height: 100%;
         }
 
-        .hero-bg-slider { z-index: 1; }
-
         .slide {
             background-size: cover;
             background-position: center;
@@ -300,7 +327,7 @@
 
         .slide.active { opacity: 1; }
 
-        /* CUADRÍCULA DE RECUADROS: ESTILO image_a9e2d2.png */
+        /* CUADRÍCULA DE RECUADROS */
         .grid-documentos-section {
             max-width: 1300px;
             margin: 40px auto;
@@ -324,7 +351,6 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* ANIMACIÓN DE MOVIMIENTO CONTINUO TIPO GIF AL PASAR EL CURSOR */
         .documento-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.12);
@@ -338,9 +364,9 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            flex-shrink: 0;
             width: 60px;
             height: 60px;
+            flex-shrink: 0;
         }
 
         .documento-card:hover .icon-box-animado {
@@ -352,18 +378,14 @@
             100% { transform: scale(1.1) rotate(8deg) translateY(-4px); }
         }
 
-        .documento-info-text { display: flex; flex-direction: column; }
-
         .documento-info-text h4 {
             font-size: 0.95em;
             font-weight: 800;
             color: #111111;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
             line-height: 1.2;
         }
 
-        /* ASIGNACIÓN DE COLORES DE ICONOS EN BASE A image_a9e2d2.png */
         .c-admin { color: #f97316; }
         .c-aux { color: #3b82f6; }
         .c-cas { color: #10b981; }
@@ -382,195 +404,57 @@
             padding: 70px 5%;
         }
 
-        .project-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-intro-text { margin-bottom: 40px; }
-
-        .project-intro-text h2 {
-            font-size: 2.2em;
-            color: var(--amarillo-crema);
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .project-intro-text p { color: #cdcdcd; }
-
-        .ucv-video-layout {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            background-color: #111214;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            border-left: 5px solid var(--rosa-principal);
-        }
-
-        .video-player-box {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background-color: #000;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .video-player-box iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .ucv-playlist-side {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-height: 450px;
-            overflow-y: auto;
-        }
-
-        .playlist-header-title {
-            background-color: #cc1829;
-            color: var(--blanco);
-            padding: 12px 15px;
-            font-size: 0.9em;
-            font-weight: bold;
-            border-radius: 6px;
-            text-transform: uppercase;
-        }
-
-        .playlist-video-item {
-            background-color: #202226;
-            border-radius: 6px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border: 1px solid #2d3035;
-        }
-
-        .playlist-video-item.playing-now {
-            background-color: #2b2e34;
-            border-color: var(--rosa-principal);
-        }
-
-        .video-item-thumb {
-            width: 45px;
-            height: 45px;
-            background-color: #111214;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--amarillo-crema);
-            flex-shrink: 0;
-        }
-
-        .playlist-video-item.playing-now .video-item-thumb {
-            color: var(--blanco);
-            background-color: var(--rosa-principal);
-        }
-
-        .video-item-details {
-            color: #e0e0e0;
-            font-size: 0.88em;
-        }
+        .project-container { max-width: 1200px; margin: 0 auto; }
+        .project-intro-text h2 { font-size: 2.2em; color: var(--amarillo-crema); margin-bottom: 12px; font-weight: 700; }
+        .ucv-video-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; background-color: #111214; padding: 25px; border-radius: 12px; border-left: 5px solid var(--rosa-principal); }
+        .video-player-box { position: relative; width: 100%; aspect-ratio: 16 / 9; background-color: #000; border-radius: 8px; overflow: hidden; }
+        .video-player-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .ucv-playlist-side { display: flex; flex-direction: column; gap: 12px; max-height: 450px; overflow-y: auto; }
+        .playlist-header-title { background-color: #cc1829; color: var(--blanco); padding: 12px 15px; font-size: 0.9em; font-weight: bold; border-radius: 6px; text-transform: uppercase; }
+        .playlist-video-item { background-color: #202226; border-radius: 6px; padding: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #2d3035; }
+        .playlist-video-item.playing-now { background-color: #2b2e34; border-color: var(--rosa-principal); }
+        .video-item-thumb { width: 45px; height: 45px; background-color: #111214; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--amarillo-crema); flex-shrink: 0; }
+        .video-item-details { color: #e0e0e0; font-size: 0.88em; }
 
         /* PIE DE PÁGINA */
-        .main-footer {
-            background-color: var(--oscuro);
-            color: #aaa;
-            padding: 50px 5% 20px 5%;
-            font-size: 0.95em;
-        }
-
-        .footer-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #444;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--blanco);
-        }
-
+        .main-footer { background-color: var(--oscuro); color: #aaa; padding: 50px 5% 20px 5%; font-size: 0.95em; }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; padding-bottom: 30px; border-bottom: 1px solid #444; }
+        .footer-logo { display: flex; align-items: center; gap: 10px; color: var(--blanco); }
         .footer-logo img { height: 45px; }
-
-        .footer-box h3 {
-            color: var(--blanco);
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .footer-box h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -6px;
-            width: 30px;
-            height: 2px;
-            background-color: var(--rosa-principal);
-        }
-
-        .footer-box ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .footer-box ul a {
-            color: #aaa;
-            text-decoration: none;
-        }
-
+        .footer-box h3 { color: var(--blanco); margin-bottom: 20px; position: relative; }
+        .footer-box h3::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 30px; height: 2px; background-color: var(--rosa-principal); }
+        .footer-box ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-box ul a { color: #aaa; text-decoration: none; }
         .footer-box ul a:hover { color: var(--rosa-principal); }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            font-size: 0.85em;
-            color: #777;
-        }
+        .footer-bottom { text-align: center; padding-top: 20px; font-size: 0.85em; color: #777; }
 
         @media (max-width: 950px) {
             .ucv-video-layout { grid-template-columns: 1fr; }
             .hero-section { height: 320px; }
             .nav-menu { display: none; }
-            .top-info-bar {
-                flex-direction: column;
-                text-align: center;
-                justify-content: center;
-                gap: 10px;
-            }
-            .himno-player-widget { order: 4; }
+            .top-info-bar { flex-direction: column; text-align: center; justify-content: center; gap: 10px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- REPRODUCTOR DE AUDIO AUDIO - HIMNO NACIONAL DEL PERÚ -->
     <audio id="audioHimno" loop>
         <source src="himno del peru.mpeg" type="audio/mpeg">
     </audio>
 
+    <!-- ENLACE EN BLANCO EXCLUSIVO PARA GOOGLE TRANSLATE (REQUERIDO) -->
+    <div id="google_translate_element"></div>
+
+    <!-- BANNER INFORMATIVO SUPERIOR -->
     <div class="top-info-bar">
+        <!-- 1. Ubicación Geográfica -->
         <div class="top-info-item"><i class="fa-solid fa-location-dot"></i> A.H. Santo Domingo, Huarmey - Áncash</div>
         
+        <!-- 2. Tipo y Eslogan de la Institución -->
         <div class="top-info-item"><i class="fa-solid fa-school"></i> Institución Educativa Pública | Construyendo nuestro futuro</div>
         
+        <!-- 3. Iconos de Redes Sociales -->
         <div class="top-social-links">
             <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
             <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
@@ -578,12 +462,24 @@
             <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
 
-        <div class="himno-player-widget" id="widgetHimno">
-            <button class="himno-btn" id="btnPlayPause" onclick="toggleHimno()"><i class="fa-solid fa-play"></i></button>
-            <span id="textHimno"><i class="fa-solid fa-music"></i> Himno en Pausa</span>
+        <!-- 4. TRADUCTOR AUTOMÁTICO COMPACTO -->
+        <div class="lang-selector-container">
+            <i class="fa-solid fa-language" style="color: var(--amarillo-crema); margin-right: 3px;"></i>
+            <a href="javascript:void(0);" class="lang-link" onclick="cambiarIdioma('es')">Castellano</a>
+            <span class="lang-divider">/</span>
+            <a href="javascript:void(0);" class="lang-link" onclick="cambiarIdioma('qu')">Quechua</a>
+            <span class="lang-divider">/</span>
+            <a href="javascript:void(0);" class="lang-link" onclick="cambiarIdioma('en')">Ingles</a>
         </div>
     </div>
 
+    <!-- WIDGET FLOTANTE FIJO DEL HIMNO NACIONAL -->
+    <div class="himno-player-widget" id="widgetHimno">
+        <button class="himno-btn" id="btnPlayPause" onclick="toggleHimno()"><i class="fa-solid fa-play"></i></button>
+        <span id="textHimno"><i class="fa-solid fa-music"></i> Himno en Pausa</span>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN -->
     <nav class="main-navbar">
         <a href="index.html" class="navbar-brand">
             <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
@@ -593,6 +489,7 @@
             </div>
         </a>
 
+        <!-- ENLACES INTERACTIVOS DEL MENÚ -->
         <ul class="nav-menu">
             <li><a href="index.html" class="active">Inicio</a></li>
             
@@ -635,13 +532,12 @@
             </li>
 
             <li><a href="documentos.html">Documentos</a></li>
-            
             <li><a href="contacto.html">Contactos</a></li>
-            
             <li><a href="admin-login.html" class="btn-admin" title="Admin Portal"><i class="fa-solid fa-user-shield"></i></a></li>
         </ul>
     </nav>
 
+    <!-- GALERÍA DE IMÁGENES NÍTIDA -->
     <header class="hero-section">
         <div class="hero-bg-slider">
             <div class="slide active" style="background-image: url('FRONTIS.jpg');"></div>
@@ -651,122 +547,78 @@
         </div>
     </header>
 
+    <!-- CUADRÍCULA DE TRÁMITES Y DOCUMENTOS INSTITUCIONALES -->
     <section class="grid-documentos-section">
         <div class="grid-documentos-container">
-            
-            <div class="documento-card">
-                <div class="icon-box-animado c-admin"><i class="fa-solid fa-users-rectangle"></i></div>
-                <div class="documento-info-text"><h4>Contrato Administrativo</h4></div>
-            </div>
-
-            <div class="documento-card">
-                <div class="icon-box-animado c-aux"><i class="fa-solid fa-hands-holding-child"></i></div>
-                <div class="documento-info-text"><h4>Contrato Aux. de Edu.</h4></div>
-            </div>
-
-            <div class="documento-card">
-                <div class="icon-box-animado c-cas"><i class="fa-solid fa-folder-open"></i></div>
-                <div class="documento-info-text"><h4>Contrato CAS</h4></div>
-            </div>
-
-            <div class="documento-card">
-                <div class="icon-box-animado c-doc"><i class="fa-solid fa-chalkboard-user"></i></div>
-                <div class="documento-info-text"><h4>Contrato Docente</h4></div>
-            </div>
-
-            <div class="documento-card">
-                <div class="icon-box-animado c-destaque"><i class="fa-solid fa-people-arrows"></i></div>
-                <div class="documento-info-text"><h4>Destaque Docente LRM</h4></div>
-            </div>
-
-            <div class="documento-card">
-                <div class="icon-box-animado c-dir"><i class="fa-solid fa-user-tie"></i></div>
-                <div class="documento-info-text"><h4>Encargatura de Dirección</h4></div>
-            </div>
-
-            <div class="documento-card">
-                <div class="icon-box-animado c-horas"><i class="fa-solid fa-calendar-days"></i></div>
-                <div class="documento-info-text"><h4>Cuadro de Horas</h4></div>
-            </div>
-
-            <div class="documento-card">
-                <div class="icon-box-animado c-nomb-adm"><i class="fa-solid fa-file-signature"></i></div>
-                <div class="documento-info-text"><h4>Nombramiento Administrativo</h4></div>
-            </div>
-
-            <div class="documento-card">
-                <div class="icon-box-animado c-nomb-doc"><i class="fa-solid fa-certificate"></i></div>
-                <div class="documento-info-text"><h4>Nombramiento Docente</h4></div>
-            </div>
-
-            <div class="documento-card">
-                <div class="icon-box-animado c-pronoei"><i class="fa-solid fa-children"></i></div>
-                <div class="documento-info-text"><h4>PRONOEI</h4></div>
-            </div>
-
+            <div class="documento-card"><div class="icon-box-animado c-admin"><i class="fa-solid fa-users-rectangle"></i></div><div class="documento-info-text"><h4>Contrato Administrativo</h4></div></div>
+            <div class="documento-card"><div class="icon-box-animado c-aux"><i class="fa-solid fa-hands-holding-child"></i></div><div class="documento-info-text"><h4>Contrato Aux. de Edu.</h4></div></div>
+            <div class="documento-card"><div class="icon-box-animado c-cas"><i class="fa-solid fa-folder-open"></i></div><div class="documento-info-text"><h4>Contrato CAS</h4></div></div>
+            <div class="documento-card"><div class="icon-box-animado c-doc"><i class="fa-solid fa-chalkboard-user"></i></div><div class="documento-info-text"><h4>Contrato Docente</h4></div></div>
+            <div class="documento-card"><div class="icon-box-animado c-destaque"><i class="fa-solid fa-people-arrows"></i></div><div class="documento-info-text"><h4>Destaque Docente LRM</h4></div></div>
+            <div class="documento-card"><div class="icon-box-animado c-dir"><i class="fa-solid fa-user-tie"></i></div><div class="documento-info-text"><h4>Encargatura de Dirección</h4></div></div>
+            <div class="documento-card"><div class="icon-box-animado c-horas"><i class="fa-solid fa-calendar-days"></i></div><div class="documento-info-text"><h4>Cuadro de Horas</h4></div></div>
+            <div class="documento-card"><div class="icon-box-animado c-nomb-adm"><i class="fa-solid fa-file-signature"></i></div><div class="documento-info-text"><h4>Nombramiento Administrativo</h4></div></div>
+            <div class="documento-card"><div class="icon-box-animado c-nomb-doc"><i class="fa-solid fa-certificate"></i></div><div class="documento-info-text"><h4>Nombramiento Docente</h4></div></div>
+            <div class="documento-card"><div class="icon-box-animado c-pronoei"><i class="fa-solid fa-children"></i></div><div class="documento-info-text"><h4>PRONOEI</h4></div></div>
         </div>
     </section>
 
+    <!-- PROYECTO INSTITUCIONAL -->
     <section class="project-section">
         <div class="project-container">
             <div class="project-intro-text">
                 <h2>Proyecto Institucional</h2>
                 <p>Esta plataforma fue preparada para la I.E. Santa Rosa de Santo Domingo, ubicada en la provincia de Huarmey, centralizando los accesos de información transparente para la comunidad escolar.</p>
             </div>
-
             <div class="ucv-video-layout">
                 <div class="video-player-box">
-                    <iframe 
-                        id="ucv-main-player"
-                        src="https://www.youtube.com/embed/p3X_S65pGZ8?enablejsapi=1" 
-                        title="Reproductor Institucional Santa Rosa"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
+                    <iframe id="ucv-main-player" src="https://www.youtube.com/embed/p3X_S65pGZ8?enablejsapi=1" title="Reproductor Institucional" allowfullscreen></iframe>
                 </div>
-
                 <div class="ucv-playlist-side">
                     <div class="playlist-header-title">Videos del Proyecto:</div>
                     <div class="playlist-video-item playing-now" onclick="cambiarVideoUCV(this, 'p3X_S65pGZ8')">
                         <div class="video-item-thumb"><i class="fa-solid fa-play"></i></div>
                         <div class="video-item-details">¡Bienvenidos al año escolar en la I.E. Santa Rosa!</div>
                     </div>
-                    <div class="playlist-video-item" onclick="cambiarVideoUCV(this, 'dQw4w9WgXcQ')">
-                        <div class="video-item-thumb"><i class="fa-solid fa-play"></i></div>
-                        <div class="video-item-details">Uso del Aula de Innovación Pedagógica (AIP)</div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- PIE DE PÁGINA -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-info">
-                <div class="footer-logo">
-                    <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
-                    <h3>I.E. Santa Rosa</h3>
-                </div>
-                <p style="font-size: 0.85em; color: #888;">Santo Domingo - Huarmey<br>Portal de transparencia y gestión institucional.</p>
-            </div>
-            <div class="footer-box">
-                <h3>Menú</h3>
-                <ul>
-                    <li><a href="nosotros.html">Nosotros</a></li>
-                    <li><a href="niveles.html">Niveles</a></li>
-                </ul>
-            </div>
-            <div class="footer-box">
-                <h3>Contacto</h3>
-                <p style="font-size: 0.9em; color: #aaa;"><i class="fa-solid fa-location-dot" style="color: var(--rosa-principal); margin-right: 5px;"></i> A.H. Santo Domingo, Huarmey - Áncash</p>
+                <div class="footer-logo"><img src="Logo.jpg" alt="Insignia"><h3>I.E. Santa Rosa</h3></div>
+                <p style="font-size: 0.85em; color: #888;">Santo Domingo - Huarmey<br>Portal de transparencia.</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            &copy; 2026 I.E. Santa Rosa de Santo Domingo. Todos los derechos reservados.
-        </div>
+        <div class="footer-bottom">&copy; 2026 I.E. Santa Rosa de Santo Domingo.</div>
     </footer>
 
+    <!-- SCRIPT DE TRANSLATE DE GOOGLE DE MANERA INTERNA -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'es,qu,en', // Castellano, Quechua, Inglés
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script>
+        // FUNCIÓN CLAVE: Ejecuta el cambio de idioma simulando la selección nativa
+        function cambiarIdioma(codigoLang) {
+            var el = document.querySelector('.goog-te-combo');
+            if (el) {
+                el.value = codigoLang;
+                el.dispatchEvent(new Event('change'));
+            }
+        }
+
         // ESCUDO DE SEGURIDAD
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
@@ -791,7 +643,7 @@
             document.getElementById('ucv-main-player').src = "https://www.youtube.com/embed/" + idVideo + "?enablejsapi=1&autoplay=1";
         }
 
-        // SISTEMA DE AUDIO INTELIGENTE PARA EL HIMNO NACIONAL DEL PERÚ
+        // SISTEMA DE AUDIO INTELIGENTE PARA EL HIMNO
         const audio = document.getElementById('audioHimno');
         const btnPlayPause = document.getElementById('btnPlayPause');
         const textHimno = document.getElementById('textHimno');
