@@ -19,19 +19,17 @@
             --texto-mutado: #666666;
         }
 
-        /* SISTEMA DE CURSOR DINÁMICO */
+        /* PUNTERO CLÁSICO */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            user-select: none;
-            -webkit-user-select: none;
-            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><path d='M12 2C9.5 2 7 5 8 9c1 3.5 3 6 4 11l1-11c1-4-2.5-7-1-7z' fill='%23e56b6f'/><path d='M11 9c-.5 4 .5 9 1 12 0-3 1.5-8 0-12z' fill='%234ade80'/></svg>"), auto;
+            cursor: default;
         }
 
-        *:active {
-            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><path d='M12 21a9 9 0 0 1-9-9c0-5 4-9 9-9s9 4 9 9a9 9 0 0 1-9 9zm0-15c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6z' fill='%23e56b6f'/><path d='M12 7c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z' fill='%23ffb7c5'/></svg>"), auto;
+        a, button, .playlist-video-item, .lang-flag-btn {
+            cursor: pointer;
         }
 
         body {
@@ -40,12 +38,12 @@
             line-height: 1.6;
         }
 
-        /* BANNER INFORMATIVO SUPERIOR */
+        /* BANNER INFORMATIVO SUPERIOR AJUSTADO */
         .top-info-bar {
             background-color: var(--oscuro);
             color: var(--blanco);
             font-size: 0.85em;
-            padding: 10px 5%;
+            padding: 8px 2% 8px 5%; /* Reducido el padding derecho para pegar el traductor al borde */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -64,7 +62,6 @@
             color: var(--rosa-borde);
         }
 
-        /* REDES SOCIALES */
         .top-social-links {
             display: flex;
             gap: 12px;
@@ -81,33 +78,38 @@
             color: var(--rosa-principal);
         }
 
-        /* TRADUCTOR INTEGRADO COMPACTO */
-        .lang-selector-container {
+        /* TRADUCTOR ULTRA COMPACTO MINI-BANDERAS */
+        .lang-selector-mini {
             display: flex;
             align-items: center;
-            gap: 5px;
-            background: rgba(255, 255, 255, 0.12);
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.9em;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: auto; /* Empuja el selector totalmente hacia la derecha */
         }
 
-        .lang-link {
-            color: #fff;
+        .lang-flag-btn {
+            font-size: 1.25em;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            padding: 2px 6px;
-            border-radius: 4px;
+            line-height: 1;
+            padding: 3px;
+            border-radius: 50%;
+            transition: transform 0.2s, background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .lang-link:hover, .lang-link.active-lang {
-            color: var(--oscuro);
-            background-color: var(--amarillo-crema);
+        .lang-flag-btn:hover {
+            transform: scale(1.2);
+            background: rgba(255, 255, 255, 0.15);
         }
 
-        .lang-divider {
-            color: rgba(255, 255, 255, 0.3);
+        .lang-flag-btn.active-lang {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
         }
 
         /* BARRA DE NAVEGACIÓN */
@@ -147,12 +149,11 @@
 
         .brand-text p {
             font-size: 0.75em;
-            color: var(--texto-mutado);
+            color: var(--texto-mutated);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        /* MENÚ DE NAVEGACIÓN INTERACTIVO */
         .nav-menu {
             display: flex;
             list-style: none;
@@ -183,7 +184,6 @@
             box-shadow: inset 0 0 0 1px var(--rosa-borde);
         }
 
-        /* LISTAS DESPLEGABLES (DROPDOWN) */
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -225,7 +225,6 @@
             background-color: var(--rosa-suave) !important;
         }
 
-        /* PORTAL ADMIN */
         .btn-admin {
             background: linear-gradient(135deg, var(--oscuro) 0%, #3e4145 100%);
             color: #ffcd3f !important;
@@ -335,14 +334,8 @@
 
         .c-admin { color: #f97316; }
         .c-aux { color: #3b82f6; }
-        .c-cas { color: #10b981; }
         .c-doc { color: #64748b; }
-        .c-destaque { color: #8b5cf6; }
-        .c-dir { color: #ef4444; }
         .c-horas { color: #06b6d4; }
-        .c-nomb-adm { color: #059669; }
-        .c-nomb-doc { color: #b45309; }
-        .c-pronoei { color: #ec4899; }
 
         /* SECCIÓN MULTIMEDIA DEL PROYECTO */
         .project-section {
@@ -370,16 +363,14 @@
         .footer-logo img { height: 45px; }
         .footer-box h3 { color: var(--blanco); margin-bottom: 20px; position: relative; }
         .footer-box h3::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 30px; height: 2px; background-color: var(--rosa-principal); }
-        .footer-box ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .footer-box ul a { color: #aaa; text-decoration: none; }
-        .footer-box ul a:hover { color: var(--rosa-principal); }
         .footer-bottom { text-align: center; padding-top: 20px; font-size: 0.85em; color: #777; }
 
         @media (max-width: 950px) {
             .ucv-video-layout { grid-template-columns: 1fr; }
             .hero-section { height: 320px; }
             .nav-menu { display: none; }
-            .top-info-bar { flex-direction: column; text-align: center; justify-content: center; gap: 10px; }
+            .top-info-bar { flex-direction: column; text-align: center; justify-content: center; gap: 10px; padding: 10px 5%; }
+            .lang-selector-mini { margin-left: 0; }
         }
     </style>
 </head>
@@ -387,19 +378,16 @@
 
     <!-- BANNER INFORMATIVO SUPERIOR -->
     <div class="top-info-bar">
-        <!-- Ubicación -->
         <div class="top-info-item">
             <i class="fa-solid fa-location-dot"></i> 
             <span data-es="A.H. Santo Domingo, Huarmey - Áncash" data-qu="A.H. Santo Domingo, Huarmey - Áncash Llaqta" data-en="A.H. Santo Domingo, Huarmey - Ancash">A.H. Santo Domingo, Huarmey - Áncash</span>
         </div>
         
-        <!-- Eslogan -->
         <div class="top-info-item">
             <i class="fa-solid fa-school"></i> 
             <span data-es="Institución Educativa Pública | Construyendo nuestro futuro" data-qu="Yachay Wasi | Hamuq p'unchawninchikta qispichispa" data-en="Public School | Building our future">Institución Educativa Pública | Construyendo nuestro futuro</span>
         </div>
         
-        <!-- Redes Sociales -->
         <div class="top-social-links">
             <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
             <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
@@ -407,20 +395,17 @@
             <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
 
-        <!-- TRADUCTOR MULTILINGÜE DIRECTO Y COMPROBADO -->
-        <div class="lang-selector-container">
-            <i class="fa-solid fa-language" style="color: var(--amarillo-crema); margin-right: 3px;"></i>
-            <a href="javascript:void(0);" class="lang-link" id="lang-es" onclick="setLanguage('es')">Castellano</a>
-            <span class="lang-divider">/</span>
-            <a href="javascript:void(0);" class="lang-link" id="lang-qu" onclick="setLanguage('qu')">Quechua</a>
-            <span class="lang-divider">/</span>
-            <a href="javascript:void(0);" class="lang-link" id="lang-en" onclick="setLanguage('en')">Ingles</a>
+        <!-- TRADUCTOR MULTILINGÜE ULTRA COMPACTO CON BANDERAS -->
+        <div class="lang-selector-mini">
+            <a href="javascript:void(0);" class="lang-flag-btn" id="lang-es" onclick="setLanguage('es')" title="Castellano">🇵🇪</a>
+            <a href="javascript:void(0);" class="lang-flag-btn" id="lang-qu" onclick="setLanguage('qu')" title="Quechua">☀️</a>
+            <a href="javascript:void(0);" class="lang-flag-btn" id="lang-en" onclick="setLanguage('en')" title="English">🇺🇸</a>
         </div>
     </div>
 
     <!-- BARRA DE NAVEGACIÓN -->
     <nav class="main-navbar">
-        <a href="index.html" class="navbar-brand">
+        <a href="javascript:void(0);" onclick="navegarALink('index.html')" class="navbar-brand">
             <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
             <div class="brand-text">
                 <h2>I.E. Santa Rosa</h2>
@@ -428,26 +413,25 @@
             </div>
         </a>
 
-        <!-- ENLACES INTERACTIVOS -->
         <ul class="nav-menu">
-            <li><a href="index.html" class="active" data-es="Inicio" data-qu="Qallariy" data-en="Home">Inicio</a></li>
+            <li><a href="javascript:void(0);" onclick="navegarALink('index.html')" class="active" data-es="Inicio" data-qu="Qallariy" data-en="Home">Inicio</a></li>
             <li>
-                <a href="nosotros.html"><span data-es="Nosotros" data-qu="Ñuqanchik" data-en="About Us">Nosotros</span> <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
+                <a href="javascript:void(0);" onclick="navegarALink('nosotros.html')"><span data-es="Nosotros" data-qu="Ñuqanchik" data-en="About Us">Nosotros</span> <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="nosotros.html#director" data-es="Director" data-qu="Yachaywasi Uma" data-en="Principal">Director</a></li>
-                    <li><a href="nosotros.html#presentacion" data-es="Presentación" data-qu="Rikuchikuy" data-en="Presentation">Presentación</a></li>
+                    <li><a href="javascript:void(0);" onclick="navegarALink('nosotros.html#director')" data-es="Director" data-qu="Yachaywasi Uma" data-en="Principal">Director</a></li>
+                    <li><a href="javascript:void(0);" onclick="navegarALink('nosotros.html#presentacion')" data-es="Presentación" data-qu="Rikuchikuy" data-en="Presentation">Presentación</a></li>
                 </ul>
             </li>
             <li>
-                <a href="niveles.html"><span data-es="Niveles" data-qu="Patakuna" data-en="Levels">Niveles</span> <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
+                <a href="javascript:void(0);" onclick="navegarALink('niveles.html')"><span data-es="Niveles" data-qu="Patakuna" data-en="Levels">Niveles</span> <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="niveles.html#primaria" data-es="Primaria" data-qu="Primmariya" data-en="Primary School">Primaria</a></li>
-                    <li><a href="niveles.html#secundaria" data-es="Secundaria" data-qu="Sikundariya" data-en="High School">Secundaria</a></li>
+                    <li><a href="javascript:void(0);" onclick="navegarALink('niveles.html#primaria')" data-es="Primaria" data-qu="Primmariya" data-en="Primary School">Primaria</a></li>
+                    <li><a href="javascript:void(0);" onclick="navegarALink('niveles.html#secundaria')" data-es="Secundaria" data-qu="Sikundariya" data-en="High School">Secundaria</a></li>
                 </ul>
             </li>
-            <li><a href="documentos.html" data-es="Documentos" data-qu="Pankakuna" data-en="Documents">Documentos</a></li>
-            <li><a href="contacto.html" data-es="Contactos" data-qu="Tupanakuqkuna" data-en="Contact">Contactos</a></li>
-            <li><a href="admin-login.html" class="btn-admin" title="Admin Portal"><i class="fa-solid fa-user-shield"></i></a></li>
+            <li><a href="javascript:void(0);" onclick="navegarALink('documentos.html')" data-es="Documentos" data-qu="Pankakuna" data-en="Documents">Documentos</a></li>
+            <li><a href="javascript:void(0);" onclick="navegarALink('contacto.html')" data-es="Contactos" data-qu="Tupanakuqkuna" data-en="Contact">Contactos</a></li>
+            <li><a href="javascript:void(0);" onclick="navegarALink('admin-login.html')" class="btn-admin" title="Admin Portal"><i class="fa-solid fa-user-shield"></i></a></li>
         </ul>
     </nav>
 
@@ -521,12 +505,18 @@
 
     <!-- SISTEMA DE TRADUCCIÓN GLOBAL NATIVA -->
     <script>
-        // Función para aplicar la traducción a los elementos marcados
-        function applyLanguage(lang) {
-            // Guardar idioma activo en el navegador del usuario para recordar en los otros .html
-            localStorage.setItem('selectedLanguage', lang);
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
 
-            // Buscar todos los elementos que contengan traducciones añadidas
+        function applyLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
             const elements = document.querySelectorAll('[data-es]');
             
             elements.forEach(el => {
@@ -535,32 +525,29 @@
                 }
             });
 
-            // Resaltar visualmente el botón del idioma activo
-            document.querySelectorAll('.lang-link').forEach(link => link.classList.remove('active-lang'));
+            document.querySelectorAll('.lang-flag-btn').forEach(link => link.classList.remove('active-lang'));
             const activeLink = document.getElementById(`lang-${lang}`);
             if (activeLink) activeLink.classList.add('active-lang');
         }
 
-        // Función disparada por los clics del usuario
         function setLanguage(lang) {
             applyLanguage(lang);
+            const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang + window.location.hash;
+            window.history.pushState({path:newurl},'',newurl);
         }
 
-        // Comprobación automática al cargar cualquier página .html del sitio
+        function navegarALink(destino) {
+            const currentLang = localStorage.getItem('selectedLanguage') || 'es';
+            window.location.href = destino + "?lang=" + currentLang;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('selectedLanguage') || 'es';
+            const urlLang = getQueryVariable('lang');
+            const savedLang = urlLang ? urlLang : (localStorage.getItem('selectedLanguage') || 'es');
             applyLanguage(savedLang);
         });
 
-        // ESCUDO DE SEGURIDAD
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', e => {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','C','J'].includes(e.key.toUpperCase())) || (e.ctrlKey && e.key.toUpperCase() === 'U')) {
-                e.preventDefault();
-            }
-        });
-
-        // CONTROL DEL CARRUSEL
+        // CARRUSEL
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         setInterval(() => {
