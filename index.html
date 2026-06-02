@@ -149,7 +149,7 @@
 
         .brand-text p {
             font-size: 0.75em;
-            color: var(--texto-mutated || var(--texto-mutado));
+            color: var(--texto-mutado);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -158,8 +158,12 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 12px;
+            gap: 5px;
             align-items: center;
+        }
+
+        .nav-menu li {
+            position: relative;
         }
 
         .nav-menu li a {
@@ -169,13 +173,57 @@
             font-size: 0.95em;
             padding: 8px 16px;
             border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             transition: all 0.3s ease;
         }
 
-        .nav-menu li a:hover, .nav-menu li a.active {
+        .nav-menu li a:hover, .nav-menu li a.active, .nav-menu li:hover > a {
             color: var(--rosa-principal);
             background-color: var(--rosa-suave);
             box-shadow: inset 0 0 0 1px var(--rosa-borde);
+        }
+
+        /* LISTAS DESPLEGABLES (DROPDOWN) */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--blanco);
+            min-width: 200px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border-radius: 12px;
+            border: 1px solid var(--rosa-borde);
+            list-style: none;
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            z-index: 1100;
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(4px);
+        }
+
+        .dropdown-menu li a {
+            color: var(--texto-oscuro) !important;
+            border-radius: 0 !important;
+            padding: 10px 20px !important;
+            font-weight: 500;
+            font-size: 0.9em;
+            box-shadow: none !important;
+            background: transparent !important;
+            display: block;
+        }
+
+        .dropdown-menu li a:hover {
+            color: var(--rosa-principal) !important;
+            background-color: var(--rosa-suave) !important;
         }
 
         /* PORTAL ADMIN: DISEÑO INTEGRADO Y UNIFORME */
@@ -521,8 +569,25 @@
 
         <ul class="nav-menu">
             <li><a href="index.html" class="active">Inicio</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="niveles.html">Niveles</a></li>
+            
+            <li>
+                <a href="nosotros.html">Nosotros <i class="fa-solid fa-chevron-down" style="font-size: 0.8em;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="nosotros.html#historia">Nuestra Historia</a></li>
+                    <li><a href="nosotros.html#mision-vision">Misión y Visión</a></li>
+                    <li><a href="nosotros.html#organigrama">Organigrama</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="niveles.html">Niveles <i class="fa-solid fa-chevron-down" style="font-size: 0.8em;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="niveles.html#inicial">Inicial</a></li>
+                    <li><a href="niveles.html#primaria">Primaria</a></li>
+                    <li><a href="niveles.html#secundaria">Secundaria</a></li>
+                </ul>
+            </li>
+
             <li><a href="noticias.html">Noticias</a></li>
             <li><a href="galeria.html">Galería</a></li>
             <li><a href="documentos.html">Documentos</a></li>
