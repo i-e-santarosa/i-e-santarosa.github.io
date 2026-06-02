@@ -54,14 +54,30 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .top-info-bar span {
+        .top-info-item {
             display: flex;
             align-items: center;
+            gap: 6px;
         }
 
-        .top-info-bar span i {
+        .top-info-item i {
             color: var(--rosa-borde);
-            margin-right: 6px;
+        }
+
+        /* SECCIÓN DE REDES SOCIALES EN ENCABEZADO */
+        .top-social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .top-social-links a {
+            color: var(--blanco);
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .top-social-links a:hover {
+            color: var(--rosa-principal);
         }
 
         /* DISEÑO INTEGRADO DEL REPRODUCTOR EN LA BARRA SUPERIOR */
@@ -171,12 +187,12 @@
             color: var(--oscuro-suave);
             font-weight: 600;
             font-size: 0.95em;
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 20px;
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .nav-menu li a:hover, .nav-menu li a.active, .nav-menu li:hover > a {
@@ -192,7 +208,7 @@
             left: 50%;
             transform: translateX(-50%) translateY(10px);
             background-color: var(--blanco);
-            min-width: 200px;
+            min-width: 220px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
             border-radius: 12px;
             border: 1px solid var(--rosa-borde);
@@ -219,6 +235,7 @@
             box-shadow: none !important;
             background: transparent !important;
             display: block;
+            text-align: left;
         }
 
         .dropdown-menu li a:hover {
@@ -226,24 +243,26 @@
             background-color: var(--rosa-suave) !important;
         }
 
-        /* PORTAL ADMIN: DISEÑO INTEGRADO Y UNIFORME */
+        /* PORTAL ADMIN: SIMPLIFICADO A SOLO ICONO */
         .btn-admin {
             background: linear-gradient(135deg, var(--oscuro) 0%, #3e4145 100%);
             color: #ffcd3f !important;
-            padding: 10px 20px !important;
-            border-radius: 25px !important;
+            width: 40px;
+            height: 40px;
+            padding: 0 !important;
+            border-radius: 50% !important;
             font-weight: 700 !important;
             border: 2px solid #ffcd3f;
             text-decoration: none;
-            display: inline-flex;
+            display: inline-flex !important;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
             animation: pulseAdmin 2.5s infinite alternate;
         }
 
         @keyframes pulseAdmin {
             0% { box-shadow: 0 4px 10px rgba(0,0,0,0.15); transform: scale(1); }
-            100% { box-shadow: 0 4px 15px rgba(255, 205, 63, 0.35); transform: scale(1.02); }
+            100% { box-shadow: 0 4px 15px rgba(255, 205, 63, 0.35); transform: scale(1.05); }
         }
 
         .btn-admin:hover {
@@ -535,9 +554,9 @@
                 flex-direction: column;
                 text-align: center;
                 justify-content: center;
-                gap: 8px;
+                gap: 10px;
             }
-            .himno-player-widget { order: -1; }
+            .himno-player-widget { order: 4; }
         }
     </style>
 </head>
@@ -548,14 +567,21 @@
     </audio>
 
     <div class="top-info-bar">
-        <span><i class="fa-solid fa-location-dot"></i> A.H. Santo Domingo, Huarmey - Áncash</span>
+        <div class="top-info-item"><i class="fa-solid fa-location-dot"></i> A.H. Santo Domingo, Huarmey - Áncash</div>
         
-        <div class="himno-player-widget" id="widgetHimno">
-            <button class="himno-btn" id="btnPlayPause" onclick="toggleHimno()"><i class="fa-solid fa-play"></i></button>
-            <span id="textHimno"><i class="fa-solid fa-music"></i> Himno Nacional (Clic para activar)</span>
+        <div class="top-info-item"><i class="fa-solid fa-school"></i> Institución Educativa Pública | Construyendo nuestro futuro</div>
+        
+        <div class="top-social-links">
+            <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
 
-        <span><i class="fa-solid fa-school"></i> Institución Educativa Pública | Construyendo nuestro futuro</span>
+        <div class="himno-player-widget" id="widgetHimno">
+            <button class="himno-btn" id="btnPlayPause" onclick="toggleHimno()"><i class="fa-solid fa-play"></i></button>
+            <span id="textHimno"><i class="fa-solid fa-music"></i> Himno en Pausa</span>
+        </div>
     </div>
 
     <nav class="main-navbar">
@@ -571,28 +597,48 @@
             <li><a href="index.html" class="active">Inicio</a></li>
             
             <li>
-                <a href="nosotros.html">Nosotros <i class="fa-solid fa-chevron-down" style="font-size: 0.8em;"></i></a>
+                <a href="nosotros.html">Nosotros <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="nosotros.html#historia">Nuestra Historia</a></li>
+                    <li><a href="nosotros.html#director">Director</a></li>
+                    <li><a href="nosotros.html#presentacion">Presentación Institucional</a></li>
                     <li><a href="nosotros.html#mision-vision">Misión y Visión</a></li>
-                    <li><a href="nosotros.html#organigrama">Organigrama</a></li>
+                    <li><a href="nosotros.html#filosofia-valores">Filosofía y Valores</a></li>
+                    <li><a href="nosotros.html#historia">Reseña Histórica</a></li>
+                    <li><a href="nosotros.html#organigrama">Organigrama Estructural</a></li>
+                    <li><a href="nosotros.html#gestion">Documento de Gestión</a></li>
                 </ul>
             </li>
 
             <li>
-                <a href="niveles.html">Niveles <i class="fa-solid fa-chevron-down" style="font-size: 0.8em;"></i></a>
+                <a href="niveles.html">Niveles <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="niveles.html#inicial">Inicial</a></li>
                     <li><a href="niveles.html#primaria">Primaria</a></li>
                     <li><a href="niveles.html#secundaria">Secundaria</a></li>
                 </ul>
             </li>
 
-            <li><a href="noticias.html">Noticias</a></li>
-            <li><a href="galeria.html">Galería</a></li>
+            <li>
+                <a href="noticias.html">Noticias <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="noticias.html#ugel">UGEL Huarmey</a></li>
+                    <li><a href="noticias.html#notitec">Noti-Tec</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="galeria.html">Galería <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="galeria.html#actividades-primaria">Actividades Primaria</a></li>
+                    <li><a href="galeria.html#actividades-secundaria">Actividades Secundaria</a></li>
+                    <li><a href="galeria.html#equipo-deportivo">Equipo Deportivo</a></li>
+                </ul>
+            </li>
+
             <li><a href="documentos.html">Documentos</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="admin-login.html" class="btn-admin"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
+            
+            <li><a href="contacto.html">Contactos</a></li>
+            
+            <li><a href="admin-login.html" class="btn-admin" title="Admin Portal"><i class="fa-solid fa-user-shield"></i></a></li>
         </ul>
     </nav>
 
