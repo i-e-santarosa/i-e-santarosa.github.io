@@ -28,7 +28,7 @@
             cursor: default;
         }
 
-        a, button, .playlist-video-item, .lang-flag-btn {
+        a, button, .playlist-video-item {
             cursor: pointer;
         }
 
@@ -43,7 +43,7 @@
             background-color: var(--oscuro);
             color: var(--blanco);
             font-size: 0.85em;
-            padding: 8px 2% 8px 5%; /* Reducido el padding derecho para pegar el traductor al borde */
+            padding: 8px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -76,40 +76,6 @@
 
         .top-social-links a:hover {
             color: var(--rosa-principal);
-        }
-
-        /* TRADUCTOR ULTRA COMPACTO MINI-BANDERAS */
-        .lang-selector-mini {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 2px 8px;
-            border-radius: 20px;
-            margin-left: auto; /* Empuja el selector totalmente hacia la derecha */
-        }
-
-        .lang-flag-btn {
-            font-size: 1.25em;
-            text-decoration: none;
-            line-height: 1;
-            padding: 3px;
-            border-radius: 50%;
-            transition: transform 0.2s, background 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lang-flag-btn:hover {
-            transform: scale(1.2);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .lang-flag-btn.active-lang {
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-            transform: scale(1.1);
         }
 
         /* BARRA DE NAVEGACIÓN */
@@ -149,7 +115,7 @@
 
         .brand-text p {
             font-size: 0.75em;
-            color: var(--texto-mutated);
+            color: var(--texto-mutado);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -370,7 +336,6 @@
             .hero-section { height: 320px; }
             .nav-menu { display: none; }
             .top-info-bar { flex-direction: column; text-align: center; justify-content: center; gap: 10px; padding: 10px 5%; }
-            .lang-selector-mini { margin-left: 0; }
         }
     </style>
 </head>
@@ -380,12 +345,12 @@
     <div class="top-info-bar">
         <div class="top-info-item">
             <i class="fa-solid fa-location-dot"></i> 
-            <span data-es="A.H. Santo Domingo, Huarmey - Áncash" data-qu="A.H. Santo Domingo, Huarmey - Áncash Llaqta" data-en="A.H. Santo Domingo, Huarmey - Ancash">A.H. Santo Domingo, Huarmey - Áncash</span>
+            <span>A.H. Santo Domingo, Huarmey - Áncash</span>
         </div>
         
         <div class="top-info-item">
             <i class="fa-solid fa-school"></i> 
-            <span data-es="Institución Educativa Pública | Construyendo nuestro futuro" data-qu="Yachay Wasi | Hamuq p'unchawninchikta qispichispa" data-en="Public School | Building our future">Institución Educativa Pública | Construyendo nuestro futuro</span>
+            <span>Institución Educativa Pública | Construyendo nuestro futuro</span>
         </div>
         
         <div class="top-social-links">
@@ -394,44 +359,37 @@
             <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
             <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-
-        <!-- TRADUCTOR MULTILINGÜE ULTRA COMPACTO CON BANDERAS -->
-        <div class="lang-selector-mini">
-            <a href="javascript:void(0);" class="lang-flag-btn" id="lang-es" onclick="setLanguage('es')" title="Castellano">🇵🇪</a>
-            <a href="javascript:void(0);" class="lang-flag-btn" id="lang-qu" onclick="setLanguage('qu')" title="Quechua">☀️</a>
-            <a href="javascript:void(0);" class="lang-flag-btn" id="lang-en" onclick="setLanguage('en')" title="English">🇺🇸</a>
-        </div>
     </div>
 
     <!-- BARRA DE NAVEGACIÓN -->
     <nav class="main-navbar">
-        <a href="javascript:void(0);" onclick="navegarALink('index.html')" class="navbar-brand">
+        <a href="index.html" class="navbar-brand">
             <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
             <div class="brand-text">
                 <h2>I.E. Santa Rosa</h2>
-                <p data-es="Santo Domingo - Huarmey" data-qu="Santo Domingo - Huarmey Llaqta" data-en="Santo Domingo - Huarmey">Santo Domingo - Huarmey</p>
+                <p>Santo Domingo - Huarmey</p>
             </div>
         </a>
 
         <ul class="nav-menu">
-            <li><a href="javascript:void(0);" onclick="navegarALink('index.html')" class="active" data-es="Inicio" data-qu="Qallariy" data-en="Home">Inicio</a></li>
+            <li><a href="index.html" class="active">Inicio</a></li>
             <li>
-                <a href="javascript:void(0);" onclick="navegarALink('nosotros.html')"><span data-es="Nosotros" data-qu="Ñuqanchik" data-en="About Us">Nosotros</span> <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
+                <a href="nosotros.html">Nosotros <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="javascript:void(0);" onclick="navegarALink('nosotros.html#director')" data-es="Director" data-qu="Yachaywasi Uma" data-en="Principal">Director</a></li>
-                    <li><a href="javascript:void(0);" onclick="navegarALink('nosotros.html#presentacion')" data-es="Presentación" data-qu="Rikuchikuy" data-en="Presentation">Presentación</a></li>
+                    <li><a href="nosotros.html#director">Director</a></li>
+                    <li><a href="nosotros.html#presentacion">Presentación Institucional</a></li>
                 </ul>
             </li>
             <li>
-                <a href="javascript:void(0);" onclick="navegarALink('niveles.html')"><span data-es="Niveles" data-qu="Patakuna" data-en="Levels">Niveles</span> <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
+                <a href="niveles.html">Niveles <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="javascript:void(0);" onclick="navegarALink('niveles.html#primaria')" data-es="Primaria" data-qu="Primmariya" data-en="Primary School">Primaria</a></li>
-                    <li><a href="javascript:void(0);" onclick="navegarALink('niveles.html#secundaria')" data-es="Secundaria" data-qu="Sikundariya" data-en="High School">Secundaria</a></li>
+                    <li><a href="niveles.html#primaria">Primaria</a></li>
+                    <li><a href="niveles.html#secundaria">Secundaria</a></li>
                 </ul>
             </li>
-            <li><a href="javascript:void(0);" onclick="navegarALink('documentos.html')" data-es="Documentos" data-qu="Pankakuna" data-en="Documents">Documentos</a></li>
-            <li><a href="javascript:void(0);" onclick="navegarALink('contacto.html')" data-es="Contactos" data-qu="Tupanakuqkuna" data-en="Contact">Contactos</a></li>
-            <li><a href="javascript:void(0);" onclick="navegarALink('admin-login.html')" class="btn-admin" title="Admin Portal"><i class="fa-solid fa-user-shield"></i></a></li>
+            <li><a href="documentos.html">Documentos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="admin-login.html" class="btn-admin" title="Admin Portal"><i class="fa-solid fa-user-shield"></i></a></li>
         </ul>
     </nav>
 
@@ -449,19 +407,19 @@
         <div class="grid-documentos-container">
             <div class="documento-card">
                 <div class="icon-box-animado c-admin"><i class="fa-solid fa-users-rectangle"></i></div>
-                <div class="documento-info-text"><h4 data-es="Contrato Administrativo" data-qu="Kamachiy Kamariq" data-en="Administrative Contract">Contrato Administrativo</h4></div>
+                <div class="documento-info-text"><h4>Contrato Administrativo</h4></div>
             </div>
             <div class="documento-card">
                 <div class="icon-box-animado c-aux"><i class="fa-solid fa-hands-holding-child"></i></div>
-                <div class="documento-info-text"><h4 data-es="Contrato Aux. de Edu." data-qu="Yachachiy Yanapaq" data-en="Education Assistant Contract">Contrato Aux. de Edu.</h4></div>
+                <div class="documento-info-text"><h4>Contrato Aux. de Edu.</h4></div>
             </div>
             <div class="documento-card">
                 <div class="icon-box-animado c-doc"><i class="fa-solid fa-chalkboard-user"></i></div>
-                <div class="documento-info-text"><h4 data-es="Contrato Docente" data-qu="Yachachikuq Kamariq" data-en="Teacher Contract">Contrato Docente</h4></div>
+                <div class="documento-info-text"><h4>Contrato Docente</h4></div>
             </div>
             <div class="documento-card">
                 <div class="icon-box-animado c-horas"><i class="fa-solid fa-calendar-days"></i></div>
-                <div class="documento-info-text"><h4 data-es="Cuadro de Horas" data-qu="Saywiti Unaykuna" data-en="Hours Schedule">Cuadro de Horas</h4></div>
+                <div class="documento-info-text"><h4>Cuadro de Horas</h4></div>
             </div>
         </div>
     </section>
@@ -470,22 +428,18 @@
     <section class="project-section">
         <div class="project-container">
             <div class="project-intro-text">
-                <h2 data-es="Proyecto Institucional" data-qu="Yachaywasi ruraykuna" data-en="Institutional Project">Proyecto Institucional</h2>
-                <p data-es="Esta plataforma fue preparada para la I.E. Santa Rosa de Santo Domingo, ubicada en la provincia de Huarmey, centralizando los accesos de información transparente para la comunidad escolar." 
-                   data-qu="Kay llika ñanqa qispichisqami kachkan I.E. Santa Rosa de Santo Domingo yachaywasipaq, Huarmey suyupi, tukuy yachakuqkunapaq chuya willakuykunata huñuspa." 
-                   data-en="This platform was developed for the I.E. Santa Rosa de Santo Domingo, located in the province of Huarmey, centralizing access to transparent information for the school community.">
-                   Esta plataforma fue preparada para la I.E. Santa Rosa de Santo Domingo, ubicada en la provincia de Huarmey, centralizando los accesos de información transparente para la comunidad escolar.
-                </p>
+                <h2>Proyecto Institucional</h2>
+                <p>Esta plataforma fue preparada para la I.E. Santa Rosa de Santo Domingo, ubicada en la provincia de Huarmey, centralizando los accesos de información transparente para la comunidad escolar.</p>
             </div>
             <div class="ucv-video-layout">
                 <div class="video-player-box">
                     <iframe id="ucv-main-player" src="https://www.youtube.com/embed/p3X_S65pGZ8?enablejsapi=1" title="Reproductor" allowfullscreen></iframe>
                 </div>
                 <div class="ucv-playlist-side">
-                    <div class="playlist-header-title" data-es="Videos del Proyecto:" data-qu="Ruraypa rikuchiykuna:" data-en="Project Videos:">Videos del Proyecto:</div>
+                    <div class="playlist-header-title">Videos del Proyecto:</div>
                     <div class="playlist-video-item playing-now" onclick="cambiarVideoUCV(this, 'p3X_S65pGZ8')">
                         <div class="video-item-thumb"><i class="fa-solid fa-play"></i></div>
-                        <div class="video-item-details" data-es="¡Bienvenidos al año escolar!" data-qu="Allin hamuy yachay wataman!" data-en="Welcome to the school year!">¡Bienvenidos al año escolar!</div>
+                        <div class="video-item-details">¡Bienvenidos al año escolar!</div>
                     </div>
                 </div>
             </div>
@@ -496,57 +450,14 @@
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-info">
-                <div class="footer-logo"><img src="Logo.jpg" alt="Insignia"><h3 data-es="I.E. Santa Rosa" data-qu="I.E. Santa Rosa" data-en="I.E. Santa Rosa">I.E. Santa Rosa</h3></div>
-                <p style="font-size: 0.85em; color: #888;" data-es="Santo Domingo - Huarmey | Portal de transparencia." data-qu="Santo Domingo - Huarmey | Chuya willakuy llika." data-en="Santo Domingo - Huarmey | Transparency portal.">Santo Domingo - Huarmey | Portal de transparencia.</p>
+                <div class="footer-logo"><img src="Logo.jpg" alt="Insignia"><h3>I.E. Santa Rosa</h3></div>
+                <p style="font-size: 0.85em; color: #888;">Santo Domingo - Huarmey | Portal de transparencia.</p>
             </div>
         </div>
         <div class="footer-bottom">&copy; 2026 I.E. Santa Rosa de Santo Domingo.</div>
     </footer>
 
-    <!-- SISTEMA DE TRADUCCIÓN GLOBAL NATIVA -->
     <script>
-        function getQueryVariable(variable) {
-            var query = window.location.search.substring(1);
-            var vars = query.split("&");
-            for (var i=0;i<vars.length;i++) {
-                var pair = vars[i].split("=");
-                if(pair[0] == variable){return pair[1];}
-            }
-            return(false);
-        }
-
-        function applyLanguage(lang) {
-            localStorage.setItem('selectedLanguage', lang);
-            const elements = document.querySelectorAll('[data-es]');
-            
-            elements.forEach(el => {
-                if (el.getAttribute(`data-${lang}`)) {
-                    el.innerText = el.getAttribute(`data-${lang}`);
-                }
-            });
-
-            document.querySelectorAll('.lang-flag-btn').forEach(link => link.classList.remove('active-lang'));
-            const activeLink = document.getElementById(`lang-${lang}`);
-            if (activeLink) activeLink.classList.add('active-lang');
-        }
-
-        function setLanguage(lang) {
-            applyLanguage(lang);
-            const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang + window.location.hash;
-            window.history.pushState({path:newurl},'',newurl);
-        }
-
-        function navegarALink(destino) {
-            const currentLang = localStorage.getItem('selectedLanguage') || 'es';
-            window.location.href = destino + "?lang=" + currentLang;
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlLang = getQueryVariable('lang');
-            const savedLang = urlLang ? urlLang : (localStorage.getItem('selectedLanguage') || 'es');
-            applyLanguage(savedLang);
-        });
-
         // CARRUSEL
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
