@@ -6,7 +6,7 @@
     <title>Nosotros - I.E. Santa Rosa de Santo Domingo</title>
     <style>
         /* ===================================================
-           1. ESTILOS GLOBALES Y RESETEO
+           1. ESTILOS GLOBALES Y RESETEO (MATIZADOS)
            =================================================== */
         * {
             box-sizing: border-box;
@@ -15,8 +15,8 @@
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #2d3748;
+            background-color: #f8fafc;
+            color: #334155; /* Texto principal suavizado */
             line-height: 1.6;
         }
         .contenedor-principal {
@@ -26,15 +26,15 @@
         }
 
         /* ===================================================
-           2. MENÚ DESPLEGABLE INTERACTIVO (CSS PURO)
+           2. MENÚ DESPLEGABLE INTERACTIVO
            =================================================== */
         header {
-            background-color: #004080;
+            background-color: #0f172a; /* Azul pizarra oscuro, formal */
             padding: 15px 20px;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         .nav-container {
             max-width: 1200px;
@@ -43,57 +43,54 @@
             justify-content: flex-start;
             align-items: center;
         }
-        /* Ocultar el checkbox que controla el click */
         #menu-toggle {
             display: none;
         }
-        /* Botón disparador del Menú */
         .menu-dropdown-btn {
-            color: #3182ce;
-            font-weight: bold;
-            font-size: 1.1rem;
+            color: #475569; /* Gris matizado */
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
-            padding: 10px 15px;
+            padding: 10px 18px;
             background-color: #ffffff;
             border-radius: 4px;
             user-select: none;
             transition: background-color 0.2s;
+            border: 1px solid #e2e8f0;
         }
         .menu-dropdown-btn:hover {
-            background-color: #e2e8f0;
+            background-color: #f1f5f9;
         }
         .menu-dropdown-btn::after {
             content: ' ▾';
         }
-        /* Contenedor de la lista desplegable */
         .dropdown-content {
             display: none;
             position: absolute;
             top: 60px;
             background-color: #ffffff;
             min-width: 260px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.08);
             border-radius: 0 0 4px 4px;
-            border-top: 3px solid #3182ce;
+            border-top: 3px solid #475569;
             list-style: none;
         }
         .dropdown-content li {
-            border-bottom: 1px solid #edf2f7;
+            border-bottom: 1px solid #f1f5f9;
         }
         .dropdown-content li a {
-            color: #2d3748;
+            color: #334155;
             padding: 14px 18px;
             text-decoration: none;
             display: block;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: background-color 0.2s, padding-left 0.2s;
         }
         .dropdown-content li a:hover {
-            background-color: #f7fafc;
-            color: #004080;
+            background-color: #f8fafc;
+            color: #0f172a;
             padding-left: 24px;
         }
-        /* Mostrar el menú al hacer clic (cuando el checkbox esté activo) */
         #menu-toggle:checked ~ .dropdown-content {
             display: block;
         }
@@ -101,50 +98,91 @@
         /* ===================================================
            3. ESTILOS DE LAS SECCIONES DE CONTENIDO
            =================================================== */
-        /* Banner de Bienvenida (Hero) */
+        /* Banner de Bienvenida (Hero con FRONTIS.jpg) */
         .nosotros-hero {
-            background: linear-gradient(rgba(0, 64, 128, 0.85), rgba(0, 45, 89, 0.95)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200') center/cover no-repeat;
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('FRONTIS.jpg') center/cover no-repeat;
             color: #ffffff;
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
             border-radius: 8px;
             margin-bottom: 30px;
             margin-top: 20px;
         }
         .nosotros-hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
         .nosotros-hero p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             opacity: 0.9;
         }
 
         /* Bloques de Contenido Base */
         .nosotros-bloque {
             background-color: #ffffff;
-            padding: 30px;
+            padding: 35px;
             margin-bottom: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            scroll-margin-top: 90px; /* Evita que el menú fijo tape el título al hacer scroll */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04);
+            scroll-margin-top: 90px;
         }
         .nosotros-bloque h2 {
-            color: #004080;
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            border-bottom: 3px solid #3182ce;
-            padding-bottom: 5px;
+            color: #1e293b;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            font-weight: 600;
         }
         .nosotros-bloque p {
             text-align: justify;
+            color: #475569;
             margin-bottom: 15px;
+        }
+
+        /* Diseño de Rejilla con columnas multimedia */
+        .bloque-con-imagen {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .columna-texto {
+            flex: 2;
+            min-width: 300px;
+        }
+        .columna-imagen {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            justify-content: center;
+        }
+        .contenedor-foto-marco {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 4 / 3;
+            background-color: #f1f5f9;
+            border: 1px dashed #cbd5e1;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            overflow: hidden;
+        }
+        .contenedor-foto-marco img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Bloque Misión y Visión distribuidos */
         .bloques-contenedor {
             display: flex;
-            gap: 25px;
+            gap: 30px;
             flex-wrap: wrap;
         }
         .columna-50 {
@@ -160,21 +198,23 @@
             margin-top: 20px;
         }
         .valor-tarjeta {
-            background-color: #f7fafc;
+            background-color: #f8fafc;
             padding: 20px;
             border-radius: 6px;
-            border-top: 4px solid #004080;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border-top: 3px solid #475569;
+            border-left: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
         }
         .valor-tarjeta h3 {
-            color: #3182ce;
+            color: #334155;
             margin-bottom: 8px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         /* Reseña Histórica / Línea de tiempo */
         .linea-tiempo {
-            border-left: 3px solid #e2e8f0;
+            border-left: 2px solid #e2e8f0;
             padding-left: 20px;
             margin-top: 15px;
         }
@@ -182,26 +222,48 @@
             margin-bottom: 20px;
         }
         .hito strong {
-            color: #2b6cb0;
+            color: #334155;
             display: block;
             margin-bottom: 5px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
         /* Listas y Organigrama */
         .lista-estilizada {
             padding-left: 20px;
+            color: #475569;
         }
         .lista-estilizada li {
             margin-bottom: 8px;
         }
         .lista-estilizada li a {
-            color: #3182ce;
+            color: #475569;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            border-bottom: 1px dotted #94a3b8;
         }
         .lista-estilizada li a:hover {
-            text-decoration: underline;
+            color: #0f172a;
+            border-bottom-style: solid;
+        }
+
+        /* Estilos del contenedor de Dirección */
+        .tarjeta-direccion {
+            background-color: #f8fafc; 
+            padding: 25px; 
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+        .tarjeta-direccion h3 {
+            color: #1e293b;
+            font-size: 1.25rem;
+            margin-bottom: 2px;
+        }
+        .cargo-subtitulo {
+            color: #64748b; 
+            font-weight: 600; 
+            margin-bottom: 10px;
+            font-size: 0.95rem;
         }
 
         /* Tabla de Directorio */
@@ -214,19 +276,23 @@
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #e2e8f0;
+            font-size: 0.95rem;
         }
         .tabla-directorio th {
-            background-color: #004080;
+            background-color: #1e293b;
             color: #ffffff;
+            font-weight: 500;
         }
         .tabla-directorio tr:nth-child(even) {
-            background-color: #f7fafc;
+            background-color: #f8fafc;
         }
 
         /* Responsividad Básica */
         @media (max-width: 768px) {
-            .nosotros-hero h1 { font-size: 1.8rem; }
-            .nosotros-bloque { padding: 20px; }
+            .nosotros-hero h1 { font-size: 1.9rem; }
+            .nosotros-bloque { padding: 25px; }
+            .bloque-con-imagen { flex-direction: column; }
+            .columna-imagen { order: -1; width: 100%; } /* Sube la imagen arriba en móviles */
         }
     </style>
 </head>
@@ -242,7 +308,7 @@
                 <li><a href="#mision-vision">Visión – Misión</a></li>
                 <li><a href="#filosofia-valores">Filosofía Y Valores</a></li>
                 <li><a href="#resena-historica">Reseña Histórica</a></li>
-                <li><a href="#autoridades">Autoridades</a></li>
+                <li><a href="#direccion">Dirección</a></li>
                 <li><a href="#organigrama">Organigrama Estructural</a></li>
                 <li><a href="#documentos-gestion">Documento De Gestión</a></li>
                 <li><a href="#directorio-personal">Directorio Del Personal</a></li>
@@ -259,7 +325,16 @@
 
         <section id="presentacion" class="nosotros-bloque">
             <h2>Presentación</h2>
-            <p>Bienvenidos a la plataforma oficial de la Institución Educativa Santa Rosa de Santo Domingo, ubicada en la hermosa ciudad de Huarmey. Somos una comunidad educativa comprometida con la formación integral, científica y humanística de nuestros estudiantes. A través de un enfoque pedagógico innovador y un entorno digital adaptado a las exigencias actuales, potenciamos las competencias de nuestros jóvenes para que se conviertan en líderes éticos, críticos y agentes de cambio positivo dentro de nuestra sociedad. Les invitamos a conocer nuestra propuesta, donde el aprendizaje y los valores caminan de la mano.</p>
+            <div class="bloque-con-imagen">
+                <div class="columna-imagen">
+                    <div class="contenedor-foto-marco">
+                        <img src="Forma Correcta.png" alt="Fotografía del Colegio">
+                    </div>
+                </div>
+                <div class="columna-texto">
+                    <p>Bienvenidos a la plataforma oficial de la Institución Educativa Santa Rosa de Santo Domingo, ubicada en la hermosa ciudad de Huarmey. Somos una comunidad educativa comprometida con la formación integral, científica y humanística de nuestros estudiantes. A través de un enfoque pedagógico innovador y un entorno digital adaptado a las exigencias actuales, potenciamos las competencias de nuestros jóvenes para que se conviertan en líderes éticos, críticos y agentes de cambio positivo dentro de nuestra sociedad. Les invitamos a conocer nuestra propuesta, donde el aprendizaje y los valores caminan de la mano.</p>
+                </div>
+            </div>
         </section>
 
         <section id="mision-vision" class="nosotros-bloque">
@@ -316,12 +391,21 @@
             </div>
         </section>
 
-        <section id="autoridades" class="nosotros-bloque">
-            <h2>Autoridades</h2>
-            <div style="background-color: #f7fafc; padding: 20px; border-radius: 6px;">
-                <h3>Prof. Juan L. Orellano Brito</h3>
-                <p style="color: #3182ce; font-weight: bold; margin-bottom: 5px;">Director de la Institución</p>
-                <p>Máxima autoridad responsable de la gestión pedagógica, institucional y administrativa, orientada a asegurar la calidad del servicio educativo y el logro de los aprendizajes de los estudiantes.</p>
+        <section id="direccion" class="nosotros-bloque">
+            <h2>Dirección</h2>
+            <div class="tarjeta-direccion">
+                <div class="bloque-con-imagen">
+                    <div class="columna-texto">
+                        <h3>Prof. Juan L. Orellano Brito</h3>
+                        <p class="cargo-subtitulo">Director de la Institución</p>
+                        <p>Máxima autoridad responsable de la gestión pedagógica, institucional y administrativa, orientada a asegurar la calidad del servicio educativo y el logro de los aprendizajes de los estudiantes.</p>
+                    </div>
+                    <div class="columna-imagen">
+                        <div class="contenedor-foto-marco">
+                            <span>[ Foto del Director ]</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -365,7 +449,7 @@
                     </tr>
                     <tr>
                         <td><strong>Aula de Innovación (AIP)</strong></td>
-                        <td>[Tu Nombre Completo]</td>
+                        <td>John J. Moreno Roldán</td>
                         <td>aip.santarosa@edu.pe</td>
                     </tr>
                     <tr>
