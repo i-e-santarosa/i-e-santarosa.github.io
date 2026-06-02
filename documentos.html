@@ -95,33 +95,36 @@
         }
 
         /* ===================================================
-           3. SECCIÓN HERO (SECCIONES DE CONTENIDO)
+           3. SECCIÓN HERO CON DEGRADADO TRANSPARENTE LUMIINOSO
            =================================================== */
         .documentos-hero {
-            /* Degradado elegante de Azul Profundo a un tono magenta/rosa oscuro */
-            background: linear-gradient(rgba(0, 34, 68, 0.85), rgba(120, 40, 70, 0.85)), url('FRONTIS.jpg') center/cover no-repeat;
-            color: #ffffff;
-            padding: 60px 20px;
+            /* Degradado de Izquierda a Derecha: de Blanco Traslúcido a Rosado Bebé Traslúcido */
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.85) 0%, rgba(255, 182, 193, 0.75) 100%), url('FRONTIS.jpg') center/cover no-repeat;
+            /* Se cambia el texto a azul oscuro para garantizar contraste sobre el fondo claro */
+            color: #002244; 
+            padding: 60px 40px;
             text-align: left;
             border-radius: 12px;
             margin: 20px 0 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid rgba(255, 182, 193, 0.4);
         }
         .documentos-hero h1 { 
             font-size: 2.5rem; 
             margin-bottom: 6px; 
-            font-weight: 700; 
+            font-weight: 800; 
         }
         .documentos-hero .decoracion-linea {
             width: 50px;
             height: 5px;
-            background-color: #ffb6c1; /* Línea decorativa del modelo en Rosado Bebé */
+            background-color: #0055ff; /* Línea decorativa en Azul Eléctrico */
             margin-bottom: 15px;
             border-radius: 2px;
         }
         .documentos-hero p { 
             font-size: 1.05rem; 
-            color: #fff0f2; 
-            font-weight: 400; 
+            color: #334155; 
+            font-weight: 500; 
         }
         
         /* ===================================================
@@ -148,7 +151,6 @@
             border-color: #0055ff;
             box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.15);
         }
-        /* Icono de lupa usando SVG en código para evitar dependencias externas rotas */
         .buscador-icono {
             position: absolute;
             left: 14px;
@@ -161,14 +163,14 @@
         }
 
         /* ===================================================
-           5. TABLA DE DOCUMENTOS ESTILIZADA (MODELO RECREADO)
+           5. TABLA DE DOCUMENTOS ESTILIZADA (AJUSTE DE COLOR)
            =================================================== */
         .tabla-bloque {
             background-color: #ffffff;
             border-radius: 14px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             border: 1px solid #f0e2e4;
-            overflow: hidden; /* Mantiene las esquinas curvas */
+            overflow: hidden;
             margin-bottom: 30px;
         }
         .tabla-responsiva {
@@ -179,13 +181,14 @@
             border-collapse: collapse;
             text-align: left;
         }
+        /* Ajuste solicitado: Cabecera con fondo rosado/guinda institucional y letras blancas */
         th {
-            background-color: #ffffff;
-            color: #002244; /* Azul oscuro para los encabezados de columnas */
-            font-size: 0.9rem;
+            background-color: #7A1C3D; 
+            color: #ffffff;
+            font-size: 0.95rem;
             font-weight: 700;
-            padding: 16px 24px;
-            border-bottom: 1px solid #f1f5f9;
+            padding: 18px 24px;
+            letter-spacing: 0.5px;
         }
         td {
             padding: 18px 24px;
@@ -198,158 +201,13 @@
             border-bottom: none;
         }
         tr:hover {
-            background-color: #fff9fa; /* Destello rosa sutil al pasar el mouse por encima */
+            background-color: #fff9fa;
         }
         
-        /* Columnas de la tabla */
         .col-documento { font-weight: 600; color: #1e293b; }
         .col-descripcion { color: #64748b; }
         .col-tipo { font-weight: 500; color: #475569; }
         .col-accion { text-align: center; }
 
-        /* Botón de acción interactivo "Ver" */
         .btn-ver {
             display: inline-block;
-            text-decoration: none;
-            color: #002244; /* Azul oscuro inicial */
-            font-weight: 700;
-            font-size: 0.9rem;
-            padding: 6px 20px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-        }
-        .btn-ver:hover {
-            background-color: #fff0f2;
-            border-color: #ffb6c1;
-            color: #0055ff; /* Texto cambia a azul eléctrico en hover */
-        }
-
-        /* Ajustes Móviles */
-        @media (max-width: 768px) {
-            .documentos-hero h1 { font-size: 2rem; }
-            th, td { padding: 12px 16px; }
-        }
-    </style>
-</head>
-
-<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
-
-    <!-- BARRA DE NAVEGACIÓN -->
-    <header>
-        <div class="nav-container">
-            <a href="index.html" class="brand-link" title="Ir al Portal Principal">
-                <!-- Integración directa del logo local solicitado -->
-                <img src="Logo.jpg" alt="Logo I.E. Santa Rosa" class="brand-logo">
-                <div class="brand-text">
-                    <span class="brand-title">I.E. Santa Rosa</span>
-                    <span class="brand-subtitle">Santo Domingo - Huarmey</span>
-                </div>
-            </a>
-
-            <nav>
-                <ul class="menu-simple">
-                    <li><a href="documentos.html">Documentos</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- CUERPO O CONTENEDOR PRINCIPAL -->
-    <main class="contenedor-principal">
-
-        <!-- HERO DE LA SECCIÓN -->
-        <div class="documentos-hero">
-            <h1>Documentos</h1>
-            <div class="decoracion-linea"></div>
-            <p>Formatos, comunicados, reglamentos y documentos escolares.</p>
-        </div>
-
-        <!-- BUSCADOR -->
-        <div class="buscador-contenedor">
-            <svg class="buscador-icono" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-            <input type="text" id="searchInput" class="buscador-input" placeholder="Buscar documento...">
-        </div>
-
-        <!-- TABLA DE DOCUMENTOS -->
-        <div class="tabla-bloque">
-            <div class="tabla-responsiva">
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="width: 40%;">Documento</th>
-                            <th style="width: 40%;">Descripción</th>
-                            <th style="width: 10%;">Tipo</th>
-                            <th style="width: 10%; text-align: center;">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody id="documentTableBody">
-                        <!-- Fila 1 -->
-                        <tr>
-                            <td class="col-documento">Reglamento de elecciones escolares</td>
-                            <td class="col-descripcion">Documento referencial para el proceso de votación.</td>
-                            <td class="col-tipo">PDF</td>
-                            <td class="col-accion">
-                                <a href="#" class="btn-ver">Ver</a>
-                            </td>
-                        </tr>
-                        <!-- Fila 2 -->
-                        <tr>
-                            <td class="col-documento">Padrón de votantes</td>
-                            <td class="col-descripcion">Listado de estudiantes habilitados para votar.</td>
-                            <td class="col-tipo">CSV</td>
-                            <td class="col-accion">
-                                <a href="#" class="btn-ver">Ver</a>
-                            </td>
-                        </tr>
-                        <!-- Fila 3 -->
-                        <tr>
-                            <td class="col-documento">Cronograma institucional</td>
-                            <td class="col-descripcion">Fechas importantes de actividades escolares.</td>
-                            <td class="col-tipo">PDF</td>
-                            <td class="col-accion">
-                                <a href="#" class="btn-ver">Ver</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- SCRIPT DE SEGURIDAD + BUSCADOR INTERACTIVO EN TIEMPO REAL -->
-    <script>
-        // Restricciones de teclado del código base (Seguridad)
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123 || // F12
-               (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || // Ctrl+Shift+I/J/C
-               (e.ctrlKey && e.keyCode == 85)) { // Ctrl+U
-                return false;
-            }
-        };
-
-        // Lógica de búsqueda en tiempo real
-        const searchInput = document.getElementById('searchInput');
-        const tableRows = document.querySelectorAll('#documentTableBody tr');
-
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase().trim();
-
-            tableRows.forEach(row => {
-                const docName = row.children[0].textContent.toLowerCase();
-                const docDesc = row.children[1].textContent.toLowerCase();
-
-                if (docName.includes(searchTerm) || docDesc.includes(searchTerm)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        });
-    </script>
-</body>
-</html>
