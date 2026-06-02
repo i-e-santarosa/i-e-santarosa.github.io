@@ -16,13 +16,6 @@
             --blanco: #ffffff;
             --texto-oscuro: #333333;
             --texto-mutado: #666666;
-            
-            /* Colores vivos para la cuadrícula institucional */
-            --color-contrato: #4cc9f0;
-            --color-docente: #4895ef;
-            --color-cas: #3f37c9;
-            --color-infra: #f72585;
-            --color-gestion: #7209b7;
         }
 
         /* SISTEMA DE CURSOR DINÁMICO (ROSA CERRADA / ROSA ABIERTA) */
@@ -33,8 +26,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
             -webkit-user-select: none;
-            
-            /* Estado Normal: Rosa cerrada */
             cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><path d='M12 2C9.5 2 7 5 8 9c1 3.5 3 6 4 11l1-11c1-4-2.5-7-1-7z' fill='%23e56b6f'/><path d='M11 9c-.5 4 .5 9 1 12 0-3 1.5-8 0-12z' fill='%234ade80'/></svg>"), auto;
         }
 
@@ -63,7 +54,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .top-info-bar > span {
+        .top-info-bar span {
             display: flex;
             align-items: center;
         }
@@ -91,7 +82,7 @@
         }
 
         .himno-btn {
-            background: #d90429; /* Rojo patriótico elegante */
+            background: #d90429;
             border: none;
             width: 28px;
             height: 28px;
@@ -119,9 +110,7 @@
             gap: 6px;
         }
 
-        #textHimno i {
-            color: #d90429 !important;
-        }
+        #textHimno i { color: #d90429 !important; }
 
         /* BARRA DE NAVEGACIÓN */
         .main-navbar {
@@ -160,7 +149,7 @@
 
         .brand-text p {
             font-size: 0.75em;
-            color: var(--texto-mutado);
+            color: var(--texto-mutated || var(--texto-mutado));
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -189,7 +178,7 @@
             box-shadow: inset 0 0 0 1px var(--rosa-borde);
         }
 
-        /* PORTAL ADMIN */
+        /* PORTAL ADMIN: DISEÑO INTEGRADO Y UNIFORME */
         .btn-admin {
             background: linear-gradient(135deg, var(--oscuro) 0%, #3e4145 100%);
             color: #ffcd3f !important;
@@ -198,7 +187,6 @@
             font-weight: 700 !important;
             border: 2px solid #ffcd3f;
             text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -225,33 +213,27 @@
             background-color: #000;
         }
 
-        .hero-bg-slider {
+        .hero-bg-slider, .slide {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
         }
 
+        .hero-bg-slider { z-index: 1; }
+
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background-size: cover;
-            background-position: center center;
+            background-position: center;
             background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
         }
 
-        .slide.active {
-            opacity: 1;
-        }
+        .slide.active { opacity: 1; }
 
-        /* CUADRÍCULA DE RECUADROS */
+        /* CUADRÍCULA DE RECUADROS: ESTILO image_a9e2d2.png */
         .grid-documentos-section {
             max-width: 1300px;
             margin: 40px auto;
@@ -273,10 +255,9 @@
             gap: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.04);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: hidden;
         }
 
+        /* ANIMACIÓN DE MOVIMIENTO CONTINUO TIPO GIF AL PASAR EL CURSOR */
         .documento-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.12);
@@ -304,10 +285,7 @@
             100% { transform: scale(1.1) rotate(8deg) translateY(-4px); }
         }
 
-        .documento-info-text {
-            display: flex;
-            flex-direction: column;
-        }
+        .documento-info-text { display: flex; flex-direction: column; }
 
         .documento-info-text h4 {
             font-size: 0.95em;
@@ -318,7 +296,7 @@
             line-height: 1.2;
         }
 
-        /* ASIGNACIÓN DE COLORES DE ICONOS */
+        /* ASIGNACIÓN DE COLORES DE ICONOS EN BASE A image_a9e2d2.png */
         .c-admin { color: #f97316; }
         .c-aux { color: #3b82f6; }
         .c-cas { color: #10b981; }
@@ -342,9 +320,7 @@
             margin: 0 auto;
         }
 
-        .project-intro-text {
-            margin-bottom: 40px;
-        }
+        .project-intro-text { margin-bottom: 40px; }
 
         .project-intro-text h2 {
             font-size: 2.2em;
@@ -353,9 +329,7 @@
             font-weight: 700;
         }
 
-        .project-intro-text p {
-            color: #cdcdcd;
-        }
+        .project-intro-text p { color: #cdcdcd; }
 
         .ucv-video-layout {
             display: grid;
@@ -466,9 +440,7 @@
             color: var(--blanco);
         }
 
-        .footer-logo img {
-            height: 45px;
-        }
+        .footer-logo img { height: 45px; }
 
         .footer-box h3 {
             color: var(--blanco);
@@ -498,9 +470,7 @@
             text-decoration: none;
         }
 
-        .footer-box ul a:hover {
-            color: var(--rosa-principal);
-        }
+        .footer-box ul a:hover { color: var(--rosa-principal); }
 
         .footer-bottom {
             text-align: center;
@@ -509,21 +479,17 @@
             color: #777;
         }
 
-        /* ADAPTACIÓN RESPONSIVE EXCLUSIVA PARA EL BANNER SUPERIOR */
         @media (max-width: 950px) {
             .ucv-video-layout { grid-template-columns: 1fr; }
             .hero-section { height: 320px; }
             .nav-menu { display: none; }
-            
             .top-info-bar {
                 flex-direction: column;
                 text-align: center;
                 justify-content: center;
                 gap: 8px;
             }
-            .himno-player-widget {
-                order: -1; /* El reproductor se posiciona arriba en móviles para mantener usabilidad */
-            }
+            .himno-player-widget { order: -1; }
         }
     </style>
 </head>
@@ -579,72 +545,52 @@
             
             <div class="documento-card">
                 <div class="icon-box-animado c-admin"><i class="fa-solid fa-users-rectangle"></i></div>
-                <div class="documento-info-text">
-                    <h4>Contrato Administrativo</h4>
-                </div>
+                <div class="documento-info-text"><h4>Contrato Administrativo</h4></div>
             </div>
 
             <div class="documento-card">
                 <div class="icon-box-animado c-aux"><i class="fa-solid fa-hands-holding-child"></i></div>
-                <div class="documento-info-text">
-                    <h4>Contrato Aux. de Edu.</h4>
-                </div>
+                <div class="documento-info-text"><h4>Contrato Aux. de Edu.</h4></div>
             </div>
 
             <div class="documento-card">
                 <div class="icon-box-animado c-cas"><i class="fa-solid fa-folder-open"></i></div>
-                <div class="documento-info-text">
-                    <h4>Contrato CAS</h4>
-                </div>
+                <div class="documento-info-text"><h4>Contrato CAS</h4></div>
             </div>
 
             <div class="documento-card">
                 <div class="icon-box-animado c-doc"><i class="fa-solid fa-chalkboard-user"></i></div>
-                <div class="documento-info-text">
-                    <h4>Contrato Docente</h4>
-                </div>
+                <div class="documento-info-text"><h4>Contrato Docente</h4></div>
             </div>
 
             <div class="documento-card">
                 <div class="icon-box-animado c-destaque"><i class="fa-solid fa-people-arrows"></i></div>
-                <div class="documento-info-text">
-                    <h4>Destaque Docente LRM</h4>
-                </div>
+                <div class="documento-info-text"><h4>Destaque Docente LRM</h4></div>
             </div>
 
             <div class="documento-card">
                 <div class="icon-box-animado c-dir"><i class="fa-solid fa-user-tie"></i></div>
-                <div class="documento-info-text">
-                    <h4>Encargatura de Dirección</h4>
-                </div>
+                <div class="documento-info-text"><h4>Encargatura de Dirección</h4></div>
             </div>
 
             <div class="documento-card">
                 <div class="icon-box-animado c-horas"><i class="fa-solid fa-calendar-days"></i></div>
-                <div class="documento-info-text">
-                    <h4>Cuadro de Horas</h4>
-                </div>
+                <div class="documento-info-text"><h4>Cuadro de Horas</h4></div>
             </div>
 
             <div class="documento-card">
                 <div class="icon-box-animado c-nomb-adm"><i class="fa-solid fa-file-signature"></i></div>
-                <div class="documento-info-text">
-                    <h4>Nombramiento Administrativo</h4>
-                </div>
+                <div class="documento-info-text"><h4>Nombramiento Administrativo</h4></div>
             </div>
 
             <div class="documento-card">
                 <div class="icon-box-animado c-nomb-doc"><i class="fa-solid fa-certificate"></i></div>
-                <div class="documento-info-text">
-                    <h4>Nombramiento Docente</h4>
-                </div>
+                <div class="documento-info-text"><h4>Nombramiento Docente</h4></div>
             </div>
 
             <div class="documento-card">
                 <div class="icon-box-animado c-pronoei"><i class="fa-solid fa-children"></i></div>
-                <div class="documento-info-text">
-                    <h4>PRONOEI</h4>
-                </div>
+                <div class="documento-info-text"><h4>PRONOEI</h4></div>
             </div>
 
         </div>
@@ -740,18 +686,17 @@
         const textHimno = document.getElementById('textHimno');
         let unirseAlClic = false;
 
-        // Intentar activar con el primer clic del usuario en la pantalla
         document.addEventListener('click', () => {
             if (!unirseAlClic) {
                 audio.play().then(() => {
                     actualizarInterfazAudio(true);
                     unirseAlClic = true;
-                }).catch(error => console.log("Interacción requerida por el navegador para reproducir audio."));
+                }).catch(() => console.log("Interacción requerida por el navegador."));
             }
-        }, { once: false });
+        });
 
         function toggleHimno() {
-            unirseAlClic = true; // Si usa el botón directamente, desconecta el trigger global
+            unirseAlClic = true;
             if (audio.paused) {
                 audio.play();
                 actualizarInterfazAudio(true);
@@ -762,13 +707,8 @@
         }
 
         function actualizarInterfazAudio(estaSonando) {
-            if (estaSonando) {
-                btnPlayPause.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                textHimno.innerHTML = '<i class="fa-solid fa-wave-square"></i> Escuchando Himno Nacional';
-            } else {
-                btnPlayPause.innerHTML = '<i class="fa-solid fa-play"></i>';
-                textHimno.innerHTML = '<i class="fa-solid fa-music"></i> Himno en Pausa';
-            }
+            btnPlayPause.innerHTML = estaSonando ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+            textHimno.innerHTML = estaSonando ? '<i class="fa-solid fa-wave-square"></i> Escuchando Himno Nacional' : '<i class="fa-solid fa-music"></i> Himno en Pausa';
         }
     </script>
 </body>
