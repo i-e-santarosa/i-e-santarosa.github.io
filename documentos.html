@@ -211,3 +211,135 @@
 
         .btn-ver {
             display: inline-block;
+            text-decoration: none;
+            color: #002244;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 6px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .btn-ver:hover {
+            background-color: #fff0f2;
+            border-color: #ffb6c1;
+            color: #0055ff;
+        }
+
+        /* Ajustes Móviles */
+        @media (max-width: 768px) {
+            .documentos-hero h1 { font-size: 2rem; }
+            th, td { padding: 12px 16px; }
+            .documentos-hero { padding: 40px 20px; }
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="brand-link" title="Ir al Portal Principal">
+                <img src="Logo.jpg" alt="Logo I.E. Santa Rosa" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-title">I.E. Santa Rosa</span>
+                    <span class="brand-subtitle">Santo Domingo - Huarmey</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="menu-simple">
+                    <li><a href="documentos.html">Documentos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+
+        <div class="documentos-hero">
+            <h1>Documentos</h1>
+            <div class="decoracion-linea"></div>
+            <p>Formatos, comunicados, reglamentos y documentos escolares.</p>
+        </div>
+
+        <div class="buscador-contenedor">
+            <svg class="buscador-icono" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input type="text" id="searchInput" class="buscador-input" placeholder="Buscar documento...">
+        </div>
+
+        <div class="tabla-bloque">
+            <div class="tabla-responsiva">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Documento</th>
+                            <th style="width: 40%;">Descripción</th>
+                            <th style="width: 10%;">Tipo</th>
+                            <th style="width: 10%; text-align: center;">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="documentTableBody">
+                        <tr>
+                            <td class="col-documento">Reglamento de elecciones escolares</td>
+                            <td class="col-descripcion">Documento referencial para el proceso de votación.</td>
+                            <td class="col-tipo">PDF</td>
+                            <td class="col-accion">
+                                <a href="#" class="btn-ver">Ver</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-documento">Padrón de votantes</td>
+                            <td class="col-descripcion">Listado de estudiantes habilitados para votar.</td>
+                            <td class="col-tipo">CSV</td>
+                            <td class="col-accion">
+                                <a href="#" class="btn-ver">Ver</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-documento">Cronograma institucional</td>
+                            <td class="col-descripcion">Fechas importantes de actividades escolares.</td>
+                            <td class="col-tipo">PDF</td>
+                            <td class="col-accion">
+                                <a href="#" class="btn-ver">Ver</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123 || 
+               (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || 
+               (e.ctrlKey && e.keyCode == 85)) { 
+                return false;
+            }
+        };
+
+        const searchInput = document.getElementById('searchInput');
+        const tableRows = document.querySelectorAll('#documentTableBody tr');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+
+            tableRows.forEach(row => {
+                const docName = row.children[0].textContent.toLowerCase();
+                const docDesc = row.children[1].textContent.toLowerCase();
+
+                if (docName.includes(searchTerm) || docDesc.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
