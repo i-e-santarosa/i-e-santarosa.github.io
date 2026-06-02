@@ -225,7 +225,7 @@
             border-bottom: 4px solid var(--rosa-borde);
             height: 480px;
             overflow: hidden;
-            background-color: #000;
+            background-color: transparent; /* Eliminado el fondo negro residual */
         }
 
         .hero-bg-slider, .slide {
@@ -242,10 +242,11 @@
             background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
-            filter: brightness(0.7);
+            filter: none; /* Se quitó el 'brightness(0.7)' para mostrar el brillo real de la foto */
         }
 
-        .slide.active { opacity: 1; }
+        .slide.active { 
+            opacity: 1;  }
 
         /* CONTADORES COMPACTOS Y ELEVADOS (OPTIMIZADO) */
         .hero-counters-overlay {
