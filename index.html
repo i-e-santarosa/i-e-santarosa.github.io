@@ -17,8 +17,10 @@
             --blanco: #ffffff;
             --texto-oscuro: #333333;
             --texto-mutado: #666666;
-            --azul-3d: #4ea8de;
-            --dorado-3d: #f39c12;
+            
+            /* Colores de acento para efectos 3D */
+            --glow-estudiantes: #00d2ff;
+            --glow-docentes: #ffb703;
         }
 
         /* SEGURIDAD CSS: Evita la selección de texto en toda la página */
@@ -28,13 +30,12 @@
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             cursor: default;
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none;    /* Firefox */
-            -ms-user-select: none;     /* IE10+ */
-            user-select: none;         /* Estándar */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
-        /* Evita que arrastren las imágenes para descargarlas */
         img {
             -webkit-user-drag: none;
             user-drag: none;
@@ -70,9 +71,7 @@
             gap: 6px;
         }
 
-        .top-info-item i {
-            color: var(--rosa-borde);
-        }
+        .top-info-item i { color: var(--rosa-borde); }
 
         .top-social-links {
             display: flex;
@@ -86,9 +85,7 @@
             transition: color 0.3s;
         }
 
-        .top-social-links a:hover {
-            color: var(--rosa-principal);
-        }
+        .top-social-links a:hover { color: var(--rosa-principal); }
 
         /* BARRA DE NAVEGACIÓN */
         .main-navbar {
@@ -139,9 +136,7 @@
             align-items: center;
         }
 
-        .nav-menu li {
-            position: relative;
-        }
+        .nav-menu li { position: relative; }
 
         .nav-menu li a {
             text-decoration: none;
@@ -162,7 +157,6 @@
             box-shadow: inset 0 0 0 1px var(--rosa-borde);
         }
 
-        /* DESLIZABLE EXCLUSIVO PARA NIVELES */
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -225,14 +219,13 @@
             100% { box-shadow: 0 4px 15px rgba(255, 205, 63, 0.35); transform: scale(1.05); }
         }
 
-        /* HERO SLIDER (Diseñado para albergar elementos 3D con perspectiva) */
+        /* HERO SLIDER */
         .hero-section {
             position: relative;
             border-bottom: 4px solid var(--rosa-borde);
-            height: 560px;
+            height: 480px;
             overflow: hidden;
             background-color: #000;
-            perspective: 1000px;
         }
 
         .hero-bg-slider, .slide {
@@ -249,115 +242,109 @@
             background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
-            filter: brightness(0.75); /* Incrementa el contraste de los contadores */
+            filter: brightness(0.7);
         }
 
         .slide.active { opacity: 1; }
 
-        /* CONTADORES PREMIUM FLOTANTES EN 3D (Estilo Glassmorphism) */
+        /* CONTADORES COMPACTOS Y ELEVADOS (OPTIMIZADO) */
         .hero-counters-overlay {
             position: absolute;
-            bottom: 40px;
+            bottom: 35px;
             left: 50%;
             transform: translateX(-50%);
-            width: 92%;
-            max-width: 950px;
-            display: flex;
-            justify-content: center;
-            gap: 50px;
+            width: 100%;
+            max-width: 600px; /* Reducido para evitar rectángulos excesivamente amplios */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
             z-index: 10;
         }
 
         .elementor-counter {
-            flex: 1;
             position: relative;
-            background: rgba(20, 21, 23, 0.65); /* Cristal esmerilado oscuro */
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
-            padding: 30px 20px 20px 20px;
+            background: rgba(28, 29, 32, 0.75); /* Cristal premium oscuro */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 40px 15px 20px 15px; /* Ajuste milimétrico de relleno */
             text-align: center;
             color: var(--blanco);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .elementor-counter:hover {
             transform: translateY(-5px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-            border-color: rgba(255, 183, 197, 0.4);
+            border-color: rgba(255, 255, 255, 0.25);
         }
 
-        /* CONTENEDOR E ICONOS 3D IMPACTANTES */
-        .icon-3d-container {
+        /* ICONOS EFECTO VOLUMÉTRICO 3D (FontAwesome + Gradientes de sombra CSS) */
+        .icon-box-3d {
             position: absolute;
-            top: -65px;
+            top: -35px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
-            height: 120px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 15;
-            filter: drop-shadow(0 15px 15px rgba(0,0,0,0.4));
+            font-size: 1.8em;
+            z-index: 5;
+            transition: transform 0.3s ease;
         }
 
-        .icon-3d-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            pointer-events: none;
+        /* Ajustes específicos e iluminación interna simulada */
+        .bg-student-3d {
+            background: linear-gradient(135deg, #120e2e 0%, #0077b6 100%);
+            color: var(--glow-estudiantes);
+            box-shadow: 0 8px 20px rgba(0, 210, 255, 0.3), 
+                        inset 0 2px 6px rgba(255, 255, 255, 0.4),
+                        0 0 0 4px rgba(28, 29, 32, 0.8);
+            animation: floatUpDown 4s ease-in-out infinite alternate;
         }
 
-        /* Animaciones fluidas 3D individuales */
-        .student-3d-anim {
-            animation: float3DStudent 4s ease-in-out infinite alternate;
+        .bg-teacher-3d {
+            background: linear-gradient(135deg, #241400 0%, #b7791f 100%);
+            color: var(--glow-docentes);
+            box-shadow: 0 8px 20px rgba(255, 183, 3, 0.3), 
+                        inset 0 2px 6px rgba(255, 255, 255, 0.4),
+                        0 0 0 4px rgba(28, 29, 32, 0.8);
+            animation: floatUpDown 4.5s ease-in-out infinite alternate;
         }
 
-        .teacher-3d-anim {
-            animation: float3DTeacher 4.5s ease-in-out infinite alternate;
-        }
-
-        @keyframes float3DStudent {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-12px) rotate(3deg); }
-        }
-
-        @keyframes float3DTeacher {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-10px) rotate(-3deg); }
+        @keyframes floatUpDown {
+            0% { transform: translateX(-50%) translateY(0); }
+            100% { transform: translateX(-50%) translateY(-8px); }
         }
 
         .elementor-counter-title {
-            font-size: 1em;
+            font-size: 0.85em;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: #ffffff;
-            margin-top: 50px; /* Margen para respetar el icono flotante superior */
-            margin-bottom: 8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            color: #d1d5db;
+            margin-bottom: 2px;
         }
 
         .elementor-counter-number-wrapper {
-            font-size: 3.2em;
-            font-weight: 900;
-            line-height: 1;
-            letter-spacing: -1px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            font-size: 2.5em;
+            font-weight: 800;
+            line-height: 1.1;
         }
 
-        /* Colores tipográficos diferenciados para impacto visual */
-        .color-estudiantes {
-            background: linear-gradient(135deg, #aed8f2 0%, #4ea8de 100%);
+        .num-student {
+            background: linear-gradient(135deg, #ffffff 40%, var(--glow-estudiantes) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .color-docentes {
-            background: linear-gradient(135deg, #ffeaa7 0%, #f39c12 100%);
+        .num-teacher {
+            background: linear-gradient(135deg, #ffffff 40%, var(--glow-docentes) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -427,15 +414,16 @@
 
         .footer-bottom { text-align: center; padding-top: 20px; font-size: 0.85em; color: #6c7075; }
 
-        /* ADAPTACIÓN RESPONSIVE EXCEPCIONAL */
-        @media (max-width: 950px) {
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
             .ucv-video-layout { grid-template-columns: 1fr; }
-            .hero-section { height: 620px; }
-            .hero-counters-overlay { gap: 85px; bottom: 25px; flex-direction: column; width: 85%; }
-            .elementor-counter { padding: 20px 15px 15px 15px; }
-            .icon-3d-container { width: 90px; height: 90px; top: -50px; }
-            .elementor-counter-title { margin-top: 35px; font-size: 0.9em; }
-            .elementor-counter-number-wrapper { font-size: 2.5em; }
+            .hero-section { height: 520px; }
+            .hero-counters-overlay { 
+                grid-template-columns: 1fr; 
+                gap: 55px; 
+                max-width: 320px; 
+                bottom: 20px;
+            }
             .nav-menu { display: none; }
             .top-info-bar { flex-direction: column; text-align: center; justify-content: center; gap: 10px; padding: 10px 5%; }
             .footer-container { grid-template-columns: 1fr; gap: 30px; }
@@ -490,7 +478,7 @@
         </ul>
     </nav>
 
-    <!-- GALERÍA DE IMÁGENES CON CONTADORES PREMIUM INTEGRADOS EN 3D -->
+    <!-- GALERÍA DE IMÁGENES CON CONTADORES DE TAMAÑO JUSTO -->
     <header class="hero-section">
         <div class="hero-bg-slider">
             <div class="slide active" style="background-image: url('FRONTIS.jpg');"></div>
@@ -498,28 +486,28 @@
             <div class="slide" style="background-image: url('Secundaria2.jpg');"></div>
         </div>
 
-        <!-- Capa superpuesta con los contadores y modelados 3D -->
+        <!-- Capa de contadores estilizados y balanceados en tamaño -->
         <div class="hero-counters-overlay">
             
-            <!-- Contador Estudiantes (Efecto Cristal + Icono 3D Neón) -->
+            <!-- Tarjeta Estudiantes -->
             <div class="elementor-counter">
-                <div class="icon-3d-container student-3d-anim">
-                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/graduation-cap-5374026-4496030.png" alt="Estudiantes 3D" class="icon-3d-img">
+                <div class="icon-box-3d bg-student-3d">
+                    <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-                <div class="elementor-counter-title">ESTUDIANTES</div>
+                <div class="elementor-counter-title">Estudiantes</div>
                 <div class="elementor-counter-number-wrapper">
-                    <span class="elementor-counter-number color-estudiantes" data-duration="2500" data-to-value="380" data-from-value="0" data-delimiter=",">0</span>
+                    <span class="elementor-counter-number num-student" data-duration="2000" data-to-value="380" data-from-value="0">0</span>
                 </div>
             </div>
 
-            <!-- Contador Docentes (Efecto Cristal + Pizarra / Profesor 3D Realista) -->
+            <!-- Tarjeta Docentes -->
             <div class="elementor-counter">
-                <div class="icon-3d-container teacher-3d-anim">
-                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/teacher-writing-on-board-11232810-9017688.png" alt="Docentes 3D" class="icon-3d-img">
+                <div class="icon-box-3d bg-teacher-3d">
+                    <i class="fa-solid fa-chalkboard-user"></i>
                 </div>
-                <div class="elementor-counter-title">DOCENTES</div>
+                <div class="elementor-counter-title">Docentes</div>
                 <div class="elementor-counter-number-wrapper">
-                    <span class="elementor-counter-number color-docentes" data-duration="2500" data-to-value="25" data-from-value="0" data-delimiter=",">0</span>
+                    <span class="elementor-counter-number num-teacher" data-duration="2000" data-to-value="25" data-from-value="0">0</span>
                 </div>
             </div>
 
@@ -548,10 +536,9 @@
         </div>
     </section>
 
-    <!-- PIE DE PÁGINA ENRIQUECIDO -->
+    <!-- PIE DE PÁGINA -->
     <footer class="main-footer">
         <div class="footer-container">
-            <!-- Columna 1: Identidad -->
             <div class="footer-logo-side">
                 <div class="footer-logo">
                     <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
@@ -560,7 +547,6 @@
                 <p class="footer-text-muted">Santo Domingo - Huarmey | Portal Oficial de Transparencia e Información Institucional.</p>
             </div>
 
-            <!-- Columna 2: Horarios de Atención -->
             <div class="footer-box">
                 <h3>Horario de Atención</h3>
                 <ul class="footer-info-list">
@@ -575,7 +561,6 @@
                 </ul>
             </div>
 
-            <!-- Columna 3: Contacto y Enlaces Legales -->
             <div class="footer-box">
                 <h3>Contacto</h3>
                 <ul class="footer-info-list" style="margin-bottom: 15px;">
@@ -604,12 +589,12 @@
 
     <!-- SISTEMA DE SEGURIDAD Y LOGICA SCRIPT -->
     <script>
-        // 1. Deshabilitar Clic Derecho
+        // Deshabilitar Clic Derecho
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         }, false);
 
-        // 2. Deshabilitar atajos de teclado de copia e inspección técnica
+        // Deshabilitar atajos de teclado de copia e inspección
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12') { e.preventDefault(); return false; }
             if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return false; }
@@ -637,12 +622,12 @@
             document.getElementById('ucv-main-player').src = "https://www.youtube.com/embed/" + idVideo + "?enablejsapi=1&autoplay=1";
         }
 
-        // SCRIPT ANIMACIÓN CONTADOR MATEMÁTICO AVANZADO
+        // ANIMACIÓN CONTADOR
         document.addEventListener("DOMContentLoaded", () => {
             const counters = document.querySelectorAll('.elementor-counter-number');
             counters.forEach(counter => {
                 const toValue = parseInt(counter.getAttribute('data-to-value'));
-                const duration = parseInt(counter.getAttribute('data-duration')) || 2500;
+                const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
                 let startTime = null;
 
                 const animateCounter = (timestamp) => {
