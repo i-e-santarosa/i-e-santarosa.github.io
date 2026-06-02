@@ -19,13 +19,23 @@
             --texto-mutado: #666666;
         }
 
-        /* PUNTERO CLÁSICO */
+        /* SEGURIDAD CSS: Evita la selección de texto en toda la página */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             cursor: default;
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none;    /* Firefox */
+            -ms-user-select: none;     /* IE10+ */
+            user-select: none;         /* Estándar */
+        }
+
+        /* Evita que arrastren las imágenes para descargarlas */
+        img {
+            -webkit-user-drag: none;
+            user-drag: none;
         }
 
         a, button, .playlist-video-item {
@@ -78,7 +88,7 @@
             color: var(--rosa-principal);
         }
 
-        /* BARRA DE NAVEGACIÓN MODIFICADA */
+        /* BARRA DE NAVEGACIÓN */
         .main-navbar {
             background-color: var(--blanco);
             display: flex;
@@ -355,7 +365,6 @@
                     <li><a href="niveles.html#secundaria">Secundaria</a></li>
                 </ul>
             </li>
-            <!-- NOSOTROS: Redirección directa sin menú desplegable -->
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="documentos.html">Documentos</a></li>
             <li><a href="contacto.html">Contacto</a></li>
@@ -448,7 +457,47 @@
         <div class="footer-bottom">&copy; 2026 I.E. Santa Rosa de Santo Domingo.</div>
     </footer>
 
+    <!-- SISTEMA DE SEGURIDAD JAVASCRIPT -->
     <script>
+        // 1. Deshabilitar Clic Derecho
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        }, false);
+
+        // 2. Deshabilitar atajos de teclado de copia e inspección
+        document.addEventListener('keydown', function(e) {
+            // Evitar F12
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+            // Evitar Ctrl+Shift+I (Inspeccionar)
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+                return false;
+            }
+            // Evitar Ctrl+Shift+J (Consola)
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+                e.preventDefault();
+                return false;
+            }
+            // Evitar Ctrl+U (Ver código fuente)
+            if (e.ctrlKey && e.key === 'u') {
+                e.preventDefault();
+                return false;
+            }
+            // Evitar Ctrl+C (Copiar)
+            if (e.ctrlKey && e.key === 'c') {
+                e.preventDefault();
+                return false;
+            }
+            // Evitar Ctrl+S (Guardar página)
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                return false;
+            }
+        });
+
         // CARRUSEL DE IMÁGENES
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
