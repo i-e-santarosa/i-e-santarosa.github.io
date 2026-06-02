@@ -125,7 +125,7 @@
 
         .brand-text p {
             font-size: 0.75em;
-            color: var(--texto-mutado);
+            color: var(--texto-mutated);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -249,6 +249,53 @@
         }
 
         .slide.active { opacity: 1; }
+
+        /* SECCIÓN NUEVA: CONTADORES ESTILO ELEMENTOR */
+        .counters-section {
+            padding: 40px 5%;
+            background-color: var(--blanco);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .counters-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .elementor-counter {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            background: var(--fcf8f8);
+            border-radius: 12px;
+            border: 1px solid var(--rosa-borde);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .elementor-counter-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--oscuro-suave);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .elementor-counter-number-wrapper {
+            font-size: 2.8em;
+            font-weight: 800;
+            color: var(--rosa-principal);
+            line-height: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
         /* SECCIÓN MULTIMEDIA DEL PROYECTO INSTITUCIONAL */
         .project-section {
@@ -381,6 +428,31 @@
         </div>
     </header>
 
+    <!-- SECCIÓN CONTADORES DE ESTUDIANTES Y DOCENTES -->
+    <section class="counters-section">
+        <div class="counters-container">
+            <!-- Contador Estudiantes (Tu código adaptado) -->
+            <div class="elementor-counter">
+                <div class="elementor-counter-title">ESTUDIANTES</div>
+                <div class="elementor-counter-number-wrapper">
+                    <span class="elementor-counter-number-prefix"></span>
+                    <span class="elementor-counter-number" data-duration="2000" data-to-value="380" data-from-value="0" data-delimiter=",">0</span>
+                    <span class="elementor-counter-number-suffix"></span>
+                </div>
+            </div>
+
+            <!-- Contador Docentes (Duplicado y personalizado) -->
+            <div class="elementor-counter">
+                <div class="elementor-counter-title">DOCENTES</div>
+                <div class="elementor-counter-number-wrapper">
+                    <span class="elementor-counter-number-prefix"></span>
+                    <span class="elementor-counter-number" data-duration="2000" data-to-value="25" data-from-value="0" data-delimiter=",">0</span>
+                    <span class="elementor-counter-number-suffix"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SECCIÓN MULTIMEDIA DEL PROYECTO INSTITUCIONAL -->
     <section class="project-section">
         <div class="project-container">
@@ -457,7 +529,7 @@
         <div class="footer-bottom">&copy; 2026 I.E. Santa Rosa de Santo Domingo.</div>
     </footer>
 
-    <!-- SISTEMA DE SEGURIDAD JAVASCRIPT -->
+    <!-- SISTEMA DE SEGURIDAD Y LOGICA SCRIPT -->
     <script>
         // 1. Deshabilitar Clic Derecho
         document.addEventListener('contextmenu', function(e) {
@@ -466,36 +538,12 @@
 
         // 2. Deshabilitar atajos de teclado de copia e inspección
         document.addEventListener('keydown', function(e) {
-            // Evitar F12
-            if (e.key === 'F12') {
-                e.preventDefault();
-                return false;
-            }
-            // Evitar Ctrl+Shift+I (Inspeccionar)
-            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-                e.preventDefault();
-                return false;
-            }
-            // Evitar Ctrl+Shift+J (Consola)
-            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
-                e.preventDefault();
-                return false;
-            }
-            // Evitar Ctrl+U (Ver código fuente)
-            if (e.ctrlKey && e.key === 'u') {
-                e.preventDefault();
-                return false;
-            }
-            // Evitar Ctrl+C (Copiar)
-            if (e.ctrlKey && e.key === 'c') {
-                e.preventDefault();
-                return false;
-            }
-            // Evitar Ctrl+S (Guardar página)
-            if (e.ctrlKey && e.key === 's') {
-                e.preventDefault();
-                return false;
-            }
+            if (e.key === 'F12') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
         });
 
         // CARRUSEL DE IMÁGENES
@@ -515,6 +563,31 @@
             elemento.classList.add('playing-now');
             document.getElementById('ucv-main-player').src = "https://www.youtube.com/embed/" + idVideo + "?enablejsapi=1&autoplay=1";
         }
+
+        // SCRIPT ANIMACIÓN CONTADOR (ELEMENTOR STYLE)
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.elementor-counter-number');
+            counters.forEach(counter => {
+                const toValue = parseInt(counter.getAttribute('data-to-value'));
+                const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
+                let startTime = null;
+
+                const animateCounter = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = timestamp - startTime;
+                    const currentCount = Math.min(Math.floor((progress / duration) * toValue), toValue);
+                    
+                    counter.textContent = currentCount;
+
+                    if (progress < duration) {
+                        requestAnimationFrame(animateCounter);
+                    } else {
+                        counter.textContent = toValue; // Asegura el valor final exacto
+                    }
+                };
+                requestAnimationFrame(animateCounter);
+            });
+        });
     </script>
 </body>
 </html>
