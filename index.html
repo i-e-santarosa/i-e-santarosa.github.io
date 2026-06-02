@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I.E. Santa Rosa de Santo Domingo | Inicio</title>
+    <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -17,21 +18,23 @@
             --texto-oscuro: #333333;
             --texto-mutado: #666666;
             
-            /* Colores vivos añadidos para iconos llamativos */
+            /* Colores vivos para iconos */
             --pilar-identidad: #e56b6f;
-            --pilar-voto: #ffb703;
+            --pilar-infra: #ffb703;
             --pilar-doc: #219ebc;
             --pilar-gestion: #4ade80;
         }
 
+        /* CONFIGURACIÓN DEL PUNTERO PERSONALIZADO DE ROSA */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Capa de protección base para evitar copia simple de textos */
             user-select: none;
             -webkit-user-select: none;
+            /* Cursor base de rosa en SVG para compatibilidad óptima */
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24' fill='%23e56b6f'><path d='M12 2C9.5 2 7 4 7 7c0 2.5 1.5 4.5 4 4.9V22h2v-10.1c2.5-.4 4-2.4 4-4.9 0-3-2.5-5-5-5zm0 8c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z'/></svg>"), auto;
         }
 
         body {
@@ -64,7 +67,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 5%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             border-bottom: 3px solid var(--rosa-borde);
             position: sticky;
             top: 0;
@@ -94,53 +97,71 @@
 
         .brand-text p {
             font-size: 0.75em;
-            color: var(--texto-mutado);
+            color: var(--texto-mutated);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
+        /* MENÚ DE NAVEGACIÓN INTERACTIVO */
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 12px;
             align-items: center;
         }
 
-        .nav-menu a {
+        .nav-menu li a {
             text-decoration: none;
             color: var(--oscuro-suave);
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95em;
-            transition: color 0.3s;
-            padding: 5px 0;
-        }
-
-        .nav-menu a:hover, .nav-menu a.active {
-            color: var(--rosa-principal);
-            border-bottom: 2px solid var(--rosa-principal);
-        }
-
-        .btn-admin {
-            background-color: var(--oscuro);
-            color: var(--amarillo-crema) !important;
             padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 600 !important;
-            border: 1px solid var(--amarillo-crema);
-            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        /* ENCABEZADO CON IMÁGENES MUCHO MÁS CLARAS Y VISIBLES */
+        /* Efecto dinámico de fondo al pasar el cursor */
+        .nav-menu li a:hover, .nav-menu li a.active {
+            color: var(--rosa-principal);
+            background-color: var(--rosa-suave);
+            box-shadow: inset 0 0 0 1px var(--rosa-borde);
+        }
+
+        /* RE-DISEÑO DEL BOTÓN ADMIN COHERENTE Y LLAMATIVO */
+        .btn-admin {
+            background: linear-gradient(135deg, var(--oscuro) 0%, #3e4145 100%);
+            color: #ffcd3f !important;
+            padding: 10px 20px !important;
+            border-radius: 25px !important;
+            font-weight: 700 !important;
+            border: 2px solid #ffcd3f;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulseAdmin 2.5s infinite alternate;
+        }
+
+        @keyframes pulseAdmin {
+            0% { box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); transform: scale(1); }
+            100% { box-shadow: 0 4px 15px rgba(255, 205, 63, 0.4); transform: scale(1.02); }
+        }
+
+        .btn-admin:hover {
+            background: linear-gradient(135deg, #3e4145 0%, var(--oscuro) 100%) !important;
+            color: #ffffff !important;
+            border-color: #ffffff;
+        }
+
+        /* SECCIÓN DEL CARRUSEL: COMPLETAMENTE LIMPIA */
         .hero-section {
             position: relative;
-            padding: 130px 5%;
-            text-align: left;
             border-bottom: 4px solid var(--rosa-borde);
-            min-height: 560px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
+            height: 500px;
             overflow: hidden;
+            background-color: #000;
         }
 
         .hero-bg-slider {
@@ -159,7 +180,7 @@
             width: 100%;
             height: 100%;
             background-size: cover;
-            background-position: center 35%;
+            background-position: center center;
             background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
@@ -169,109 +190,14 @@
             opacity: 1;
         }
 
-        /* SOLUCIÓN AL PROBLEMA DE OPACIDAD: Filtro mucho más claro (0.35) y con degradado hacia la izquierda */
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(30, 5, 10, 0.55) 0%, rgba(0, 0, 0, 0.25) 100%);
-            z-index: 2;
-        }
-
-        .hero-container {
-            max-width: 800px;
-            margin: 0;
-            position: relative;
-            z-index: 3;
-        }
-
-        .hero-badge {
-            background-color: var(--rosa-principal);
-            color: var(--blanco);
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        /* Textos con sombras más fuertes para compensar la claridad del fondo */
-        .hero-section h1 {
-            font-size: 3em;
-            color: var(--blanco);
-            margin-bottom: 20px;
-            line-height: 1.3;
-            font-weight: 800;
-            text-shadow: 2px 2px 18px rgba(0, 0, 0, 0.95), 0 0 5px rgba(0,0,0,0.5);
-        }
-
-        .hero-section p {
-            font-size: 1.2em;
-            color: #ffffff;
-            margin-bottom: 40px;
-            font-weight: 500;
-            text-shadow: 1px 1px 12px rgba(0, 0, 0, 0.95);
-        }
-
-        /* BOTONES MÁS LLAMATIVOS Y VISUALES */
-        .hero-buttons {
-            display: flex;
-            justify-content: flex-start;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background-color: #ffb703; /* Amarillo más intenso y llamativo */
-            color: #000000;
-            text-decoration: none;
-            padding: 14px 32px;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 1.05em;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 5px 20px rgba(255, 183, 3, 0.5);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary:hover {
-            background-color: #ffcc00;
-            transform: scale(1.05); /* Efecto de crecimiento suave */
-            box-shadow: 0 8px 25px rgba(255, 183, 3, 0.7);
-        }
-
-        .btn-secondary {
-            background-color: var(--blanco);
-            color: var(--oscuro);
-            text-decoration: none;
-            padding: 14px 32px;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 1.05em;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--rosa-suave);
-            color: var(--rosa-principal);
-            transform: translateY(-2px);
-        }
-
-        /* ICONOS Y CUADROS DE PILARES RE-DISEÑADOS PARA SER MUY LLAMATIVOS */
+        /* ICONOS Y CUADROS DE PILARES CON MOVIMIENTO CONTINUO (ESTILO GIF) */
         .features-section {
             padding: 50px 5%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 25px;
             max-width: 1200px;
-            margin: -50px auto 0 auto;
+            margin: -40px auto 0 auto;
             position: relative;
             z-index: 10;
         }
@@ -280,33 +206,45 @@
             background-color: var(--blanco);
             border-radius: 12px;
             padding: 30px 20px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
             border-top: 5px solid var(--rosa-principal);
             transition: all 0.3s ease;
             text-align: center;
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 35px rgba(229, 107, 111, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(229, 107, 111, 0.15);
         }
 
-        /* Círculos llamativos e individuales para cada icono */
+        /* Contenedor base de los iconos interactivos */
         .feature-icon-wrapper {
-            width: 70px;
-            height: 70px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 18px auto;
-            font-size: 1.8em;
+            font-size: 2em;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
         }
 
-        /* Colores y fondos vivos para cada pilar */
+        /* ANIMACIÓN QUE SIMULA UN GIF DE MOVIMIENTO EN LOOP */
+        .feature-card:hover .feature-icon-wrapper {
+            animation: pilarMotion 0.8s infinite alternate ease-in-out;
+        }
+
+        @keyframes pilarMotion {
+            0% { transform: translateY(0) scale(1) rotate(0deg); }
+            50% { transform: translateY(-6px) scale(1.1) rotate(5deg); }
+            100% { transform: translateY(0) scale(1) rotate(-5deg); }
+        }
+
+        /* Fondos vivos e independientes */
         .pilar-1 { background-color: #fff0f2; color: var(--pilar-identidad); border: 1px solid #ffccd5; }
-        .pilar-2 { background-color: #fefae0; color: var(--pilar-voto); border: 1px solid #e9d8a6; }
+        .pilar-2 { background-color: #fefae0; color: var(--pilar-infra); border: 1px solid #e9d8a6; }
         .pilar-3 { background-color: #e0f2fe; color: var(--pilar-doc); border: 1px solid #bae6fd; }
         .pilar-4 { background-color: #dcfce7; color: var(--pilar-gestion); border: 1px solid #bbf7d0; }
 
@@ -408,7 +346,6 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            cursor: pointer;
             transition: all 0.2s ease;
             border: 1px solid #2d3035;
         }
@@ -439,10 +376,6 @@
             color: #e0e0e0;
             font-size: 0.88em;
             line-height: 1.4;
-        }
-
-        .action-footer-box {
-            margin-top: 35px;
         }
 
         /* PIE DE PÁGINA */
@@ -502,6 +435,11 @@
         .footer-box ul a {
             color: #aaa;
             text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-box ul a:hover {
+            color: var(--rosa-principal);
         }
 
         .footer-bottom {
@@ -513,18 +451,20 @@
 
         @media (max-width: 950px) {
             .ucv-video-layout { grid-template-columns: 1fr; }
-            .hero-section h1 { font-size: 2.2em; }
+            .hero-section { height: 350px; }
             .nav-menu { display: none; }
         }
     </style>
 </head>
 <body>
 
+    <!-- BANNER INFORMATIVO SUPERIOR -->
     <div class="top-info-bar">
         <span><i class="fa-solid fa-location-dot"></i> A.H. Santo Domingo, Huarmey - Áncash</span>
         <span><i class="fa-solid fa-school"></i> Institución Educativa Pública | Construyendo nuestro futuro</span>
     </div>
 
+    <!-- BARRA DE NAVEGACIÓN -->
     <nav class="main-navbar">
         <a href="index.html" class="navbar-brand">
             <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
@@ -534,69 +474,60 @@
             </div>
         </a>
 
+        <!-- MENÚ LIMPIO DE ELECCIONES Y CON ENLACES ALTAMENTE INTERACTIVOS -->
         <ul class="nav-menu">
             <li><a href="index.html" class="active">Inicio</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="niveles.html">Niveles</a></li>
-            <li><a href="elecciones.html">Elecciones</a></li>
             <li><a href="noticias.html">Noticias</a></li>
             <li><a href="galeria.html">Galería</a></li>
             <li><a href="documentos.html">Documentos</a></li>
             <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="admin-login.html" class="btn-admin"><i class="fa-solid fa-lock"></i> Admin</a></li>
+            <li><a href="admin-login.html" class="btn-admin"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
         </ul>
     </nav>
 
+    <!-- ENCABEZADO: GALERÍA DE IMÁGENES COMPLETAMENTE LIMPIA -->
     <header class="hero-section">
         <div class="hero-bg-slider">
             <div class="slide active" style="background-image: url('FRONTIS.jpg');"></div>
             <div class="slide" style="background-image: url('Primaria1.jpg');"></div>
             <div class="slide" style="background-image: url('Secundaria2.jpg');"></div>
-            <div class="slide" style="background-image: url('Frontal - Formacion.jpg');"></div>
-        </div>
-
-        <div class="hero-overlay"></div>
-
-        <div class="hero-container">
-            <span class="hero-badge"><i class="fa-solid fa-rose"></i> Colegio público de Huarmey</span>
-            <h1>Formación escolar con identidad, valores y participación democrática</h1>
-            <p>Plataforma institucional para comunicar actividades, documentos y gestionar elecciones escolares mediante voto digital con código QR.</p>
-            <div class="hero-buttons">
-                <a href="elecciones.html" class="btn-primary">Ir a elecciones <i class="fa-solid fa-arrow-right"></i></a>
-                <a href="nosotros.html" class="btn-secondary">Conocer la institución</a>
-            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200');"></div>
         </div>
     </header>
 
+    <!-- SECCIÓN DE PILARES CON ICONOS DE MOVIMIENTO DINÁMICO RE-DISEÑADOS -->
     <section class="features-section">
         <div class="feature-card">
             <div class="feature-icon-wrapper pilar-1"><i class="fa-solid fa-seedling"></i></div>
             <h3>Identidad institucional</h3>
-            <p>Diseño adaptado a la insignia, colores rosado, negro, rojo y dorado.</p>
+            <p>Diseño adaptado a la insignia escolar, fortaleciendo el orgullo de la comunidad.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon-wrapper pilar-2"><i class="fa-solid fa-qrcode"></i></div>
-            <h3>Voto escolar digital</h3>
-            <p>Lectura de QR, cédula digital y control de voto único.</p>
+            <div class="feature-icon-wrapper pilar-2"><i class="fa-solid fa-school-flag"></i></div>
+            <h3>Infraestructura</h3>
+            <p>Ambientes óptimos y aulas funcionales para el desarrollo pedagógico.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon-wrapper pilar-3"><i class="fa-solid fa-file-invoice"></i></div>
-            <h3>Documentos</h3>
-            <p>Espacio para comunicados, reglamentos y formatos oficiales.</p>
+            <h3>Documentos Oficiales</h3>
+            <p>Espacio para comunicados, reglamentos internos y formatos oficiales actualizados.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon-wrapper pilar-4"><i class="fa-solid fa-users-gear"></i></div>
             <h3>Gestión interna</h3>
-            <p>Panel administrador para docentes, candidatos, votantes y resultados.</p>
+            <p>Herramientas y soporte digital para la correcta administración institucional.</p>
         </div>
     </section>
 
+    <!-- APARTADO MULTIMEDIA PROYECTO INSTITUCIONAL -->
     <section class="project-section">
         <div class="project-container">
             
             <div class="project-intro-text">
                 <h2>Proyecto Institucional</h2>
-                <p>Esta plataforma fue preparada para la I.E. Santa Rosa de Santo Domingo, ubicada en la provincia de Huarmey, con un enfoque moderno y altamente participativo. Centraliza la comunicación y optimiza los procesos de elecciones estudiantiles mediante tecnología digital avanzada.</p>
+                <p>Esta plataforma fue preparada para la I.E. Santa Rosa de Santo Domingo, ubicada en la provincia de Huarmey, con un enfoque moderno y altamente educativo. Centraliza la comunicación institucional y optimiza el acceso informativo de la comunidad escolar.</p>
             </div>
 
             <div class="ucv-video-layout">
@@ -635,13 +566,10 @@
                 </div>
             </div>
 
-            <div class="action-footer-box">
-                <a href="elecciones.html" class="btn-primary" style="background-color: var(--rosa-principal); color: white; box-shadow: 0 5px 15px rgba(229,107,111,0.4);">Probar módulo de votación</a>
-            </div>
-
         </div>
     </section>
 
+    <!-- PIE DE PÁGINA -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-info">
@@ -649,14 +577,14 @@
                     <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
                     <h3>I.E. Santa Rosa</h3>
                 </div>
-                <p style="font-size: 0.85em; color: #888;">Santo Domingo - Huarmey<br>Portal institucional y módulo de voto escolar digital.</p>
+                <p style="font-size: 0.85em; color: #888;">Santo Domingo - Huarmey<br>Portal institucional para la gestión y comunicación del plantel.</p>
             </div>
             <div class="footer-box">
                 <h3>Menú</h3>
                 <ul>
                     <li><a href="nosotros.html">Nosotros</a></li>
                     <li><a href="niveles.html">Niveles</a></li>
-                    <li><a href="elecciones.html">Elecciones</a></li>
+                    <li><a href="noticias.html">Noticias</a></li>
                 </ul>
             </div>
             <div class="footer-box">
@@ -677,6 +605,7 @@
         </div>
     </footer>
 
+    <!-- SEGURIDAD Y CICLOS AUTOMÁTICOS -->
     <script>
         // 1. ESCUDO PROTECTOR ANTI-ESPIAS
         document.addEventListener('contextmenu', function(e) {
