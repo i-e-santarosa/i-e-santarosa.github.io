@@ -1,1 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I.E. Santa Rosa de Santo Domingo | Inicio</title>
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --rosa-principal: #e56b6f;
+            --rosa-suave: #fff0f2;
+            --rosa-borde: #ffb7c5;
+            --oscuro: #252629;
+            --oscuro-suave: #333538;
+            --amarillo-crema: #fff3b0;
+            --blanco: #ffffff;
+            --texto-oscuro: #333333;
+            --texto-mutado: #666666;
+            
+            /* Colores de acento para efectos 3D */
+            --glow-estudiantes: #00d2ff;
+            --glow-docentes: #ffb703;
+        }
 
+        /* SEGURIDAD CSS: Evita la selección de texto en toda la página */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            cursor: default;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        img {
+            -webkit-user-drag: none;
+            user-drag: none;
+        }
+
+        a, button, .playlist-video-item {
+            cursor: pointer;
+        }
+
+        body {
+            background-color: #fcf8f8;
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+        }
+
+        /* BANNER INFORMATIVO SUPERIOR */
+        .top-info-bar {
+            background-color: var(--oscuro);
+            color: var(--blanco);
+            font-size: 0.85em;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .top-info-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-info-item i { color: var(--rosa-borde); }
+
+        .top-social-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .top-social-links a {
+            color: var(--blanco);
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .top-social-links a:hover { color: var(--rosa-principal); }
+
+        /* BARRA DE NAVEGACIÓN */
+        .main-navbar {
+            background-color: var(--blanco);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-bottom: 3px solid var(--rosa-borde);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--texto-oscuro);
+        }
+
+        .navbar-brand img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-text h2 {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--oscuro-suave);
+            line-height: 1.2;
+        }
+
+        .brand-text p {
+            font-size: 0.75em;
+            color: var(--texto-mutado);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .nav-menu li { position: relative; }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: var(--oscuro-suave);
+            font-weight: 600;
+            font-size: 0.95em;
+            padding: 8px 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-menu li a:hover, .nav-menu li a.active, .nav-menu li:hover > a {
+            color: var(--rosa-principal);
+            background-color: var(--rosa-suave);
+            box-shadow: inset 0 0 0 1px var(--rosa-borde);
+        }
+
+        /* DISEÑO DESPLEGABLE REFINADO */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--blanco);
+            min-width: 200px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border-radius: 12px;
+            border: 1px solid var(--rosa-borde);
+            list-style: none;
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            z-index: 1100;
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(4px);
+        }
+
+        .dropdown-menu li a {
+            color: var(--texto-oscuro) !important;
+            border-radius: 0 !important;
+            padding: 10px 20px !important;
+            font-weight: 500;
+            font-size: 0.9em;
+            box-shadow: none !important;
+            background: transparent !important;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-menu li a:hover {
+            color: var(--rosa-principal) !important;
+            background-color: var(--rosa-suave) !important;
+        }
+
+        .btn-admin {
+            background: linear-gradient(135deg, var(--oscuro) 0%, #3e4145 100%);
+            color: #ffcd3f !important;
+            width: 40px;
+            height: 40px;
+            padding: 0 !important;
+            border-radius: 50% !important;
+            font-weight: 700 !important;
+            border: 2px solid #ffcd3f;
+            text-decoration: none;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            animation: pulseAdmin 2.5s infinite alternate;
+        }
+
+        @keyframes pulseAdmin {
+            0% { box-shadow: 0 4px 10px rgba(0,0,0,0.15); transform: scale(1); }
+            100% { box-shadow: 0 4px 15px rgba(255, 205, 63, 0.35); transform: scale(1.05); }
+        }
+
+        /* HERO SLIDER */
+        .hero-section {
+            position: relative;
+            border-bottom: 4px solid var(--rosa-borde);
+            height: 480px;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        .hero-bg-slider, .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            filter: none;
+        }
+
+        .slide.active { 
+            opacity: 1;  }
+
+        /* CONTADORES */
+        .hero-counters-overlay {
+            position: absolute;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .elementor-counter {
+            position: relative;
+            background: rgba(28, 29, 32, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 40px 15px 20px 15px;
+            text-align: center;
+            color: var(--blanco);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .elementor-counter:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .icon-box-3d {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8em;
+            z-index: 5;
+            transition: transform 0.3s ease;
+        }
+
+        .bg-student-3d {
+            background: linear-gradient(135deg, #120e2e 0%, #0077b6 100%);
+            color: var(--glow-estudiantes);
+            box-shadow: 0 8px 20px rgba(0, 210, 255, 0.3), 
+                        inset 0 2px 6px rgba(255, 255, 255, 0.4),
+                        0 0 0 4px rgba(28, 29, 32, 0.8);
+            animation: floatUpDown 4s ease-in-out infinite alternate;
+        }
+
+        .bg-teacher-3d {
+            background: linear-gradient(135deg, #241400 0%, #b7791f 100%);
+            color: var(--glow-docentes);
+            box-shadow: 0 8px 20px rgba(255, 183, 3, 0.3), 
+                        inset 0 2px 6px rgba(255, 255, 255, 0.4),
+                        0 0 0 4px rgba(28, 29, 32, 0.8);
+            animation: floatUpDown 4.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatUpDown {
+            0% { transform: translateX(-50%) translateY(0); }
+            100% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        .elementor-counter-title {
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #d1d5db;
+            margin-bottom: 2px;
+        }
+
+        .elementor-counter-number-wrapper {
+            font-size: 2.5em;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .num-student {
+            background: linear-gradient(135deg, #ffffff 40%, var(--glow-estudiantes) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .num-teacher {
+            background: linear-gradient(135deg, #ffffff 40%, var(--glow-docentes) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* SECCIÓN MULTIMEDIA */
+        .project-section {
+            background-color: #1a1b1e;
+            color: var(--blanco);
+            padding: 60px 5%;
+        }
+
+        .project-container { max-width: 1200px; margin: 0 auto; }
+        .project-intro-text h2 { font-size: 2.2em; color: var(--amarillo-crema); margin-bottom: 12px; font-weight: 700; }
+        .project-intro-text p { color: #e0e0e0; margin-bottom: 25px; max-width: 900px; }
+        .ucv-video-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; background-color: #111214; padding: 25px; border-radius: 12px; border-left: 5px solid var(--rosa-principal); }
+        .video-player-box { position: relative; width: 100%; aspect-ratio: 16 / 9; background-color: #000; border-radius: 8px; overflow: hidden; }
+        .video-player-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .ucv-playlist-side { display: flex; flex-direction: column; gap: 12px; max-height: 450px; overflow-y: auto; }
+        .playlist-header-title { background-color: #cc1829; color: var(--blanco); padding: 12px 15px; font-size: 0.9em; font-weight: bold; border-radius: 6px; text-transform: uppercase; }
+        .playlist-video-item { background-color: #202226; border-radius: 6px; padding: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #2d3035; transition: background 0.2s; }
+        .playlist-video-item:hover { background-color: #2b2e34; }
+        .playlist-video-item.playing-now { background-color: #2b2e34; border-color: var(--rosa-principal); }
+        .video-item-thumb { width: 45px; height: 45px; background-color: #111214; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--amarillo-crema); flex-shrink: 0; }
+        .video-item-details { color: #e0e0e0; font-size: 0.88em; font-weight: 500; }
+
+        /* PIE DE PÁGINA */
+        .main-footer { background-color: var(--oscuro); color: #bbb; padding: 60px 5% 20px 5%; font-size: 0.95em; }
+        .footer-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: 1.2fr 1fr 1fr; 
+            gap: 40px; 
+            padding-bottom: 40px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+        
+        .footer-logo-side { display: flex; flex-direction: column; gap: 15px; }
+        .footer-logo { display: flex; align-items: center; gap: 12px; color: var(--blanco); }
+        .footer-logo img { height: 50px; width: auto; }
+        .footer-logo h3 { font-size: 1.3em; font-weight: 700; color: var(--blanco); }
+        .footer-text-muted { font-size: 0.88em; color: #8a8d91; line-height: 1.5; }
+        
+        .footer-box h3 { color: var(--blanco); margin-bottom: 20px; font-size: 1.05em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; position: relative; }
+        .footer-box h3::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 30px; height: 2px; background-color: var(--rosa-principal); }
+        
+        .footer-info-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-info-list li { display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; color: #ccced1; }
+        .footer-info-list li i { color: var(--rosa-borde); margin-top: 3px; font-size: 0.95em; }
+        .footer-info-list li strong { color: var(--blanco); font-weight: 600; }
+        
+        .reclamaciones-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--amarillo-crema);
+            color: #514600 !important;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.88em;
+            margin-top: 5px;
+            transition: opacity 0.2s;
+        }
+        .reclamaciones-link:hover { opacity: 0.9; }
+
+        .footer-bottom { text-align: center; padding-top: 20px; font-size: 0.85em; color: #6c7075; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .ucv-video-layout { grid-template-columns: 1fr; }
+            .hero-section { height: 520px; }
+            .hero-counters-overlay { 
+                grid-template-columns: 1fr; 
+                gap: 55px; 
+                max-width: 320px; 
+                bottom: 20px;
+            }
+            .nav-menu { display: none; }
+            .top-info-bar { flex-direction: column; text-align: center; justify-content: center; gap: 10px; padding: 10px 5%; }
+            .footer-container { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BANNER INFORMATIVO SUPERIOR -->
+    <div class="top-info-bar">
+        <div class="top-info-item">
+            <i class="fa-solid fa-location-dot"></i> 
+            <span>A.H. Santo Domingo, Huarmey - Áncash</span>
+        </div>
+        
+        <div class="top-info-item">
+            <i class="fa-solid fa-school"></i> 
+            <span>Escuela pública | Construyendo nuestro futuro</span>
+        </div>
+        
+        <div class="top-social-links">
+            <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </div>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="main-navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
+            <div class="brand-text">
+                <h2>I.E. Santa Rosa</h2>
+                <p>Santo Domingo - Huarmey</p>
+            </div>
+        </a>
+
+        <ul class="nav-menu">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li>
+                <!-- SOLUCIÓN ANTI-404: javascript:void(0) anula el clic accidental en PC -->
+                <a href="javascript:void(0);">Niveles <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
+                <ul class="dropdown-menu">
+                    <!-- Enlaces corregidos apuntando a los archivos html separados correspondientes -->
+                    <li><a href="primaria.html">Primaria</a></li>
+                    <li><a href="secundaria.html">Secundaria</a></li>
+                </ul>
+            </li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="documentos.html">Documentos</a></li>
+            <li><a href="contacto.html">Ubicacion</a></li>
+            <li><a href="admin-login.html" class="btn-admin" title="Admin Portal"><i class="fa-solid fa-user-shield"></i></a></li>
+        </ul>
+    </nav>
+
+    <!-- GALERÍA DE IMÁGENES -->
+    <header class="hero-section">
+        <div class="hero-bg-slider">
+            <div class="slide active" style="background-image: url('FRONTIS.jpg');"></div>
+            <div class="slide" style="background-image: url('Primaria1.jpg');"></div>
+            <div class="slide" style="background-image: url('Secundaria2.jpg');"></div>
+        </div>
+
+        <div class="hero-counters-overlay">
+            <!-- Tarjeta Estudiantes -->
+            <div class="elementor-counter">
+                <div class="icon-box-3d bg-student-3d">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="elementor-counter-title">Estudiantes</div>
+                <div class="elementor-counter-number-wrapper">
+                    <span class="elementor-counter-number num-student" data-duration="2000" data-to-value="680" data-from-value="0">0</span>
+                </div>
+            </div>
+
+            <!-- Tarjeta Docentes -->
+            <div class="elementor-counter">
+                <div class="icon-box-3d bg-teacher-3d">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <div class="elementor-counter-title">Docentes</div>
+                <div class="elementor-counter-number-wrapper">
+                    <span class="elementor-counter-number num-teacher" data-duration="2000" data-to-value="25" data-from-value="0">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN MULTIMEDIA -->
+    <section class="project-section">
+        <div class="project-container">
+            <div class="project-intro-text">
+                <h2>Proyecto Institucional</h2>
+                <p>Esta plataforma fue preparada para la I.E. Santa Rosa de Santo Domingo, ubicada en la provincia de Huarmey, centralizando los accesos de información transparente para la comunidad escolar.</p>
+            </div>
+            <div class="ucv-video-layout">
+                <div class="video-player-box">
+                    <iframe id="ucv-main-player" src="https://www.youtube.com/embed/p3X_S65pGZ8?enablejsapi=1" title="Reproductor" allowfullscreen></iframe>
+                </div>
+                <div class="ucv-playlist-side">
+                    <div class="playlist-header-title">Videos del Proyecto:</div>
+                    <div class="playlist-video-item playing-now" onclick="cambiarVideoUCV(this, 'p3X_S65pGZ8')">
+                        <div class="video-item-thumb"><i class="fa-solid fa-play"></i></div>
+                        <div class="video-item-details">¡Bienvenidos al año escolar!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo-side">
+                <div class="footer-logo">
+                    <img src="Logo.jpg" alt="Insignia I.E. Santa Rosa">
+                    <h3>I.E. Santa Rosa</h3>
+                </div>
+                <p class="footer-text-muted">Santo Domingo - Huarmey | Portal Oficial de Transparencia e Información Institucional.</p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Horario de Atención</h3>
+                <ul class="footer-info-list">
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <strong>Atención al Padre de Familia:</strong><br>
+                            Lunes a Viernes<br>
+                            9:00 AM a 4:00 PM
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-box">
+                <h3>Contacto</h3>
+                <ul class="footer-info-list" style="margin-bottom: 15px;">
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <strong>Puedes contactarnos llamando al:</strong><br>
+                            ( 01 ) 202-4342
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <div>
+                            <strong>A través de WhatsApp al:</strong><br>
+                            ( 51 ) 12024342
+                        </div>
+                    </li>
+                </ul>
+                <a href="libro-reclamaciones.html" class="reclamaciones-link">
+                    <i class="fa-solid fa-book"></i> Libro de Reclamaciones
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 I.E. Santa Rosa de Santo Domingo.</div>
+    </footer>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        // Deshabilitar Clic Derecho
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        }, false);
+
+        // Deshabilitar atajos de teclado de copia e inspección
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
+        });
+
+        // CARRUSEL DE IMÁGENES
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        setInterval(() => {
+            if(slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+        }, 5000);
+
+        // REPRODUCTOR DE PLAYLIST
+        function cambiarVideoUCV(elemento, idVideo) {
+            document.querySelectorAll('.playlist-video-item').forEach(item => item.classList.remove('playing-now'));
+            elemento.classList.add('playing-now');
+            document.getElementById('ucv-main-player').src = "https://www.youtube.com/embed/" + idVideo + "?enablejsapi=1&autoplay=1";
+        }
+
+        // ANIMACIÓN CONTADOR
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.elementor-counter-number');
+            counters.forEach(counter => {
+                const toValue = parseInt(counter.getAttribute('data-to-value'));
+                const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
+                let startTime = null;
+
+                const animateCounter = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = timestamp - startTime;
+                    const currentCount = Math.min(Math.floor((progress / duration) * toValue), toValue);
+                    
+                    counter.textContent = currentCount;
+
+                    if (progress < duration) {
+                        requestAnimationFrame(animateCounter);
+                    } else {
+                        counter.textContent = toValue;
+                    }
+                };
+                requestAnimationFrame(animateCounter);
+            });
+        });
+    </script>
+</body>
+</html>
