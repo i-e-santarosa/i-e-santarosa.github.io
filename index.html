@@ -157,6 +157,7 @@
             box-shadow: inset 0 0 0 1px var(--rosa-borde);
         }
 
+        /* DISEÑO DESPLEGABLE REFINADO */
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -225,7 +226,7 @@
             border-bottom: 4px solid var(--rosa-borde);
             height: 480px;
             overflow: hidden;
-            background-color: transparent; /* Eliminado el fondo negro residual */
+            background-color: transparent;
         }
 
         .hero-bg-slider, .slide {
@@ -242,20 +243,20 @@
             background-repeat: no-repeat;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
-            filter: none; /* Se quitó el 'brightness(0.7)' para mostrar el brillo real de la foto */
+            filter: none;
         }
 
         .slide.active { 
             opacity: 1;  }
 
-        /* CONTADORES COMPACTOS Y ELEVADOS (OPTIMIZADO) */
+        /* CONTADORES */
         .hero-counters-overlay {
             position: absolute;
             bottom: 35px;
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            max-width: 600px; /* Reducido para evitar rectángulos excesivamente amplios */
+            max-width: 600px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
@@ -265,12 +266,12 @@
 
         .elementor-counter {
             position: relative;
-            background: rgba(28, 29, 32, 0.75); /* Cristal premium oscuro */
+            background: rgba(28, 29, 32, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 20px;
-            padding: 40px 15px 20px 15px; /* Ajuste milimétrico de relleno */
+            padding: 40px 15px 20px 15px;
             text-align: center;
             color: var(--blanco);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
@@ -282,7 +283,6 @@
             border-color: rgba(255, 255, 255, 0.25);
         }
 
-        /* ICONOS EFECTO VOLUMÉTRICO 3D (FontAwesome + Gradientes de sombra CSS) */
         .icon-box-3d {
             position: absolute;
             top: -35px;
@@ -299,7 +299,6 @@
             transition: transform 0.3s ease;
         }
 
-        /* Ajustes específicos e iluminación interna simulada */
         .bg-student-3d {
             background: linear-gradient(135deg, #120e2e 0%, #0077b6 100%);
             color: var(--glow-estudiantes);
@@ -350,7 +349,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* SECCIÓN MULTIMEDIA DEL PROYECTO INSTITUCIONAL */
+        /* SECCIÓN MULTIMEDIA */
         .project-section {
             background-color: #1a1b1e;
             color: var(--blanco);
@@ -371,7 +370,7 @@
         .video-item-thumb { width: 45px; height: 45px; background-color: #111214; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--amarillo-crema); flex-shrink: 0; }
         .video-item-details { color: #e0e0e0; font-size: 0.88em; font-weight: 500; }
 
-        /* PIE DE PÁGINA REESTRUCTURADO */
+        /* PIE DE PÁGINA */
         .main-footer { background-color: var(--oscuro); color: #bbb; padding: 60px 5% 20px 5%; font-size: 0.95em; }
         .footer-container { 
             max-width: 1200px; 
@@ -466,10 +465,12 @@
         <ul class="nav-menu">
             <li><a href="index.html" class="active">Inicio</a></li>
             <li>
-                <a href="niveles.html">Niveles <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
+                <!-- SOLUCIÓN ANTI-404: javascript:void(0) anula el clic accidental en PC -->
+                <a href="javascript:void(0);">Niveles <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="niveles.html#primaria">Primaria</a></li>
-                    <li><a href="niveles.html#secundaria">Secundaria</a></li>
+                    <!-- Enlaces corregidos apuntando a los archivos html separados correspondientes -->
+                    <li><a href="primaria.html">Primaria</a></li>
+                    <li><a href="secundaria.html">Secundaria</a></li>
                 </ul>
             </li>
             <li><a href="nosotros.html">Nosotros</a></li>
@@ -479,7 +480,7 @@
         </ul>
     </nav>
 
-    <!-- GALERÍA DE IMÁGENES CON CONTADORES DE TAMAÑO JUSTO -->
+    <!-- GALERÍA DE IMÁGENES -->
     <header class="hero-section">
         <div class="hero-bg-slider">
             <div class="slide active" style="background-image: url('FRONTIS.jpg');"></div>
@@ -487,9 +488,7 @@
             <div class="slide" style="background-image: url('Secundaria2.jpg');"></div>
         </div>
 
-        <!-- Capa de contadores estilizados y balanceados en tamaño -->
         <div class="hero-counters-overlay">
-            
             <!-- Tarjeta Estudiantes -->
             <div class="elementor-counter">
                 <div class="icon-box-3d bg-student-3d">
@@ -511,11 +510,10 @@
                     <span class="elementor-counter-number num-teacher" data-duration="2000" data-to-value="25" data-from-value="0">0</span>
                 </div>
             </div>
-
         </div>
     </header>
 
-    <!-- SECCIÓN MULTIMEDIA DEL PROYECTO INSTITUCIONAL -->
+    <!-- SECCIÓN MULTIMEDIA -->
     <section class="project-section">
         <div class="project-container">
             <div class="project-intro-text">
@@ -588,7 +586,7 @@
         <div class="footer-bottom">&copy; 2026 I.E. Santa Rosa de Santo Domingo.</div>
     </footer>
 
-    <!-- SISTEMA DE SEGURIDAD Y LOGICA SCRIPT -->
+    <!-- SCRIPT LOGIC -->
     <script>
         // Deshabilitar Clic Derecho
         document.addEventListener('contextmenu', function(e) {
