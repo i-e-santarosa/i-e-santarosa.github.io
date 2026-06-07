@@ -12,7 +12,6 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            /* Protección total: Bloquea selección de texto y arrastre */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -21,7 +20,7 @@
         }
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: #fff5f6; /* Fondo con matiz sutil rosado bebé */
+            background-color: #fff5f6; 
             color: #1e293b; 
             line-height: 1.6;
         }
@@ -35,12 +34,12 @@
            2. BARRA DE NAVEGACIÓN (NEGRO ELEGANTE + LÍNEA ROSADA)
            =================================================== */
         header {
-            background-color: #111111; /* Negro profundo */
+            background-color: #111111; 
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            border-bottom: 4px solid #ffb6c1; /* Línea de acento en Rosado Bebé */
+            border-bottom: 4px solid #ffb6c1; 
         }
         .nav-container {
             max-width: 1200px;
@@ -73,13 +72,13 @@
         }
         .brand-subtitle {
             font-size: 0.75rem;
-            color: #ffb6c1; /* Rosado Bebé */
+            color: #ffb6c1; 
             text-transform: uppercase;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
 
-        /* Botón con Efecto Real 3D (Azul Eléctrico + Detalles Rosados) */
+        /* Botón con Efecto Real 3D */
         #menu-toggle { display: none; }
         .menu-dropdown-btn {
             color: #ffffff; 
@@ -87,7 +86,7 @@
             font-size: 0.85rem;
             cursor: pointer;
             padding: 10px 20px;
-            background-color: #0055ff; /* Base Azul Eléctrico */
+            background-color: #0055ff; 
             border-radius: 6px;
             letter-spacing: 0.5px;
             display: inline-block;
@@ -138,6 +137,7 @@
            3. SECCIONES DE CONTENIDO Y DETALLES ARTÍSTICOS
            =================================================== */
         .nosotros-hero {
+            /* RECTIFICADO: Acceso correcto a la carpeta IMG desde SantaRosa/ */
             background: linear-gradient(rgba(17, 17, 17, 0.9), rgba(90, 30, 50, 0.85)), url('../IMG/FRONTIS.jpg') center/cover no-repeat;
             color: #ffffff;
             padding: 70px 20px;
@@ -160,7 +160,7 @@
             color: #111111; 
             font-size: 1.6rem;
             margin-bottom: 20px;
-            border-left: 5px solid #ffb6c1; /* Barra lateral en Rosado Bebé */
+            border-left: 5px solid #ffb6c1; 
             padding-left: 12px;
             font-weight: 700;
         }
@@ -172,7 +172,6 @@
         }
         .nosotros-bloque p { text-align: justify; color: #475569; margin-bottom: 15px; }
 
-        /* Estructuras de Imágenes y Mapas */
         .bloque-con-imagen { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
         .columna-texto { flex: 2; min-width: 300px; }
         .columna-imagen { flex: 1; min-width: 260px; display: flex; justify-content: center; }
@@ -182,7 +181,7 @@
             max-width: 340px;
             aspect-ratio: 4 / 3;
             background-color: #fffcfc;
-            border: 2px dashed #0055ff; /* Marco en Azul Eléctrico */
+            border: 2px dashed #0055ff; 
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -193,7 +192,6 @@
         }
         .contenedor-foto-marco img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Contenedor Adaptable para Mapa Interactivo */
         .mapa-incrustado {
             width: 100%;
             height: 380px;
@@ -208,18 +206,16 @@
             border: 0;
         }
 
-        /* Distribución de Referencias */
         .bloques-contenedor { display: flex; gap: 30px; flex-wrap: wrap; }
         .columna-50 { 
             flex: 1; 
             min-width: 280px; 
-            background: #fff9fa; /* Fondo matizado rosa bebé */
+            background: #fff9fa; 
             padding: 25px; 
             border-radius: 8px;
             border-top: 4px solid #ffb6c1;
         }
 
-        /* Tablas de Datos Estilizadas */
         .tabla-datos {
             width: 100%;
             border-collapse: collapse;
