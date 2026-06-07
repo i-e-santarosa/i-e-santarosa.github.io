@@ -5,43 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ubicación - IE Santa Rosa</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* ===================================================
+           1. ESTILOS GLOBALES Y RESETEO
+           =================================================== */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
-        header {
-            background-color: #003366;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .logo-container img {
-            height: 60px;
-            cursor: pointer;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #fff5f6; /* Fondo con matiz sutil rosado de tu plantilla */
+            color: #1e293b;
+            line-height: 1.6;
         }
         .container {
             max-width: 1000px;
             margin: 30px auto;
             padding: 20px;
             background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
             border-radius: 8px;
         }
         h1 {
-            color: #003366;
+            color: #111111;
+            font-size: 1.8rem;
+            border-left: 5px solid #ffb6c1;
+            padding-left: 12px;
+            font-weight: 700;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #f0e2e4;
+            margin: 20px 0;
+        }
+
+        /* ===================================================
+           2. BARRA DE NAVEGACIÓN CAPTURADA (ESTILO EXACTO)
+           =================================================== */
+        header {
+            background-color: #031b33; /* Azul marino/negro muy profundo según tu captura */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 4px solid #ffb6c1; /* Línea de acento rosa */
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Envoltura del enlace del logo: Ahora es un bloque interactivo completo */
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .brand-logo {
+            width: 45px;  
+            height: 45px;
+            object-fit: contain;
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .brand-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff; /* Blanco */
+            letter-spacing: 0.5px;
+        }
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: #ffb6c1; /* Tono rosa suave/coral de la captura */
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-bottom: 2px solid #ffb6c1; /* Línea decorativa del enlace */
+            padding-bottom: 4px;
+            transition: all 0.2s ease;
+        }
+        nav a:hover {
+            color: #ffb6c1;
+        }
+
+        /* ===================================================
+           3. ELEMENTOS DE CONTENIDO DE UBICACIÓN
+           =================================================== */
+        .info-ubicacion {
+            margin-top: 20px;
+            line-height: 1.6;
+            background-color: #fff9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #f0e2e4;
         }
         .map-responsive {
             overflow: hidden;
@@ -49,52 +122,3 @@
             position: relative;
             height: 0;
             margin-top: 20px;
-        }
-        .map-responsive iframe {
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            border: 0;
-        }
-        .info-ubicacion {
-            margin-top: 20px;
-            line-height: 1.6;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo-container">
-            <a href="../index.html">
-                <img src="../IMG/logo.png" alt="Logo Santa Rosa">
-            </a>
-        </div>
-        <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="ubicacion.html" style="text-decoration: underline;">Ubicación</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h1>Nuestra Ubicación</h1>
-        <hr>
-        
-        <div class="info-ubicacion">
-            <p><strong>Dirección:</strong> Distrito de Huarmey, Ancash, Perú.</p>
-            <p><strong>Referencia:</strong> Institución Educativa Santa Rosa.</p>
-        </div>
-
-        <div style="text-align: center; margin: 20px 0;">
-            <img src="../IMG/fachada.jpg" alt="Fachada Institución Educativa" style="max-width: 100%; height: auto; border-radius: 4px;">
-        </div>
-
-        <div class="map-responsive">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.6738374246835!2d-78.151245!3d-10.068345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA0JzA2LjAiUyA3OMKwMDknMDQuNSJX!5e0!3m2!1ses-419!2spe!4v1700000000000!5m2!1ses-419!2spe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </div>
-
-</body>
-</html>
