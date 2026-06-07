@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I.E. Santa Rosa de Santo Domingo | Inicio</title>
-    <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -247,9 +246,10 @@
         }
 
         .slide.active { 
-            opacity: 1;  }
+            opacity: 1;  
+        }
 
-        /* CONTADORES */
+        /* CONTADORES AJUSTADOS */
         .hero-counters-overlay {
             position: absolute;
             bottom: 35px;
@@ -349,7 +349,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* SECCIÓN MULTIMEDIA */
+        /* SECCIÓN MULTIMEDIA OPTIMIZADA */
         .project-section {
             background-color: #1a1b1e;
             color: var(--blanco);
@@ -357,8 +357,25 @@
         }
 
         .project-container { max-width: 1200px; margin: 0 auto; }
-        .project-intro-text h2 { font-size: 2.2em; color: var(--amarillo-crema); margin-bottom: 12px; font-weight: 700; }
-        .project-intro-text p { color: #e0e0e0; margin-bottom: 25px; max-width: 900px; }
+        
+        /* Titulo e info institucional corta, concreta y directa */
+        .project-intro-text h2 { 
+            font-size: 1.8em; 
+            color: var(--amarillo-crema); 
+            margin-bottom: 8px; 
+            font-weight: 700; 
+        }
+        .project-intro-text p { 
+            color: #e0e0e0; 
+            margin-bottom: 25px; 
+            max-width: 1000px; 
+            font-size: 1.05em;
+        }
+        .project-intro-text strong {
+            color: var(--rosa-borde);
+            font-weight: 600;
+        }
+
         .ucv-video-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; background-color: #111214; padding: 25px; border-radius: 12px; border-left: 5px solid var(--rosa-principal); }
         .video-player-box { position: relative; width: 100%; aspect-ratio: 16 / 9; background-color: #000; border-radius: 8px; overflow: hidden; }
         .video-player-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
@@ -432,7 +449,6 @@
 </head>
 <body>
 
-    <!-- BANNER INFORMATIVO SUPERIOR -->
     <div class="top-info-bar">
         <div class="top-info-item">
             <i class="fa-solid fa-location-dot"></i> 
@@ -452,10 +468,9 @@
         </div>
     </div>
 
-    <!-- BARRA DE NAVEGACIÓN -->
     <nav class="main-navbar">
         <a href="index.html" class="navbar-brand">
-            <img src="IMG/Logo.jpg" alt="Insignia I.E. Santa Rosa">
+            <img src="IMG/Logo.png" alt="Insignia I.E. Santa Rosa">
             <div class="brand-text">
                 <h2>I.E. Santa Rosa</h2>
                 <p>Santo Domingo - Huarmey</p>
@@ -465,22 +480,19 @@
         <ul class="nav-menu">
             <li><a href="index.html" class="active">Inicio</a></li>
             <li>
-                <!-- SOLUCIÓN ANTI-404: javascript:void(0) anula el clic accidental en PC -->
                 <a href="javascript:void(0);">Niveles <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
                 <ul class="dropdown-menu">
-                    <!-- Enlaces corregidos apuntando a los archivos html separados correspondientes -->
-                    <li><a href="primaria.html">Primaria</a></li>
-                    <li><a href="secundaria.html">Secundaria</a></li>
+                    <li><a href="SantaRosa/primaria.html">Primaria</a></li>
+                    <li><a href="SantaRosa/secundaria.html">Secundaria</a></li>
                 </ul>
             </li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="documentos.html">Documentos</a></li>
-            <li><a href="contacto.html">Ubicacion</a></li>
+            <li><a href="SantaRosa/nosotros.html">Nosotros</a></li>
+            <li><a href="SantaRosa/documentos.html">Documentos</a></li>
+            <li><a href="SantaRosa/contacto.html">Ubicacion</a></li>
             <li><a href="admin-login.html" class="btn-admin" title="Admin Portal"><i class="fa-solid fa-user-shield"></i></a></li>
         </ul>
     </nav>
 
-    <!-- GALERÍA DE IMÁGENES -->
     <header class="hero-section">
         <div class="hero-bg-slider">
             <div class="slide active" style="background-image: url('IMG/FRONTIS.jpg');"></div>
@@ -489,7 +501,6 @@
         </div>
 
         <div class="hero-counters-overlay">
-            <!-- Tarjeta Estudiantes -->
             <div class="elementor-counter">
                 <div class="icon-box-3d bg-student-3d">
                     <i class="fa-solid fa-graduation-cap"></i>
@@ -500,7 +511,6 @@
                 </div>
             </div>
 
-            <!-- Tarjeta Docentes -->
             <div class="elementor-counter">
                 <div class="icon-box-3d bg-teacher-3d">
                     <i class="fa-solid fa-chalkboard-user"></i>
@@ -513,12 +523,11 @@
         </div>
     </header>
 
-    <!-- SECCIÓN MULTIMEDIA -->
     <section class="project-section">
         <div class="project-container">
             <div class="project-intro-text">
-                <h2>Proyecto Institucional</h2>
-                <p>Esta plataforma fue preparada para la I.E. Santa Rosa de Santo Domingo, ubicada en la provincia de Huarmey, centralizando los accesos de información transparente para la comunidad escolar.</p>
+                <h2>Nuestra Institución</h2>
+                <p>La <strong>I.E. Santa Rosa de Santo Domingo</strong> es una institución pública de educación básica regular mixta que atiende con orgullo los niveles de <strong>Primaria (turno mañana)</strong> y <strong>Secundaria (turno tarde)</strong> en la provincia de Huarmey, Áncash. Adscrita a la UGEL Huarmey, garantizamos la continuidad y calidad educativa de la comunidad escolar santarosina.</p>
             </div>
             <div class="ucv-video-layout">
                 <div class="video-player-box">
@@ -535,7 +544,6 @@
         </div>
     </section>
 
-    <!-- PIE DE PÁGINA -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-logo-side">
@@ -586,7 +594,6 @@
         <div class="footer-bottom">&copy; 2026 I.E. Santa Rosa de Santo Domingo.</div>
     </footer>
 
-    <!-- SCRIPT LOGIC -->
     <script>
         // Deshabilitar Clic Derecho
         document.addEventListener('contextmenu', function(e) {
