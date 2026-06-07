@@ -73,24 +73,24 @@
         }
         .brand-subtitle {
             font-size: 0.75rem;
-            color: #ffb6c1; /* Rosado Bebé resaltando en la oscuridad */
+            color: #ffb6c1; /* Rosado Bebé */
             text-transform: uppercase;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
 
-        /* Menú de Navegación Simple para una sola pestaña activa */
+        /* Menú de Navegación Simple */
         .menu-simple {
             list-style: none;
             display: flex;
         }
         .menu-simple li a {
-            color: #ffb6c1; /* Texto en rosado bebé activo */
+            color: #ffb6c1; 
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 600;
             padding: 6px 12px;
-            border-bottom: 2px solid #ffb6c1; /* Subrayado indicador de sección */
+            border-bottom: 2px solid #ffb6c1; 
             letter-spacing: 0.5px;
         }
 
@@ -98,8 +98,8 @@
            3. SECCIÓN HERO CON DEGRADADO TRANSPARENTE LUMINOSO
            =================================================== */
         .documentos-hero {
-            /* Degradado de Izquierda a Derecha: de Blanco Traslúcido a Rosado Bebé Traslúcido usando la carpeta IMG/ */
-            background: linear-gradient(to right, rgba(255, 255, 255, 0.85) 0%, rgba(255, 182, 193, 0.75) 100%), url('IMG/FRONTIS.jpg') center/cover no-repeat;
+            /* Como la carpeta IMG está en la raíz, salimos con ../ para hallarla */
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.85) 0%, rgba(255, 182, 193, 0.75) 100%), url('../IMG/FRONTIS.jpg') center/cover no-repeat;
             color: #002244; 
             padding: 60px 40px;
             text-align: left;
@@ -116,7 +116,7 @@
         .documentos-hero .decoracion-linea {
             width: 50px;
             height: 5px;
-            background-color: #0055ff; /* Línea decorativa en Azul Eléctrico */
+            background-color: #0055ff; 
             margin-bottom: 15px;
             border-radius: 2px;
         }
@@ -238,8 +238,8 @@
 
     <header>
         <div class="nav-container">
-            <a href="índex.html" class="brand-link" title="Ir al Portal Principal">
-                <img src="IMG/Logo.png" alt="Logo I.E. Santa Rosa" class="brand-logo">
+            <a href="../index.html" class="brand-link" title="Ir al Portal Principal">
+                <img src="../IMG/Logo.png" alt="Logo I.E. Santa Rosa" class="brand-logo">
                 <div class="brand-text">
                     <span class="brand-title">I.E. Santa Rosa</span>
                     <span class="brand-subtitle">Santo Domingo - Huarmey</span>
@@ -286,7 +286,7 @@
                             <td class="col-descripcion">Formulario Único de Trámite</td>
                             <td class="col-tipo">PDF</td>
                             <td class="col-accion">
-                                <a href="DOCUMENTOS/FUT.pdf" target="_blank" class="btn-ver">Ver</a>
+                                <a href="../DOCUMENTOS/FUT.pdf" target="_blank" class="btn-ver">Ver</a>
                             </td>
                         </tr>
                         <tr>
@@ -294,7 +294,7 @@
                             <td class="col-descripcion">Reglas sobre el proceso de elecciones tanto como candidatos o electores.</td>
                             <td class="col-tipo">PDF</td>
                             <td class="col-accion">
-                                <a href="DOCUMENTOS/Reglamento_Elecciones.pdf" target="_blank" class="btn-ver">Ver</a>
+                                <a href="../DOCUMENTOS/Reglamento_Elecciones.pdf" target="_blank" class="btn-ver">Ver</a>
                             </td>
                         </tr>
                         <tr>
@@ -302,7 +302,7 @@
                             <td class="col-descripcion">Fechas importantes de actividades escolares.</td>
                             <td class="col-tipo">PDF</td>
                             <td class="col-accion">
-                                <a href="DOCUMENTOS/Cronograma_2026.pdf" target="_blank" class="btn-ver">Ver</a>
+                                <a href="../DOCUMENTOS/Cronograma_2026.pdf" target="_blank" class="btn-ver">Ver</a>
                             </td>
                         </tr>
                     </tbody>
