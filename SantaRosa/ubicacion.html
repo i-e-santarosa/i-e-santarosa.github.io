@@ -137,7 +137,6 @@
            3. SECCIONES DE CONTENIDO Y DETALLES ARTÍSTICOS
            =================================================== */
         .nosotros-hero {
-            /* RECTIFICADO: Acceso correcto a la carpeta IMG desde SantaRosa/ */
             background: linear-gradient(rgba(17, 17, 17, 0.9), rgba(90, 30, 50, 0.85)), url('../IMG/FRONTIS.jpg') center/cover no-repeat;
             color: #ffffff;
             padding: 70px 20px;
@@ -164,33 +163,6 @@
             padding-left: 12px;
             font-weight: 700;
         }
-        .nosotros-bloque h3 {
-            color: #111111;
-            font-size: 1.2rem;
-            margin: 20px 0 10px 0;
-            font-weight: 600;
-        }
-        .nosotros-bloque p { text-align: justify; color: #475569; margin-bottom: 15px; }
-
-        .bloque-con-imagen { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
-        .columna-texto { flex: 2; min-width: 300px; }
-        .columna-imagen { flex: 1; min-width: 260px; display: flex; justify-content: center; }
-        
-        .contenedor-foto-marco {
-            width: 100%;
-            max-width: 340px;
-            aspect-ratio: 4 / 3;
-            background-color: #fffcfc;
-            border: 2px dashed #0055ff; 
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0055ff;
-            font-weight: 500;
-            overflow: hidden;
-        }
-        .contenedor-foto-marco img { width: 100%; height: 100%; object-fit: cover; }
 
         .mapa-incrustado {
             width: 100%;
@@ -204,16 +176,6 @@
             width: 100%;
             height: 100%;
             border: 0;
-        }
-
-        .bloques-contenedor { display: flex; gap: 30px; flex-wrap: wrap; }
-        .columna-50 { 
-            flex: 1; 
-            min-width: 280px; 
-            background: #fff9fa; 
-            padding: 25px; 
-            border-radius: 8px;
-            border-top: 4px solid #ffb6c1;
         }
 
         .tabla-datos {
@@ -238,16 +200,9 @@
             background-color: #fff9fa;
         }
 
-        .lista-estilizada { padding-left: 20px; color: #475569; list-style-type: square; }
-        .lista-estilizada li { margin-bottom: 8px; }
-        .tarjeta-direccion { background-color: #fff9fa; padding: 25px; border-radius: 8px; border: 1px solid #f0e2e4; }
-        .cargo-subtitulo { color: #0055ff; font-weight: 700; font-size: 0.95rem; margin-bottom: 12px; text-transform: uppercase; }
-
         @media (max-width: 768px) {
             .dropdown-content { right: 20px; top: 75px; }
             .nosotros-hero h1 { font-size: 2.1rem; }
-            .bloque-con-imagen { flex-direction: column; gap: 25px; }
-            .columna-imagen { order: -1; }
             .mapa-incrustado { height: 280px; }
         }
     </style>
@@ -270,8 +225,6 @@
                 <label for="menu-toggle" class="menu-dropdown-btn">LOCALIZACIÓN</label>
                 
                 <ul class="dropdown-content">
-                    <li><a href="#direccion-exacta">Dirección Oficial</a></li>
-                    <li><a href="#referencias">Referencias de Acceso</a></li>
                     <li><a href="#jurisdiccion">Jurisdicción Educativa</a></li>
                     <li><a href="#mapa-satelital">Mapa Satelital</a></li>
                 </ul>
@@ -285,44 +238,6 @@
             <h1>Ubicación Geográfica</h1>
             <p>Encuentra nuestra Institución Educativa en el distrito de Huarmey</p>
         </div>
-
-        <section id="direccion-exacta" class="nosotros-bloque">
-            <h2>Dirección Oficial</h2>
-            <div class="tarjeta-direccion">
-                <div class="bloque-con-imagen">
-                    <div class="columna-texto">
-                        <h3>Centro Poblado Santo Domingo</h3>
-                        <p class="cargo-subtitulo">Ubicación Domiciliaria</p>
-                        <p>La institución se encuentra situada estratégicamente en el corazón de la comunidad de Santo Domingo para brindar un acceso directo a todos los estudiantes del sector.</p>
-                        <ul class="lista-estilizada">
-                            <li><strong>Dirección:</strong> Calle 31 de Mayo s/n.</li>
-                            <li><strong>Localidad:</strong> Centro Poblado Santo Domingo.</li>
-                            <li><strong>Distrito y Provincia:</strong> Huarmey.</li>
-                            <li><strong>Región:</strong> Áncash, Perú.</li>
-                        </ul>
-                    </div>
-                    <div class="columna-imagen">
-                        <div class="contenedor-foto-marco">
-                            <img src="../IMG/FRONTIS.jpg" alt="Fachada de la I.E. Santa Rosa">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="referencias" class="nosotros-bloque">
-            <h2>Referencias y Ecosistema Geográfico</h2>
-            <div class="bloques-contenedor">
-                <div class="columna-50">
-                    <h3>Vías de Acceso</h3>
-                    <p>Ubicada en una zona totalmente transitable dentro del centro poblado, permitiendo el ingreso fluido tanto de transporte peatonal como vehicular durante los horarios de entrada y salida de los turnos de Primaria (mañana) y Secundaria (tarde).</p>
-                </div>
-                <div class="columna-50">
-                    <h3>Código de Local</h3>
-                    <p>Para trámites formales ante el Ministerio de Educación, el identificador geográfico y de infraestructura es el código de local escolar permanente: <strong>025982</strong>.</p>
-                </div>
-            </div>
-        </section>
 
         <section id="jurisdiccion" class="nosotros-bloque">
             <h2>Jurisdicción e Información Territorial</h2>
