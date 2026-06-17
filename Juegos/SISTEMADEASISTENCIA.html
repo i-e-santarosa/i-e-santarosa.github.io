@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistencia Docentes · pip.soy.pe</title>
+    <!-- Font Awesome para iconos amigables -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #f0f4fa;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sistema-container {
+            max-width: 1400px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px -10px rgba(0,20,40,0.2);
+            padding: 2rem;
+            border: 1px solid rgba(0,70,120,0.1);
+        }
+        /* Header con logo y marca */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #b0c7de;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .logo-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: #e6f0ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #0b4f8c;
+            overflow: hidden;
+            object-fit: cover;
+        }
+        .logo-preview img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .logo-upload {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .logo-upload label {
+            font-weight: 600;
+            color: #0b4f8c;
+            font-size: 0.9rem;
+        }
+        .custom-file-input {
+            background: #f0f7ff;
+            border: 1px solid #b0c7de;
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .custom-file-input:hover {
+            background: #d9e9ff;
+        }
+        .brand {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(145deg, #032b44, #0f5e9c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 4px 4px 12px rgba(0,60,130,0.1);
+        }
+        .brand small {
+            font-size: 1rem;
+            background: none;
+            -webkit-text-fill-color: #3a6d8c;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+        /* formulario */
+        .form-panel {
+            background: #f6faff;
+            padding: 25px;
+            border-radius: 28px;
+            margin-bottom: 30px;
+            border: 1px solid #c9ddf5;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: flex-end;
+        }
+        .field-group {
+            flex: 1 1 160px;
+            min-width: 140px;
+        }
+        .field-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            color: #1f4b72;
+            margin-bottom: 4px;
+        }
+        .field-group input, .field-group select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid #c9ddf5;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            background: white;
+            transition: 0.2s;
+        }
+        .field-group input:focus, .field-group select:focus {
+            border-color: #0b4f8c;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(11,79,140,0.2);
+        }
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: white;
+            border: 1.5px solid #0b4f8c;
+            color: #0b4f8c;
+            padding: 10px 26px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(0,40,70,0.05);
+        }
+        .btn-primary {
+            background: #0b4f8c;
+            color: white;
+            border: 1.5px solid #0b4f8c;
+        }
+        .btn-primary:hover {
+            background: #0a3f6b;
+            border-color: #0a3f6b;
+        }
+        .btn:hover {
+            background: #e3efff;
+            transform: translateY(-1px);
+        }
+        .btn-primary:hover {
+            background: #0a3f6b;
+            color: white;
+        }
+        .btn-cancel {
+            background: #f0f0f0;
+            border-color: #9bafc5;
+            color: #2d4b65;
+        }
+        .btn-excel {
+            background: #1f7b4d;
+            border-color: #1f7b4d;
+            color: white;
+        }
+        .btn-excel:hover {
+            background: #16633c;
+        }
+        /* tabla */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 24px;
+            border: 1px solid #c9ddf5;
+            background: white;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            min-width: 900px;
+        }
+        th {
+            background: #d4e3fd;
+            color: #023059;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-size: 0.8rem;
+            padding: 16px 8px;
+            border-bottom: 2px solid #9ab2d1;
+        }
+        td {
+            padding: 14px 8px;
+            border-bottom: 1px solid #dae5f2;
+            text-align: center;
+            background: white;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .action-btns {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+        .btn-icon {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 30px;
+            transition: 0.1s;
+            color: #2a4f6e;
+        }
+        .btn-icon:hover {
+            background: #e0ecfe;
+        }
+        .btn-icon.delete:hover {
+            color: #b52b2b;
+            background: #ffe6e6;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            color: #456f9c;
+            font-size: 0.9rem;
+        }
+        .pip-brand {
+            font-weight: 800;
+            background: #f0f7ff;
+            padding: 6px 18px;
+            border-radius: 40px;
+            border: 1px solid #b0cde0;
+        }
+        .pip-brand i {
+            color: #0b4f8c;
+            margin-right: 5px;
+        }
+        .empty-row-msg {
+            text-align: center;
+            padding: 40px;
+            color: #758fa9;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="sistema-container">
+        <!-- HEADER con logo personalizable y marca pip.soy.pe -->
+        <div class="header">
+            <div class="logo-area">
+                <div class="logo-preview" id="logoPreview">
+                    <!-- logo por defecto: icono de colegio -->
+                    <i class="fas fa-school" style="font-size: 3rem; color: #0b4f8c;"></i>
+                </div>
+                <div class="logo-upload">
+                    <label for="logoInput"><i class="fas fa-upload"></i> Personalizar logo (colegio)</label>
+                    <input type="file" id="logoInput" accept="image/*" class="custom-file-input">
+                </div>
+            </div>
+            <div class="brand">
+                asistencia docente <small>MINEDU Perú</small>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE REGISTRO -->
+        <div class="form-panel">
+            <div class="form-row">
+                <div class="field-group">
+                    <label>👨‍🏫 Docente</label>
+                    <input type="text" id="docente" placeholder="Nombres y apellidos" autocomplete="off">
+                </div>
+                <div class="field-group">
+                    <label>📅 Fecha</label>
+                    <input type="date" id="fecha" value="">
+                </div>
+                <div class="field-group">
+                    <label>⏰ Entrada</label>
+                    <input type="time" id="entrada" value="08:00">
+                </div>
+                <div class="field-group">
+                    <label>⏱️ Salida</label>
+                    <input type="time" id="salida" value="13:00">
+                </div>
+                <div class="field-group">
+                    <label>📚 Área</label>
+                    <input type="text" id="area" placeholder="Ej: Matemática, Comunicación" list="areas-sugeridas">
+                    <datalist id="areas-sugeridas">
+                        <option value="Matemática">Matemática</option>
+                        <option value="Comunicación">Comunicación</option>
+                        <option value="Ciencia y Tecnología">Ciencia y Tecnología</option>
+                        <option value="Personal Social">Personal Social</option>
+                        <option value="Educación Física">Educación Física</option>
+                        <option value="Arte y Cultura">Arte y Cultura</option>
+                        <option value="Inglés">Inglés</option>
+                        <option value="Educación Religiosa">Educación Religiosa</option>
+                    </datalist>
+                </div>
+                <div class="field-group">
+                    <label>📌 Nivel (MINEDU)</label>
+                    <select id="nivel">
+                        <option value="Inicial">Inicial</option>
+                        <option value="Primaria">Primaria</option>
+                        <option value="Secundaria">Secundaria</option>
+                        <option value="Básica Especial">Básica Especial</option>
+                        <option value="Básica Alternativa">Básica Alternativa</option>
+                        <option value="Técnico-Productiva">Técnico-Productiva</option>
+                        <option value="Superior No Universitaria">Superior No Universitaria</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" id="btnAgregar"><i class="fas fa-plus-circle"></i> Agregar / Actualizar</button>
+                <button class="btn btn-cancel" id="btnCancelar" style="display: none;"><i class="fas fa-times"></i> Cancelar edición</button>
+                <button class="btn" id="btnLimpiar"><i class="fas fa-eraser"></i> Limpiar todo</button>
+                <button class="btn btn-excel" id="btnExportar"><i class="fas fa-file-excel"></i> Exportar a Excel</button>
+            </div>
+        </div>
+
+        <!-- TABLA DE ASISTENCIA -->
+        <div class="table-wrapper">
+            <table id="tablaAsistencia">
+                <thead>
+                    <tr>
+                        <th>Docente</th>
+                        <th>Fecha</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Área</th>
+                        <th>Nivel</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaBody">
+                    <tr><td colspan="7" class="empty-row-msg">Aún no hay registros. Agrega uno arriba.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- FOOTER con marca obligatoria pip.soy.pe -->
+        <div class="footer">
+            <div class="pip-brand">
+                <i class="fas fa-check-circle"></i> pip.soy.pe · sistema de asistencia
+            </div>
+            <div>Datos almacenados localmente · MINEDU Perú</div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ******************** ELEMENTOS Y VARIABLES GLOBALES ********************
+            let attendanceData = [];
+            let editingIndex = -1;  // -1 significa que no estamos editando
+
+            // Referencias a elementos del DOM
+            const docenteInput = document.getElementById('docente');
+            const fechaInput = document.getElementById('fecha');
+            const entradaInput = document.getElementById('entrada');
+            const salidaInput = document.getElementById('salida');
+            const areaInput = document.getElementById('area');
+            const nivelSelect = document.getElementById('nivel');
+            const btnAgregar = document.getElementById('btnAgregar');
+            const btnCancelar = document.getElementById('btnCancelar');
+            const btnLimpiar = document.getElementById('btnLimpiar');
+            const btnExportar = document.getElementById('btnExportar');
+            const tablaBody = document.getElementById('tablaBody');
+            const logoInput = document.getElementById('logoInput');
+            const logoPreview = document.getElementById('logoPreview');
+
+            // ******************** CONFIGURACIÓN INICIAL ********************
+            // Establecer fecha actual por defecto en formato YYYY-MM-DD
+            const today = new Date().toISOString().split('T')[0];
+            fechaInput.value = today;
+
+            // Cargar datos desde localStorage al iniciar
+            loadFromLocalStorage();
+            renderTable();
+
+            // ******************** FUNCIONES PRINCIPALES ********************
+            function loadFromLocalStorage() {
+                const stored = localStorage.getItem('asistenciaDocentes');
+                if (stored) {
+                    try {
+                        attendanceData = JSON.parse(stored);
+                    } catch (e) {
+                        attendanceData = [];
+                    }
+                } else {
+                    attendanceData = [];
+                }
+            }
+
+            function saveToLocalStorage() {
+                localStorage.setItem('asistenciaDocentes', JSON.stringify(attendanceData));
+            }
+
+            function renderTable() {
+                if (attendanceData.length === 0) {
+                    tablaBody.innerHTML = `<tr><td colspan="7" class="empty-row-msg"><i class="fas fa-clipboard-list"></i> No hay registros. Complete el formulario y agregue.</td></tr>`;
+                    return;
+                }
+
+                let html = '';
+                attendanceData.forEach((item, index) => {
+                    html += `<tr>
+                        <td>${escapeHtml(item.docente)}</td>
+                        <td>${item.fecha}</td>
+                        <td>${item.entrada}</td>
+                        <td>${item.salida}</td>
+                        <td>${escapeHtml(item.area)}</td>
+                        <td>${item.nivel}</td>
+                        <td class="action-btns">
+                            <button class="btn-icon edit" data-index="${index}" title="Editar"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon delete" data-index="${index}" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>`;
+                });
+                tablaBody.innerHTML = html;
+
+                // Asignar eventos a los botones de editar y eliminar
+                document.querySelectorAll('.btn-icon.edit').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const index = e.currentTarget.getAttribute('data-index');
+                        if (index !== null) editRow(parseInt(index));
+                    });
+                });
+
+                document.querySelectorAll('.btn-icon.delete').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const index = e.currentTarget.getAttribute('data-index');
+                        if (index !== null) deleteRow(parseInt(index));
+                    });
+                });
+            }
+
+            // Función simple para escapar HTML (evita inyección en la tabla)
+            function escapeHtml(text) {
+                if (!text) return '';
+                const map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+                return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+            }
+
+            // ******************** ACCIONES SOBRE LOS DATOS ********************
+            function addOrUpdateRecord() {
+                // Validar campos obligatorios
+                if (!docenteInput.value.trim() || !fechaInput.value || !entradaInput.value || !salidaInput.value || !areaInput.value.trim()) {
+                    alert('⚠️ Por favor, completa todos los campos: Docente, Fecha, Entrada, Salida y Área.');
+                    return;
+                }
+
+                const newRecord = {
+                    docente: docenteInput.value.trim(),
+                    fecha: fechaInput.value,
+                    entrada: entradaInput.value,
+                    salida: salidaInput.value,
+                    area: areaInput.value.trim(),
+                    nivel: nivelSelect.value
+                };
+
+                if (editingIndex === -1) {
+                    // Agregar nuevo
+                    attendanceData.push(newRecord);
+                } else {
+                    // Actualizar existente
+                    attendanceData[editingIndex] = newRecord;
+                    // Salir de modo edición
+                    editingIndex = -1;
+                    btnAgregar.innerHTML = '<i class="fas fa-plus-circle"></i> Agregar / Actualizar';
+                    btnCancelar.style.display = 'none';
+                }
+
+                saveToLocalStorage();
+                renderTable();
+                clearForm();
+            }
+
+            function editRow(index) {
+                if (index < 0 || index >= attendanceData.length) return;
+                const record = attendanceData[index];
+                docenteInput.value = record.docente;
+                fechaInput.value = record.fecha;
+                entradaInput.value = record.entrada;
+                salidaInput.value = record.salida;
+                areaInput.value = record.area;
+                nivelSelect.value = record.nivel;
+
+                editingIndex = index;
+                btnAgregar.innerHTML = '<i class="fas fa-sync-alt"></i> Actualizar registro';
+                btnCancelar.style.display = 'inline-flex';
+            }
+
+            function deleteRow(index) {
+                if (confirm('¿Estás seguro de eliminar este registro de asistencia?')) {
+                    attendanceData.splice(index, 1);
+                    saveToLocalStorage();
+                    // Si estábamos editando ese mismo índice, cancelar edición
+                    if (editingIndex === index) {
+                        cancelEdit();
+                    } else if (editingIndex > index) {
+                        editingIndex--; // ajustar índice por desplazamiento
+                    }
+                    renderTable();
+                }
+            }
+
+            function cancelEdit() {
+                editingIndex = -1;
+                clearForm();
+                btnAgregar.innerHTML = '<i class="fas fa-plus-circle"></i> Agregar / Actualizar';
+                btnCancelar.style.display = 'none';
+            }
+
+            function clearForm() {
+                docenteInput.value = '';
+                fechaInput.value = today;  // reset a hoy
+                entradaInput.value = '08:00';
+                salidaInput.value = '13:00';
+                areaInput.value = '';
+                nivelSelect.value = 'Inicial';
+            }
+
+            function clearAllData() {
+                if (attendanceData.length > 0 && confirm('¿Eliminar TODOS los registros de asistencia? Esta acción no se puede deshacer.')) {
+                    attendanceData = [];
+                    saveToLocalStorage();
+                    cancelEdit();   // también limpia formulario y sale de edición
+                    renderTable();
+                }
+            }
+
+            // ******************** EXPORTAR A EXCEL (formato HTML .xls) ********************
+            function exportToExcel() {
+                if (attendanceData.length === 0) {
+                    alert('No hay datos para exportar.');
+                    return;
+                }
+
+                // Construir tabla para exportar (sin columna acciones)
+                let tablaExport = `
+                    <html>
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Asistencia Docentes</title>
+                        <style>
+                            th { background: #0b4f8c; color: white; padding: 8px; }
+                            td { padding: 6px; border:1px solid #ccc; }
+                        </style>
+                    </head>
+                    <body>
+                        <h3>Reporte de Asistencia Docentes</h3>
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>Docente</th><th>Fecha</th><th>Entrada</th><th>Salida</th><th>Área</th><th>Nivel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+
+                attendanceData.forEach(item => {
+                    tablaExport += `<tr>
+                        <td>${escapeHtml(item.docente)}</td>
+                        <td>${item.fecha}</td>
+                        <td>${item.entrada}</td>
+                        <td>${item.salida}</td>
+                        <td>${escapeHtml(item.area)}</td>
+                        <td>${item.nivel}</td>
+                    </tr>`;
+                });
+
+                tablaExport += `</tbody></table>
+                        <br><small>Generado por pip.soy.pe - Sistema MINEDU Perú</small>
+                    </body></html>`;
+
+                // Crear blob y descargar como .xls (Excel abre archivos HTML)
+                const blob = new Blob([tablaExport], { type: 'application/vnd.ms-excel' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `asistencia_docentes_${today}.xls`;
+                link.click();
+                URL.revokeObjectURL(link.href);
+            }
+
+            // ******************** PERSONALIZACIÓN DEL LOGO ********************
+            logoInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        // Reemplazar contenido del preview con la imagen
+                        logoPreview.innerHTML = `<img src="${event.target.result}" alt="Logo colegio" style="width:100%; height:100%; object-fit:cover;">`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // ******************** EVENTOS DE BOTONES ********************
+            btnAgregar.addEventListener('click', addOrUpdateRecord);
+            btnCancelar.addEventListener('click', cancelEdit);
+            btnLimpiar.addEventListener('click', clearAllData);
+            btnExportar.addEventListener('click', exportToExcel);
+
+            // Permitir cancelar con Escape? no necesario.
+
+            // Pequeña mejora: si se edita y se oprime cancelar, funciona.
+            window.cancelEdit = cancelEdit; // por si acaso
+
+            // Inicial: esconder botón cancelar
+            btnCancelar.style.display = 'none';
+        })();
+    </script>
+</body>
+</html>

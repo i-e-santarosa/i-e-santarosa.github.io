@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ Las 13 Casas - El Camino del Cosmos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
+
+/* ========================================================================= */
+/* ESTILOS CORE Y CONTENEDORES                                               */
+/* ========================================================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --gold-light: #FFDF00; --gold-dark: #B8860B; --danger: #ff4d4d; --hp-green: #4CAF50; --shield-blue: #00BFFF; --mystic-blue: #1a2a4a; }
+body { font-family: 'Montserrat', sans-serif; background: #000; color: white; overflow-x: hidden; min-height: 100vh; }
+
+/* Fondo Cósmico Animado */
+.bg-cosmos { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('Conste.gif'); background-size: cover; background-position: center; z-index: 0; opacity: 0.5; }
+
+.screen { position: relative; z-index: 10; min-height: 100vh; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; width: 100%; }
+#screen-portal { display: flex; } 
+
+.glass-panel { background: rgba(6, 10, 23, 0.94); backdrop-filter: blur(10px); border: 2px solid rgba(255,215,0,0.4); border-radius: 15px; padding: 40px 30px; width: 100%; max-width: 850px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); text-align: center; margin: auto; }
+h1.title { font-family: 'Cinzel', serif; font-size: clamp(26px, 4vw, 42px); background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728); -webkit-background-clip: text; color: transparent; margin-bottom: 25px; font-weight: 900; }
+
+/* Identidad Institucional */
+.school-brand { margin-bottom: 25px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.school-logo { max-height: 150px; max-width: 150px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(255,223,0,0.6)); border-radius: 8px; }
+.school-name { font-family: 'Cinzel', serif; font-size: clamp(20px, 3.5vw, 26px); font-weight: bold; color: var(--gold-light); text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
+
+/* Componentes de Formulario */
+.input-name { width: 100%; max-width: 500px; padding: 15px; font-size: 18px; border-radius: 8px; border: 2px solid var(--gold-dark); background: rgba(0,0,0,0.8); color: white; margin-bottom: 25px; text-align: center; font-weight: bold; }
+.btn-gold { background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 50%, var(--gold-dark) 100%); border: none; padding: 16px 45px; font-family: 'Cinzel', serif; font-size: 18px; font-weight: bold; color: #111; border-radius: 50px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; margin-top: 15px; box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4); }
+.btn-gold:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 223, 0, 0.6); }
+
+/* Personajes */
+.preview-container { height: 280px; margin: 20px auto; display: flex; justify-content: center; align-items: center; }
+#knight-preview-img { height: 100%; max-width: 250px; object-fit: contain; filter: drop-shadow(0 0 30px rgba(255, 223, 0, 0.5)); display: none; }
+.knights-grid { display: flex; justify-content: center; gap: 14px; margin-bottom: 35px; flex-wrap: wrap; width: 100%; }
+.knight-card { padding: 14px 24px; font-size: 15px; font-family: 'Cinzel', serif; border: 2px solid rgba(255,255,255,0.2); border-radius: 10px; cursor: pointer; background: rgba(12, 20, 38, 0.85); font-weight: 700; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+.knight-card:hover, .knight-card.selected { border-color: var(--gold-light); background: rgba(255, 215, 0, 0.2); transform: translateY(-3px); box-shadow: 0 6px 15px rgba(255, 223, 0, 0.35); }
+
+/* HUD Superior */
+.hud { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent); font-family: 'Cinzel', serif; font-size: clamp(14px, 2vw, 18px); color: var(--gold-light); z-index: 100; gap: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.5); }
+
+/* ========================================================================= */
+/* ESTILOS DE RELOJ DE FUEGO (ZODIACO.WEBP) Y LLAMAS                      */
+/* ========================================================================= */
+.zodiac-clock-container { 
+    width: 100%; 
+    max-width: 440px; 
+    aspect-ratio: 1 / 1; 
+    margin: 25px auto; 
+    border: 5px solid var(--gold-light); 
+    border-radius: 50%; 
+    position: relative; 
+    background-image: url('Zodiaco.webp'); 
+    background-size: cover; 
+    background-position: center; 
+    background-color: rgba(4, 8, 18, 0.8); 
+    box-shadow: 0 0 45px rgba(255, 215, 0, 0.6), inset 0 0 20px rgba(0,0,0,0.8); 
+}
+
+.zodiac-flame { 
+    position: absolute; 
+    font-size: 32px; 
+    transform: translate(-50%, -50%); 
+    filter: drop-shadow(0 0 10px #ff4500); 
+    animation: fireFlicker 0.3s infinite alternate; 
+    z-index: 20;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+}
+
+.zodiac-flame.extinguished { 
+    opacity: 0 !important; 
+    transform: translate(-50%, -50%) scale(0); 
+}
+
+@keyframes fireFlicker {
+    from { transform: translate(-50%, -50%) scale(1) rotate(-2deg); }
+    to { transform: translate(-50%, -50%) scale(1.15) rotate(2deg); opacity: 0.9; }
+}
+
+/* ========================================================================= */
+/* ESTILOS DE BATALLA Y COMBATE (FLUÍDOS)                                    */
+/* ========================================================================= */
+.battle-arena { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(255,215,0,0.3); padding-bottom: 15px; margin-bottom: 20px; gap: 10px; }
+.fighter { width: 45%; display: flex; flex-direction: column; align-items: center; position: relative; }
+.fighter img { height: clamp(150px, 25vh, 220px); max-width: 100%; object-fit: contain; }
+#boss-img { filter: drop-shadow(0 0 15px rgba(255, 77, 77, 0.35)); }
+#player-img { filter: drop-shadow(0 0 15px rgba(51, 204, 255, 0.35)); }
+
+.health-bar-container { width: 100%; height: 14px; background: #222; border-radius: 10px; border: 1px solid #000; overflow: hidden; margin-top: 5px; }
+.health-bar-fill { height: 100%; background: var(--hp-green); width: 100%; transition: width 0.4s ease; }
+.hearts-wrapper { display: flex; gap: 4px; justify-content: center; margin-top: 5px; }
+
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+.options-grid.disabled { pointer-events: none; opacity: 0.7; }
+.option-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,215,0,0.25); padding: 15px; border-radius: 8px; color: #fff; cursor: pointer; text-align: left; font-size: 15px; transition: 0.3s; }
+.option-btn:hover { background: rgba(255,215,0,0.25); border-color: var(--gold-light); }
+
+/* ========================================================================= */
+/* ESTILOS DE VENTANAS EMERGENTES (MODALES)                                  */
+/* ========================================================================= */
+.custom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 400; justify-content: center; align-items: center; flex-direction: column; text-align: center; padding: 20px; animation: fadeInModal 0.4s ease-out; }
+.modal-content { max-width: 650px; border-radius: 15px; }
+
+@keyframes fadeInModal { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+/* Animación de pulso de peligro para Game Over */
+@keyframes dangerPulse {
+    0% { box-shadow: 0 0 25px rgba(255, 77, 77, 0.6), inset 0 0 15px rgba(255, 0, 0, 0.4); border-color: #ff4d4d; }
+    100% { box-shadow: 0 0 50px rgba(255, 0, 0, 0.9), inset 0 0 35px rgba(139, 0, 0, 0.7); border-color: #ff0000; }
+}
+
+.danger-glow { font-family: 'Cinzel', serif; font-size: clamp(30px, 5vw, 44px); color: #ff4d4d; text-shadow: 0 0 15px #ff0000, 0 0 30px #8b0000; margin-bottom: 20px; font-weight: 900; letter-spacing: 2px; }
+.game-over-active { animation: dangerPulse 1s infinite alternate !important; }
+.athena-img-modal { height: 150px; margin-bottom: 20px; filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+</style>
+</head>
+<body>
+
+<div class="bg-cosmos"></div>
+
+<div class="hud" id="hud" style="display: none;">
+    <div>🌟 Puntos: <span id="hud-score" style="color:white; font-weight:bold;">0</span></div>
+    <div style="display: flex; gap: 20px;">
+        <div>🛡️ Escudos: <span id="hud-shields" style="color:white; font-weight:bold;">0</span></div>
+        <div>🏛️ <span id="hud-house" style="color:white;">---</span></div>
+    </div>
+</div>
+
+<div class="screen" id="screen-portal" style="display: flex;">
+    <div class="glass-panel" style="max-width: 650px;">
+        <div class="school-brand">
+            <img src="Logo.png" class="school-logo" alt="Logo" onerror="this.src='https://placehold.co/150x150?text=Logo';">
+            <div class="school-name">I.E. "Santa Rosa"</div>
+        </div>
+        <h1 class="title">Portal del Santuario</h1>
+        <div id="portal-role-selection" style="display: flex; flex-direction: column; gap: 12px;">
+            <button class="btn-gold" onclick="enterStudentMode()">🛡️ Modo Estudiante</button>
+            <button class="btn-gold" onclick="showTeacherPasswordForm()" style="background: #222; color: #FFDF00; border: 1px solid var(--gold-dark);">🏛️ Modo Docente</button>
+        </div>
+        <div id="portal-teacher-auth" style="display: none; margin-top: 15px;">
+            <input type="password" id="teacherPassword" class="input-name" placeholder="Contraseña">
+            <br>
+            <button class="btn-gold" onclick="verifyTeacherPassword()">Autenticar</button>
+        </div>
+        <div id="portal-teacher-upload" style="display: none; margin-top: 15px;">
+            <p id="upload-status-text" style="color: var(--gold-light); font-weight: bold;">Cargar Manuscrito (.txt)</p>
+            <input type="file" id="questionsLoader" accept=".txt">
+            <br>
+            <button class="btn-gold" onclick="processQuestionsFile()">Cargar</button>
+        </div>
+    </div>
+</div>
+
+<div class="screen" id="screen-selection">
+    <div class="glass-panel">
+        <h1 class="title">Elige tu Defensor</h1>
+        <input type="text" id="playerName" class="input-name" placeholder="Tu Nombre">
+        <div class="preview-container"><img id="knight-preview-img" src=""></div>
+        <div class="knights-grid">
+            <div class="knight-card" onclick="selectKnight('Cisne', this)" style="color: #E0FFFF;">🛡️ Cisne</div>
+            <div class="knight-card" onclick="selectKnight('Dragón', this)" style="color: #90EE90;">🐉 Dragón</div>
+            <div class="knight-card" onclick="selectKnight('Pegaso', this)" style="color: #ADD8E6;">✨ Pegaso</div>
+            <div class="knight-card" onclick="selectKnight('Fénix', this)" style="color: #FFA500;">🔥 Fénix</div>
+            <div class="knight-card" onclick="selectKnight('Andrómeda', this)" style="color: #FFB6C1;">⛓️ Andrómeda</div>
+        </div>
+        <button class="btn-gold" onclick="goToIntroduction()">Continuar</button>
+    </div>
+</div>
+
+<div class="screen" id="screen-intro">
+    <div class="glass-panel">
+        <h1 class="title">Introducción</h1>
+        <div style="width: 100%; max-width: 640px; margin: 20px auto; border: 3px solid var(--gold-dark); border-radius: 10px; overflow: hidden; background: #000;">
+            <video id="intro-video" controls style="width: 100%; display: block;"><source src="intro.mp4" type="video/mp4"></video>
+        </div>
+        <button class="btn-gold" onclick="startGame()">Comenzar</button>
+    </div>
+</div>
+
+<div class="screen" id="screen-house-defense">
+    <div class="glass-panel">
+        <h1 class="title">RELOJ DE FUEGO</h1>
+        <div class="zodiac-clock-container" id="zodiac-clock-board"></div>
+        <button class="btn-gold" onclick="enterHouseBattleFromDefense()">Ingresar al Templo</button>
+    </div>
+</div>
+
+<div class="screen" id="screen-battle">
+    <div class="glass-panel">
+        <div class="battle-arena">
+            <div class="fighter">
+                <div id="player-arena-name" style="color: var(--gold-light); font-weight: bold; margin-bottom: 8px;">Jugador</div>
+                <img id="player-img" src="">
+                <div class="hearts-wrapper" id="player-hearts-container"></div>
+            </div>
+            <h1 class="title">VS</h1>
+            <div class="fighter">
+                <div id="boss-arena-name" style="color: #ff4d4d; font-weight: bold; margin-bottom: 8px;">Guardián</div>
+                <img id="boss-img" src="">
+                <div class="health-bar-container"><div class="health-bar-fill" id="boss-hp-bar"></div></div>
+                <div id="boss-hp-text" style="color: white; font-weight: bold; margin-top: 5px;"></div>
+            </div>
+        </div>
+        <p id="question-text" style="font-size: 18px; font-weight: 600; margin-bottom: 15px;"></p>
+        <div class="options-grid" id="options-container"></div>
+        <div id="feedback" style="margin-top: 15px; font-weight: bold; min-height: 24px;"></div>
+    </div>
+</div>
+
+<div id="perfect-modal" class="custom-modal">
+    <div class="glass-panel modal-content"><h1 style="color:var(--gold-light)">¡PERFECCIÓN CÓSMICA!</h1><p>Puntos duplicados.</p><button class="btn-gold" onclick="proceedToNextHouse()">Avanzar</button></div>
+</div>
+
+<div id="athena-hint-modal" class="custom-modal">
+    <div class="glass-panel modal-content"><img src="Athena.webp" class="athena-img-modal"><h2>Atenea te guía</h2><p id="athena-hint-text"></p><button class="btn-gold" onclick="closeAthenaHint()">Entendido</button></div>
+</div>
+
+<div id="shield-notice-modal" class="custom-modal">
+    <div class="glass-panel modal-content"><h2>Aviso Divino</h2><p id="shield-modal-text"></p><button class="btn-gold" onclick="closeShieldModal()">Aceptar</button></div>
+</div>
+
+<div id="game-over-modal" class="custom-modal">
+    <div class="glass-panel modal-content game-over-active">
+        <h1 class="danger-glow">💥 COSMOS EXTINGUIDO 💥</h1>
+        <p id="game-over-text" style="color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 35px;"></p>
+        <button class="btn-gold" onclick="location.reload()">🔄 Reencarnar</button>
+    </div>
+</div>
+
+<div class="screen" id="screen-victory">
+    <div class="glass-panel"><h1>¡HAS SALVADO A ATENEA!</h1><h2 id="victory-score"></h2><button class="btn-gold" onclick="location.reload()">Reiniciar</button></div>
+</div>
+
+<script>
+const jefesDatosEstaticos = [
+    {h: "Aries", b: "Mu de Aries", img: "1Aries.webp"}, {h: "Tauro", b: "Aldebarán", img: "2Tauro.png"},
+    {h: "Géminis", b: "Saga", img: "3geminis.webp"}, {h: "Cáncer", b: "Máscara", img: "4Cancer.webp"},
+    {h: "Leo", b: "Aioria", img: "5Leo.webp"}, {h: "Virgo", b: "Shaka", img: "6Virgo.png"},
+    {h: "Libra", b: "Dohko", img: "7Libra.png"}, {h: "Escorpio", b: "Milo", img: "8Scorp.png"},
+    {h: "Sagitario", b: "Aioros", img: "9Sagitario.png"}, {h: "Capricornio", b: "Shura", img: "10Capri.png"},
+    {h: "Acuario", b: "Camus", img: "11Acuario.webp"}, {h: "Piscis", b: "Afrodita", img: "12Piscis.webp"},
+    {h: "Patriarca", b: "El Gran Patriarca", img: "Patriarca.png"}
+];
+
+const imagenesCaballeros = {'Cisne': 'Cisne.png', 'Dragón': 'Dragon.png', 'Pegaso': 'Pegaso.png', 'Fénix': 'Fenix.png', 'Andrómeda': 'Andromeda.png'};
+
+// NUEVAS COORDENADAS RECTIFICADAS Y AJUSTADAS A LAS LÍNEAS DIVISORIAS
+const coordenadasLlamasCorregidas = [
+    {x: 57.6, y: 21.5}, // 12:30 - Cubre por completo el glifo de Aries
+    {x: 70.9, y: 29.1}, // 01:30 - Cubre por completo el glifo de Taurus
+    {x: 78.5, y: 42.4}, // 02:30 - Cubre por completo el glifo de Gemini
+    {x: 78.5, y: 57.6}, // 03:30 - Cubre por completo el glifo de Cancer
+    {x: 70.9, y: 70.9}, // 04:30 - Cubre por completo el glifo de Leo
+    {x: 57.6, y: 78.5}, // 05:30 - Cubre por completo el glifo de Virgo
+    {x: 42.4, y: 78.5}, // 06:30 - Cubre por completo el glifo de Libra
+    {x: 29.1, y: 70.9}, // 07:30 - Cubre por completo el glifo de Scorpio
+    {x: 21.5, y: 57.6}, // 08:30 - Cubre por completo el glifo de Sagittarius
+    {x: 21.5, y: 42.4}, // 09:30 - Cubre por completo el glifo de Capricorn
+    {x: 29.1, y: 29.1}, // 10:30 - Cubre por completo el glifo de Aquarius
+    {x: 42.4, y: 21.5}  // 11:30 - Cubre por completo el glifo de Pisces
+];
+
+let casasSantuario = [], currentHouseIdx = 0, currentQuestionIdx = 0, lives = 5, score = 0, chosenKnight = "", playerName = "";
+let bossHP = 0, bossMaxHP = 0, mistakesInCurrentHouse = 0, scoreInCurrentHouse = 0, shields = 0, shieldThreshold = 80, isProcessingAnswer = false;
+
+window.onload = function() {
+    buildZodiacClockBoard(); 
+    const saved = localStorage.getItem('casasSantuario');
+    if(saved) { try { casasSantuario = JSON.parse(saved); } catch(e) { localStorage.removeItem('casasSantuario'); } }
+};
+
+function buildZodiacClockBoard() {
+    const board = document.getElementById('zodiac-clock-board');
+    if (!board) return; board.innerHTML = '';
+    // Cambiado para leer del nuevo arreglo corregido
+    coordenadasLlamasCorregidas.forEach((pos, idx) => {
+        const flame = document.createElement('div');
+        flame.className = 'zodiac-flame'; flame.id = `flame-house-${idx}`;
+        flame.innerHTML = '🔥'; flame.style.left = `${pos.x}%`; flame.style.top = `${pos.y}%`;
+        board.appendChild(flame);
+    });
+}
+
+function enterStudentMode() { if (casasSantuario.length > 0) { document.getElementById('screen-portal').style.display = 'none'; document.getElementById('screen-selection').style.display = 'flex'; } }
+function showTeacherPasswordForm() { document.getElementById('portal-role-selection').style.display = 'none'; document.getElementById('portal-teacher-auth').style.display = 'block'; }
+function verifyTeacherPassword() { if(document.getElementById('teacherPassword').value === "SantaRosa123") { document.getElementById('portal-teacher-auth').style.display = 'none'; document.getElementById('portal-teacher-upload').style.display = 'block'; } }
+
+function processQuestionsFile() {
+    const file = document.getElementById('questionsLoader').files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        casasSantuario = parseTextToQuestions(e.target.result);
+        if(casasSantuario.length > 0) { localStorage.setItem('casasSantuario', JSON.stringify(casasSantuario)); location.reload(); }
+    };
+    reader.readAsText(file);
+}
+
+function parseTextToQuestions(text) {
+    const lines = text.split('\n'); const structure = [];
+    let currentHouse = null, currentQuestion = null;
+    const staticMap = jefesDatosEstaticos.reduce((map, item) => { map[item.h.toLowerCase()] = item; return map; }, {});
+    lines.forEach(line => {
+        line = line.trim();
+        if (line.startsWith('#')) {
+            const data = staticMap[line.substring(1).trim().toLowerCase()];
+            if (data) { currentHouse = { house: data.h, boss: data.b, bossImg: data.img, questions: [] }; structure.push(currentHouse); }
+        } else if (currentHouse && line.toUpperCase().startsWith('PREGUNTA:')) {
+            currentQuestion = { q: line.substring(9).trim(), hint: "", options: [], a: -1 }; currentHouse.questions.push(currentQuestion);
+        } else if (currentQuestion && line.toUpperCase().startsWith('PISTA:')) {
+            currentQuestion.hint = line.substring(6).trim();
+        } else if (currentQuestion && /^[A-E]\)/.test(line)) {
+            let opt = line.substring(2).trim();
+            if (opt.toUpperCase().includes('(CORRECTA)')) { currentQuestion.a = currentQuestion.options.length; opt = opt.replace(/\(CORRECTA\)/i, '').trim(); }
+            currentQuestion.options.push(opt);
+        }
+    });
+    return structure;
+}
+
+function selectKnight(name, el) {
+    chosenKnight = name; document.querySelectorAll('.knight-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected'); document.getElementById('knight-preview-img').src = imagenesCaballeros[name];
+    document.getElementById('knight-preview-img').style.display = 'block';
+}
+
+function goToIntroduction() {
+    playerName = document.getElementById('playerName').value.trim(); if(!playerName || !chosenKnight) return;
+    document.getElementById('screen-selection').style.display = 'none'; document.getElementById('screen-intro').style.display = 'flex';
+}
+
+function startGame() {
+    document.getElementById('intro-video').pause(); document.getElementById('screen-intro').style.display = 'none';
+    document.getElementById('hud').style.display = 'flex'; document.getElementById('player-img').src = imagenesCaballeros[chosenKnight];
+    document.getElementById('player-arena-name').innerText = playerName; updateUI(); handleSantuarioProgression();
+}
+
+function handleSantuarioProgression() {
+    if(currentHouseIdx >= casasSantuario.length) { triggerVictoryScreen(); return; }
+    document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+    document.getElementById('screen-house-defense').style.display = 'flex'; updateZodiacFlames();
+}
+
+function triggerVictoryScreen() {
+    document.getElementById('hud').style.display = 'none'; document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+    document.getElementById('victory-score').innerText = `Puntos: ${score}`; document.getElementById('screen-victory').style.display = 'flex';
+    localStorage.removeItem('casasSantuario');
+}
+
+function updateZodiacFlames() {
+    for(let i = 0; i < 12; i++) {
+        const flame = document.getElementById(`flame-house-${i}`);
+        if (flame) { if (i < currentHouseIdx) flame.classList.add('extinguished'); else flame.classList.remove('extinguished'); }
+    }
+}
+
+function enterHouseBattleFromDefense() { document.getElementById('screen-house-defense').style.display = 'none'; document.getElementById('screen-battle').style.display = 'flex'; startHouseCombat(); }
+
+function startHouseCombat() {
+    const house = casasSantuario[currentHouseIdx]; document.getElementById('hud-house').innerText = house.house.toUpperCase();
+    document.getElementById('boss-img').src = house.bossImg; document.getElementById('boss-arena-name').innerText = house.boss;
+    currentQuestionIdx = 0; bossMaxHP = house.questions.length; bossHP = bossMaxHP; mistakesInCurrentHouse = 0; scoreInCurrentHouse = 0;
+    updateUI(); loadQuestion();
+}
+
+function loadQuestion() {
+    isProcessingAnswer = false; document.getElementById('options-container').classList.remove('disabled'); document.getElementById('feedback').innerText = "";
+    const house = casasSantuario[currentHouseIdx]; const q = house.questions[currentQuestionIdx];
+    document.getElementById('question-text').innerText = q.q; const container = document.getElementById('options-container'); container.innerHTML = '';
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button'); btn.className = 'option-btn'; btn.innerText = opt;
+        btn.onclick = () => checkAnswer(i, q.a); container.appendChild(btn);
+    });
+}
+
+function addPoints(points) {
+    score += points;
+    while(score >= shieldThreshold) { shields++; shieldThreshold += 80; showShieldModal("🛡️ ¡Tu cosmos se eleva! Has recibido un Escudo Divino de Atenea."); }
+}
+
+function checkAnswer(selected, correct) {
+    if (isProcessingAnswer) return; isProcessingAnswer = true; document.getElementById('options-container').classList.add('disabled');
+    const esCasa13 = (currentHouseIdx === 12); const house = casasSantuario[currentHouseIdx]; const currentQ = house.questions[currentQuestionIdx];
+    if(selected === correct) {
+        bossHP--; addPoints(10); scoreInCurrentHouse += 10; updateUI();
+        setTimeout(() => {
+            currentQuestionIdx++;
+            if(currentQuestionIdx >= house.questions.length) {
+                if(mistakesInCurrentHouse === 0) { addPoints(scoreInCurrentHouse); document.getElementById('perfect-modal').style.display = 'flex'; }
+                else proceedToNextHouse();
+            } else loadQuestion();
+        }, 1200);
+    } else {
+        mistakesInCurrentHouse++;
+        if (esCasa13) {
+            if (shields > 0) { shields--; updateUI(); showShieldModal("⚡ ¡El Patriarca lanzó un ataque mortal, pero tu Escudo Divino te ha salvado! Continúas con una oportunidad más."); }
+            else showGameOverModal("Has caído ante el Patriarca.");
+        } else {
+            lives--; updateUI();
+            if(lives <= 0) showGameOverModal("💀 Tu energía vital se ha extinguido. Vuelve a intentarlo desde el primer templo.");
+            else { document.getElementById('athena-hint-text').innerText = currentQ.hint; document.getElementById('athena-hint-modal').style.display = 'flex'; }
+        }
+    }
+}
+
+function showShieldModal(txt) { document.getElementById('shield-modal-text').innerText = txt; document.getElementById('shield-notice-modal').style.display = 'flex'; }
+function closeShieldModal() { document.getElementById('shield-notice-modal').style.display = 'none'; isProcessingAnswer = false; document.getElementById('options-container').classList.remove('disabled'); }
+function closeAthenaHint() { document.getElementById('athena-hint-modal').style.display = 'none'; isProcessingAnswer = false; document.getElementById('options-container').classList.remove('disabled'); }
+function showGameOverModal(m) { document.getElementById('game-over-text').innerText = m; document.getElementById('game-over-modal').style.display = 'flex'; }
+function proceedToNextHouse() { document.getElementById('perfect-modal').style.display = 'none'; currentHouseIdx++; handleSantuarioProgression(); }
+
+function updateUI() {
+    document.getElementById('player-hearts-container').innerHTML = '❤️'.repeat(lives);
+    document.getElementById('boss-hp-bar').style.width = bossMaxHP === 0 ? "0%" : `${(bossHP/bossMaxHP)*100}%`;
+    document.getElementById('boss-hp-text').innerText = `HP: ${bossHP}/${bossMaxHP}`;
+    document.getElementById('hud-score').innerText = score; document.getElementById('hud-shields').innerText = shields;
+}
+</script>
+</body>
+</html>

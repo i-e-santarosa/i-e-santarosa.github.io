@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I.E. Santa Rosa - Batalla Naval de Angamos</title>
+    <style>
+        /* --- CONFIGURACIÓN BASE Y RESPONSIVE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+        body {
+            background-color: #040712;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Contenedor Adaptable Universal */
+        .screen {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        #game-screen { justify-content: space-between; padding: 0; }
+        .hidden { display: none !important; }
+
+        /* Logos e Identidad */
+        .school-logo {
+            width: clamp(60px, 10vw, 90px);
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.4));
+        }
+
+        /* --- FONDOS CONFIGURADOS SEGÚN ESTRATEGIA --- */
+        #portal-select-screen, #portal-auth-screen, #portal-upload-screen {
+            background: linear-gradient(rgba(5, 8, 16, 0.7), rgba(5, 8, 16, 0.95)), url('promo2.jpg') no-repeat center center/cover;
+        }
+        #cover-screen {
+            background: linear-gradient(rgba(5, 8, 16, 0.4), rgba(5, 8, 16, 0.85)), url('promo1.gif') no-repeat center center/cover;
+        }
+
+        /* --- CONTENEDORES FLUIDOS (PORTALES) --- */
+        .portal-card {
+            background: rgba(9, 14, 26, 0.95);
+            border: 2px solid #c5a059;
+            box-shadow: 0 0 35px rgba(197, 160, 89, 0.3);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 600px;
+            padding: clamp(20px, 5vw, 40px);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            backdrop-filter: blur(8px);
+        }
+        .portal-title { font-size: clamp(16px, 3vw, 22px); color: #c5a059; letter-spacing: 2px; font-weight: bold; }
+        .portal-subtitle { font-size: clamp(18px, 4vw, 25px); text-transform: uppercase; font-weight: 600; color: #e0e6ed; }
+
+        /* Botonera de Control */
+        .btn-portal {
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: clamp(14px, 2vw, 18px);
+            padding: 15px;
+            width: 100%;
+            max-width: 450px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-gold { background: linear-gradient(135deg, #c5a059 0%, #9e7d3b 100%); border: 1px solid #fff; color: #000; box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3); }
+        .btn-gold:hover { transform: scale(1.02); box-shadow: 0 4px 25px rgba(197, 160, 89, 0.5); }
+        .btn-dark { background: #1c222e; border: 1px solid #c5a059; color: #c5a059; }
+        .btn-dark:hover { background: #252d3d; transform: scale(1.02); }
+        .portal-input { width: 100%; max-width: 450px; background: #000; border: 1px solid #c5a059; border-radius: 5px; color: #fff; padding: 15px; font-size: 18px; text-align: center; outline: none; }
+
+        /* --- CABECERA HUD AUTO-ADAPTABLE --- */
+        .hud-header {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 15px;
+            padding: 15px 20px;
+            background: rgba(9, 14, 26, 0.9);
+            border-bottom: 2px solid #c5a059;
+            z-index: 10;
+        }
+        .hud-panel {
+            background: rgba(15, 22, 38, 0.8);
+            border: 1px solid #c5a059;
+            border-radius: 6px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            text-align: center;
+            font-size: clamp(12px, 1.5vw, 16px);
+        }
+        #hud-turn { border-left: 5px solid #ff4d4d; }
+        #hud-timer { flex-direction: column; gap: 2px; }
+        #hud-meta { color: #c5a059; }
+        .timer-circle { width: 45px; height: 45px; border-radius: 50%; background: #050811; border: 3px solid #ff4d4d; display: flex; justify-content: center; align-items: center; font-size: 18px; }
+        .timer-circle.warning { border-color: #ffaa00; color: #ffaa00; }
+
+        /* --- ZONA DE COMBATE FLEXIBLE --- */
+        .battle-zone {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            flex-grow: 1;
+            width: 100%;
+            padding: 20px;
+            gap: 20px;
+            background: url('image_2.png') no-repeat center center/cover;
+            overflow-y: auto;
+        }
+        .ship-card {
+            background: rgba(7, 11, 21, 0.92);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: clamp(15px, 3vw, 25px);
+            text-align: center;
+            width: 45%;
+            max-width: 360px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .ship-card.active { border-color: #c5a059; box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
+        .ship-card.darkened { opacity: 0.2; filter: grayscale(90%); }
+        .ship-img { width: 100%; max-width: 240px; height: auto; margin: 10px 0; }
+        .captain-tag { font-size: 12px; color: #c5a059; letter-spacing: 0.5px; }
+
+        /* Recámara de Carga */
+        .cannon-status-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(4, 7, 18, 0.96);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 5;
+        }
+        .cannon-status-overlay.visible { opacity: 1; }
+        .artillery-bar { width: 70%; height: 6px; background: #1a2333; border-radius: 3px; margin-top: 10px; overflow: hidden; }
+        .artillery-progress { width: 0%; height: 100%; background: #ffaa00; transition: width 1.2s linear; }
+
+        /* --- PANEL DE PREGUNTAS AUTO-MALLA --- */
+        .question-panel {
+            background: rgba(5, 9, 18, 0.98);
+            border-top: 3px solid #c5a059;
+            width: 100%;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            z-index: 10;
+        }
+        .question-text { grid-column: 1 / span 2; font-size: clamp(15px, 2.5vw, 20px); text-align: center; margin-bottom: 5px; font-weight: 500; }
+        .option-btn { background: #0f1626; border: 1px solid #233554; color: #fff; padding: 12px 15px; font-size: clamp(13px, 1.8vw, 16px); border-radius: 6px; cursor: pointer; text-align: left; transition: all 0.2s; }
+        .option-btn:hover:not(:disabled) { background: #17223b; border-color: #c5a059; }
+        .option-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* --- RETRATOS FINALES E INMORTALIDAD --- */
+        .quote-container { width: 90%; max-width: 650px; background: rgba(9, 14, 26, 0.9); border: 2px solid #c5a059; border-radius: 12px; padding: 25px; text-align: center; margin-top: 15px; }
+        .captain-end-portrait { width: 120px; height: 160px; object-fit: cover; border: 2px solid #c5a059; border-radius: 6px; margin: 0 auto 15px auto; display: block; }
+        .quote-text { font-size: clamp(15px, 2vw, 20px); font-style: italic; line-height: 1.5; margin-bottom: 15px; }
+        .quote-author { font-size: clamp(13px, 1.8vw, 16px); font-weight: bold; color: #c5a059; text-transform: uppercase; }
+
+        /* --- SISMICIDAD Y IMPACTOS --- */
+        .screen-flash { position: fixed; top:0; left:0; width:100vw; height:100vh; opacity: 0; pointer-events: none; z-index: 999; }
+        @keyframes flashTrigger { 0% { opacity: 1; background: #ff5500; } 25% { opacity: 1; background: #ffffff; } 100% { opacity: 0; } }
+        @keyframes screenShake { 0%, 100% { transform: translate(0, 0); } 10%, 50%, 90% { transform: translate(-5px, 3px); } 30%, 70% { transform: translate(5px, -3px); } }
+        .animate-flash { animation: flashTrigger 0.5s ease-out forwards; }
+        .animate-shake { animation: screenShake 0.4s ease-in-out; }
+        @keyframes agonicSinking { 0% { transform: translateY(0); filter: brightness(1); } 100% { transform: translateY(50px) rotate(25deg); opacity: 0; } }
+        .ship-sinking-cinematic { animation: agonicSinking 3s cubic-bezier(0.55, 0.05, 0.675, 0.19) forwards !important; }
+
+        /* --- CONSULTAS DE MEDIOS (RESPONSIVE INMEDIATO) --- */
+        @media (max-width: 768px) {
+            .hud-header { grid-template-columns: 1fr; gap: 8px; padding: 10px; }
+            #hud-timer { order: -1; }
+            .battle-zone { flex-direction: column; justify-content: flex-start; gap: 15px; }
+            .ship-card { width: 100%; max-width: 320px; padding: 12px; }
+            .ship-img { max-width: 180px; }
+            .question-panel { grid-template-columns: 1fr; padding: 12px; }
+            .question-text { grid-column: 1; }
+        }
+    </style>
+</head>
+<body id="battle-body">
+
+    <div class="screen-flash" id="flash-overlay"></div>
+
+    <!-- PANTALLA 0: CENTRO NAVAL (PROMO2.JPG) -->
+    <div id="portal-select-screen" class="screen">
+        <div class="portal-card">
+            <img src="Logo.png" class="school-logo" alt="Logo Santa Rosa">
+            <div class="portal-title">I.E. "SANTA ROSA"</div>
+            <div class="portal-subtitle">CENTRO DE OPERACIONES NAVALES</div>
+            <button class="btn-portal btn-gold" onclick="goToStudentMode()">⚓ INICIAR COMPETICIÓN (CADETES)</button>
+            <button class="btn-portal btn-dark" onclick="showAuthScreen()">🗃️ DESPACHO DEL ALMIRANTE (DOCENTE)</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA 0.1: CONTRASEÑA (PROMO2.JPG) -->
+    <div id="portal-auth-screen" class="screen hidden">
+        <div class="portal-card">
+            <img src="Logo.png" class="school-logo" alt="Logo Santa Rosa">
+            <div class="portal-title">I.E. "SANTA ROSA"</div>
+            <div class="portal-subtitle">CÓDIGO DE ACCESO NAVAL</div>
+            <input type="password" id="teacherPassword" class="portal-input" placeholder="Contraseña de Comandancia">
+            <button class="btn-portal btn-gold" onclick="validatePassword()">AUTENTICAR</button>
+            <button class="btn-portal btn-dark" style="padding:8px; font-size:14px; max-width:200px;" onclick="backToPortalSelect()">Abortar</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA 0.2: BANCO DE PREGUNTAS (PROMO2.JPG) -->
+    <div id="portal-upload-screen" class="screen hidden">
+        <div class="portal-card">
+            <img src="Logo.png" class="school-logo" alt="Logo Santa Rosa">
+            <div class="portal-title">I.E. "SANTA ROSA"</div>
+            <div class="portal-subtitle">PLAN DE OPERACIONES (PREGUNTAS)</div>
+            <label style="color:#c5a059; font-weight:bold;">Cargar Manuscrito de Tácticas (.txt)</label>
+            <input type="file" id="fileInput" accept=".txt" style="margin:10px 0; max-width:100%;">
+            <button class="btn-portal btn-gold" onclick="processUploadedFile()">CARGAR ESTRATEGIA</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA 1: PORTADA ZARPE (PROMO1.GIF) -->
+    <div id="cover-screen" class="screen hidden">
+        <h1 style="font-size: clamp(24px, 5vw, 46px); color: #fff; text-shadow: 0 4px 15px #000; margin-bottom: 25px; text-align:center; font-weight:bold; line-height: 1.2;">
+            ANGAMOS 1879<br><span style="color:#c5a059; font-size: clamp(16px, 3vw, 28px);">El Duelo del Conocimiento Naval</span>
+        </h1>
+        <button class="btn-portal btn-gold" style="max-width:280px;" onclick="startGame()">ZARPAR AL COMBATE</button>
+    </div>
+
+    <!-- PANTALLA 2: INTERFAZ JUEGO PRINCIPAL -->
+    <div id="game-screen" class="screen hidden">
+        
+        <div class="hud-header">
+            <div class="hud-panel" id="hud-turn">TURNO: LADO A (PERÚ)</div>
+            <div class="hud-panel" id="hud-timer">
+                <span style="font-size:10px; color:#aaa; margin-bottom:2px;">BATERÍA</span>
+                <div class="timer-circle" id="timerBox">20</div>
+            </div>
+            <div class="hud-panel" id="hud-meta">OBJETIVO: 10 IMPACTOS</div>
+        </div>
+
+        <div class="battle-zone">
+            <!-- Lado A: Perú -->
+            <div id="card-peru" class="ship-card active">
+                <div class="cannon-status-overlay" id="loader-peru">
+                    <span style="color:#ff4d4d; font-weight:bold; font-size:13px;">💥 RECAMÁRA: CARGANDO...</span>
+                    <div class="artillery-bar"><div class="artillery-progress" id="bar-peru"></div></div>
+                </div>
+                <div style="color:#ff4d4d; font-size:20px; font-weight:bold;">LADO A: PERÚ</div>
+                <div class="captain-tag">Alm. Miguel Grau</div>
+                <img src="Huascar1.png" class="ship-img" alt="Huáscar">
+                <div style="font-size:13px; background:#070b16; padding:6px; border-radius:5px; border:1px solid #233554; margin-top:5px;">
+                    Impactos: <span id="cannonsPeru" style="color:#ff4d4d; font-weight:bold; font-size:18px;">0</span> / 10
+                </div>
+            </div>
+
+            <!-- Lado B: Chile -->
+            <div id="card-chile" class="ship-card darkened">
+                <div class="cannon-status-overlay" id="loader-chile">
+                    <span style="color:#4da6ff; font-weight:bold; font-size:13px;">💥 RECAMÁRA: CARGANDO...</span>
+                    <div class="artillery-bar"><div class="artillery-progress" id="bar-chile"></div></div>
+                </div>
+                <div style="color:#4da6ff; font-size:20px; font-weight:bold;">LADO B: CHILE</div>
+                <div class="captain-tag">Calm. Galvarino Riveros</div>
+                <img src="Chile.png" class="ship-img" alt="Escuadra Chilena">
+                <div style="font-size:13px; background:#070b16; padding:6px; border-radius:5px; border:1px solid #233554; margin-top:5px;">
+                    Impactos: <span id="cannonsChile" style="color:#4da6ff; font-weight:bold; font-size:18px;">0</span> / 10
+                </div>
+            </div>
+        </div>
+
+        <div class="question-panel">
+            <div class="question-text" id="questionField">Calculando coordenadas estratégicas...</div>
+            <button class="option-btn" id="opt0" onclick="checkAnswer(0)"></button>
+            <button class="option-btn" id="opt1" onclick="checkAnswer(1)"></button>
+            <button class="option-btn" id="opt2" onclick="checkAnswer(2)"></button>
+            <button class="option-btn" id="opt3" onclick="checkAnswer(3)"></button>
+        </div>
+    </div>
+
+    <!-- PANTALLA 3: PANTALLA DE INMORTALIDAD -->
+    <div id="victory-screen" class="screen hidden">
+        <h2 id="victoryMessage" style="font-size:22px; color:#fff; text-align:center; padding:0 15px; line-height:1.4;"></h2>
+        <div class="quote-container">
+            <img id="end-photo-tag" src="" class="captain-end-portrait" alt="Héroe de Combate">
+            <p class="quote-text" id="captainsQuote">"Frase"</p>
+            <p class="quote-author" id="captainsName">Comandante</p>
+        </div>
+        <button class="btn-portal btn-gold" style="max-width:280px; margin-top:20px;" onclick="location.reload()">REGRESAR AL PUESTO DE MANDO</button>
+    </div>
+
+<script>
+    let BANCO_PREGUNTAS = [
+        {"q": "¿En qué fecha exacta se libró el Combate Naval de Angamos?", "options": ["2 de Mayo de 1866", "8 de Octubre de 1879", "21 de Mayo de 1879", "10 de Julio de 1883"], "correct": 1},
+        {"q": "¿Quién fue el glorioso comandante del Monitor Huáscar conocido como el Caballero de los Mares?", "options": ["Alfonso Ugarte", "Francisco Bolognesi", "Miguel Grau Seminario", "Lizardo Montero"], "correct": 2},
+        {"q": "¿Qué buques blindados chilenos cercaron al Huáscar en Angamos?", "options": ["Esmeralda y Covadonga", "Cochrane y Blanco Encalada", "O'Higgins y Chacabuco", "Loa y Magallanes"], "correct": 1},
+        {"q": "¿Qué oficial asumió el mando del Huáscar tras la caída del Almirante Miguel Grau?", "options": ["Elias Aguirre", "Melitón Carvajal", "Diego Ferré", "Pedro Garezón"], "correct": 0}
+    ];
+
+    const CONTRASEÑA_DOCENTE = "SantaRosa123";
+    const TIEMPO_LIMITE = 20;
+
+    let currentTurn = 'peru', scorePeru = 0, scoreChile = 0;
+    let usedQuestions = [], currentQuestionData = null;
+    let timerInterval = null, timeLeft = TIEMPO_LIMITE;
+
+    function showAuthScreen() { toggle('portal-select-screen', 'portal-auth-screen'); }
+    function backToPortalSelect() { toggle('portal-auth-screen', 'portal-select-screen'); }
+    function goToStudentMode() { toggle('portal-select-screen', 'cover-screen'); }
+    
+    function startGame() {
+        toggle('cover-screen', 'game-screen');
+        scorePeru = 0; scoreChile = 0;
+        document.getElementById('cannonsPeru').innerText = 0;
+        document.getElementById('cannonsChile').innerText = 0;
+        loadNextQuestion();
+    }
+
+    function validatePassword() {
+        if(document.getElementById('teacherPassword').value === CONTRASEÑA_DOCENTE) {
+            toggle('portal-auth-screen', 'portal-upload-screen');
+        } else { alert("Contraseña de Comandancia Incorrecta."); }
+    }
+
+    function processUploadedFile() {
+        const fileInput = document.getElementById('fileInput');
+        if (fileInput.files.length === 0) return alert("Seleccione un archivo .txt");
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const lines = e.target.result.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+            let nuevasPreguntas = [];
+            for (let i = 0; i < lines.length; i += 6) {
+                if(lines[i+5]) {
+                    nuevasPreguntas.push({
+                        "q": lines[i], "options": [lines[i+1], lines[i+2], lines[i+3], lines[i+4]], "correct": parseInt(lines[i+5])
+                    });
+                }
+            }
+            if(nuevasPreguntas.length > 0) {
+                BANCO_PREGUNTAS = nuevasPreguntas;
+                alert(`¡Plan de operaciones cargado! ${nuevasPreguntas.length} preguntas listas.`);
+                document.getElementById('teacherPassword').value = "";
+                toggle('portal-upload-screen', 'portal-select-screen');
+            } else { alert("Error en el formato del archivo."); }
+        };
+        reader.readAsText(fileInput.files[0]);
+    }
+
+    function loadNextQuestion() {
+        clearInterval(timerInterval);
+        timeLeft = TIEMPO_LIMITE;
+        const timerBox = document.getElementById('timerBox');
+        timerBox.className = 'timer-circle';
+        timerBox.innerText = timeLeft;
+
+        let available = BANCO_PREGUNTAS.filter(q => !usedQuestions.includes(q));
+        if (available.length === 0) { usedQuestions = []; available = BANCO_PREGUNTAS; }
+
+        currentQuestionData = available[Math.floor(Math.random() * available.length)];
+        usedQuestions.push(currentQuestionData);
+
+        document.getElementById('questionField').innerText = currentQuestionData.q;
+        for (let i = 0; i < 4; i++) { 
+            let btn = document.getElementById(`opt${i}`);
+            btn.disabled = false; 
+            btn.innerText = currentQuestionData.options[i]; 
+        }
+
+        const hudTurn = document.getElementById('hud-turn');
+        if (currentTurn === 'peru') {
+            hudTurn.innerText = "TURNO: LADO A (PERÚ)";
+            hudTurn.style.borderLeft = "5px solid #ff4d4d";
+            document.getElementById('card-peru').className = "ship-card active";
+            document.getElementById('card-chile').className = "ship-card darkened";
+        } else {
+            hudTurn.innerText = "TURNO: LADO B (CHILE)";
+            hudTurn.style.borderLeft = "5px solid #4da6ff";
+            document.getElementById('card-chile').className = "ship-card active";
+            document.getElementById('card-peru').className = "ship-card darkened";
+        }
+
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            timerBox.innerText = timeLeft;
+            if (timeLeft <= 5) timerBox.classList.add('warning');
+            if (timeLeft <= 0) { switchTurn(); loadNextQuestion(); }
+        }, 1000);
+    }
+
+    function checkAnswer(selectedIndex) {
+        clearInterval(timerInterval);
+        for (let i = 0; i < 4; i++) document.getElementById(`opt${i}`).disabled = true;
+
+        if (selectedIndex === currentQuestionData.correct) {
+            triggerArtillerySequence();
+        } else {
+            switchTurn();
+            setTimeout(loadNextQuestion, 600);
+        }
+    }
+
+    function triggerArtillerySequence() {
+        const faction = currentTurn;
+        const loader = document.getElementById(`loader-${faction}`);
+        const bar = document.getElementById(`bar-${faction}`);
+
+        loader.classList.add('visible');
+        bar.style.width = '100%';
+
+        setTimeout(() => {
+            bar.style.width = '0%';
+            loader.classList.remove('visible');
+
+            // FUEGO: Se reproduce el archivo de audio correcto
+            try { new Audio('Bomb.mp3').play(); } catch(e) {}
+
+            document.getElementById('battle-body').classList.add('animate-shake');
+            document.getElementById('flash-overlay').classList.add('animate-flash');
+
+            if (faction === 'peru') {
+                scorePeru++; document.getElementById('cannonsPeru').innerText = scorePeru;
+            } else {
+                scoreChile++; document.getElementById('cannonsChile').innerText = scoreChile;
+            }
+
+            setTimeout(() => {
+                document.getElementById('battle-body').classList.remove('animate-shake');
+                document.getElementById('flash-overlay').classList.remove('animate-flash');
+
+                if (scorePeru >= 10 || scoreChile >= 10) {
+                    triggerSinkingCinematic();
+                } else {
+                    loadNextQuestion();
+                }
+            }, 500);
+        }, 1200);
+    }
+
+    function switchTurn() { currentTurn = (currentTurn === 'peru') ? 'chile' : 'peru'; }
+
+    function triggerSinkingCinematic() {
+        document.getElementById('questionField').innerText = "¡IMPACTO FULMINANTE! EL NAVÍO ADVERSARIO SE HUNDE...";
+        const loser = (scorePeru >= 10) ? 'chile' : 'peru';
+        document.getElementById(`card-${loser}`).className = "ship-card ship-sinking-cinematic";
+        setTimeout(endGame, 3000);
+    }
+
+    function endGame() {
+        toggle('game-screen', 'victory-screen');
+        const msg = document.getElementById('victoryMessage');
+        const img = document.getElementById('end-photo-tag');
+        const quote = document.getElementById('captainsQuote');
+        const author = document.getElementById('captainsName');
+
+        if (scorePeru >= 10) {
+            msg.innerHTML = "¡VICTORIA PARA PERÚ!<br><span style='color:#ff4d4d; font-size:14px;'>El Monitor Huáscar prevalece en el altar de la gloria.</span>";
+            img.src = "MiguelG.png";
+            author.innerText = "Almirante Miguel Grau Seminario";
+            quote.innerText = "«Yo no soy sino un pobre marino que trata de servir a su patria... Si el Huáscar no regresa victorioso de Angamos, yo tampoco regresaré.»";
+        } else {
+            msg.innerHTML = "¡VICTORIA PARA CHILE!<br><span style='color:#4da6ff; font-size:14px;'>La Escuadra Blindada consolida el control de la línea marina.</span>";
+            img.src = "GRiveros.png";
+            author.innerText = "Contralmirante Galvarino Riveros";
+            quote.innerText = "«La Escuadra Nacional ha cumplido rigurosamente con su deber en alta mar. Las aguas de Angamos han presenciado el término de una gran campaña.»";
+        }
+    }
+
+    function toggle(hideId, showId) {
+        document.getElementById(hideId).classList.add('hidden');
+        document.getElementById(showId).classList.remove('hidden');
+    }
+</script>
+</body>
+</html>

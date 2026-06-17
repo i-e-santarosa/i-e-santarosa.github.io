@@ -1,0 +1,97 @@
+# ARIES
+PREGUNTA: ¿En qué valle se desarrolló la civilización egipcia?
+PISTA: Piensa en el río más largo de África que inunda estas tierras.
+A) Valle del Nilo (CORRECTA)
+B) Valle del Indo
+C) Mesopotamia
+D) Valle del Amazonas
+---
+PREGUNTA: ¿Cuál es el continente considerado cuna de la humanidad?
+PISTA: Es el tercer continente más grande y limita con el Mar Mediterráneo al norte.
+A) Asia
+B) Europa
+C) África (CORRECTA)
+D) Oceanía
+###
+# TAURO
+PREGUNTA: ¿Escribe aquí tu pregunta para Tauro?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) Opción 1
+B) Opción 2 (CORRECTA)
+C) Opción 3
+###
+# GÉMINIS
+PREGUNTA: ¿Tu pregunta para Géminis?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) Incorrecta
+B) CORRECTA (CORRECTA)
+###
+# CÁNCER
+PREGUNTA: ¿Pregunta de Cáncer?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) CORRECTA (CORRECTA)
+B) Incorrecta
+###
+# LEO
+PREGUNTA: ¿Pregunta de Leo?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) Incorrecta
+B) CORRECTA (CORRECTA)
+###
+# VIRGO
+PREGUNTA: ¿Pregunta de Virgo?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) CORRECTA (CORRECTA)
+B) Incorrecta
+C) CORRECTA (CORRECTA)
+###
+# LIBRA
+PREGUNTA: ¿Pregunta de Libra?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) CORRECTA (CORRECTA)
+B) Incorrecta
+###
+# ESCORPIO
+PREGUNTA: ¿Pregunta de Escorpio?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) Incorrecta
+B) CORRECTA (CORRECTA)
+###
+# SAGITARIO
+PREGUNTA: ¿Pregunta de Sagitario?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) Incorrecta
+B) CORRECTA (CORRECTA)
+###
+# CAPRICORNIO
+PREGUNTA: ¿Pregunta de Capricornio?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) CORRECTA (CORRECTA)
+B) Incorrecta
+###
+# ACUARIO
+PREGUNTA: ¿Pregunta de Acuario?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) CORRECTA (CORRECTA)
+B) Incorrecta
+###
+# PISCIS
+PREGUNTA: ¿Pregunta final de Piscis?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) CORRECTA (CORRECTA)
+B) Incorrecta
+# PATRIARCA
+PREGUNTA: ¿TE GUSTO EL JUEGO?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) CORRECTA (CORRECTA)
+B) Incorrecta
+---
+PREGUNTA: ¿Pregunta final de Piscis?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) CORRECTA (CORRECTA)
+B) Incorrecta
+---
+PREGUNTA: ¿Pregunta final de Piscis?
+PISTA: Aquí escribes la ayuda pedagógica para el alumno si falla.
+A) CORRECTA (CORRECTA)
+B) Incorrecta
