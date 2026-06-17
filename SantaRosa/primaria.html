@@ -137,7 +137,6 @@
            3. SECCIONES DE CONTENIDO Y DETALLES ARTÍSTICOS
            =================================================== */
         .nosotros-hero {
-            /* Se verifica el acceso correcto a la imagen de fondo saliendo de la carpeta SantaRosa */
             background: linear-gradient(rgba(17, 17, 17, 0.9), rgba(90, 30, 50, 0.85)), url('../IMG/FRONTIS.jpg') center/cover no-repeat;
             color: #ffffff;
             padding: 70px 20px;
@@ -201,6 +200,26 @@
             background-color: #fff9fa;
         }
 
+        /* Estilos base para la Galería de fotos (Simulada para mantener responsividad) */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .galeria-item {
+            width: 100%;
+            height: 180px;
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 768px) {
             .dropdown-content { right: 20px; top: 75px; }
             .nosotros-hero h1 { font-size: 2.1rem; }
@@ -223,11 +242,14 @@
 
             <nav>
                 <input type="checkbox" id="menu-toggle">
-                <label for="menu-toggle" class="menu-dropdown-btn">GUÍA DE INGRESO</label>
+                <label for="menu-toggle" class="menu-dropdown-btn">MENÚ PRIMARIA</label>
                 
                 <ul class="dropdown-content">
-                    <li><a href="#informacion-plantel">Datos del Plantel Primaria</a></li>
-                    <li><a href="#mapa-satelital">Mapa y Accesos</a></li>
+                    <li><a href="#informacion-plantel">Datos de Acceso</a></li>
+                    <li><a href="#mapa-satelital">Mapa Satelital</a></li>
+                    <li><a href="#galeria-primaria">Galería</a></li>
+                    <li><a href="#juegos-educativos">Juegos Educativos</a></li>
+                    <li><a href="#plataformas-educativas">Plataformas</a></li>
                     <li><a href="../index.html" style="color: #0055ff; font-weight: bold;">← Volver al Inicio</a></li>
                 </ul>
             </nav>
@@ -238,12 +260,12 @@
 
         <div class="nosotros-hero">
             <h1>Ubicación del Nivel Primaria</h1>
-            <p>Guía de localización, accesos y horarios para nuestros estudiantes santarrosinos</p>
+            <p>Guía de localización, accesos y entornos interactivos para la comunidad santarrosina</p>
         </div>
 
         <section id="informacion-plantel" class="nosotros-bloque">
             <h2>Información de Accesibilidad y Localización</h2>
-            <p>Para garantizar un ingreso seguro y ordenado de nuestros niños y niñas de 1° a 6° grado de primaria, compartimos los datos de ubicación y referencia de nuestro local escolar:</p>
+            <p>Para garantizar un ingreso seguro y ordenado de nuestros niños y niñas de primaria, compartimos los datos esenciales de ingreso:</p>
             
             <table class="tabla-datos">
                 <thead>
@@ -253,10 +275,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Dirección del Local</strong></td>
-                        <td>Comunidad de Santo Domingo, Distrito de Huarmey, Región Áncash</td>
-                    </tr>
                     <tr>
                         <td><strong>Punto de Referencia</strong></td>
                         <td>A pocos metros de la plaza principal de la localidad de Santo Domingo</td>
@@ -269,21 +287,37 @@
                         <td><strong>Horario de Entrada</strong></td>
                         <td>07:45 a.m. (Se solicita puntualidad para las actividades de formación)</td>
                     </tr>
-                    <tr>
-                        <td><strong>Entidades Supervisoras</strong></td>
-                        <td>UGEL Huarmey / Dirección Regional de Educación de Áncash (DRE)</td>
-                    </tr>
                 </tbody>
             </table>
         </section>
 
         <section id="mapa-satelital" class="nosotros-bloque">
-            <h2>Mapa Satelital y Rutas Seguras</h2>
-            <p>Padres de familia y tutores, utilicen el siguiente mapa interactivo para reconocer las calles colindantes a la institución y trazar las rutas más seguras para el traslado de los estudiantes:</p>
+            <h2>Mapa Satelital en Tiempo Real</h2>
+            <p>Padres de familia y tutores, utilicen el siguiente mapa interactivo para reconocer los alrededores y trazar las rutas más seguras:</p>
             <div class="mapa-incrustado">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15651.488349008985!2d-78.150000!3d-10.066667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA0JzAwLjAiUyA3OMKwMDknMDAuMCJX!5e0!3m2!1ses-419!2spe!4v1700000000000!5m2!1ses-419!2spe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section>
+
+        <section id="galeria-primaria" class="nosotros-bloque">
+            <h2>Galería Institucional</h2>
+            <p>Explora los ambientes, aulas didácticas y actividades recreativas diseñadas especialmente para el desarrollo de nuestros estudiantes de primaria:</p>
+            <div class="galeria-grid">
+                <div class="galeria-item">Espacio para Imagen (IMG/aula1.jpg)</div>
+                <div class="galeria-item">Espacio para Imagen (IMG/patio.jpg)</div>
+                <div class="galeria-item">Espacio para Imagen (IMG/evento.jpg)</div>
+            </div>
+        </section>
+
+        <section id="juegos-educativos" class="nosotros-bloque">
+            <h2>Juegos Educativos Interactivos</h2>
+            <p>¡Aprender jugando es más divertido! Compartimos recursos didácticos y dinámicas lúdicas interactivas para reforzar las competencias de matemática, comunicación y ciencia desde casa.</p>
+            </section>
+
+        <section id="plataformas-educativas" class="nosotros-bloque">
+            <h2>Plataformas Educativas Digitales</h2>
+            <p>Acceso directo a las herramientas virtuales oficiales y entornos complementarios de aprendizaje supervisados por el equipo docente:</p>
+            </section>
 
     </main>
 
