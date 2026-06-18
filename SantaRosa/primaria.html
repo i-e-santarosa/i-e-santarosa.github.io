@@ -207,15 +207,15 @@
         }
 
         /* ===================================================
-           4. NUEVOS ESTILOS PARA LA GRILLA DE JUEGOS (3D CARD)
+           4. GRILLAS PARA COMPONENTES DINÁMICOS (JUEGOS Y ENLACES)
            =================================================== */
-        .juegos-grid {
+        .juegos-grid, .plataformas-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
             margin-top: 20px;
         }
-        .juego-card {
+        .juego-card, .plataforma-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
@@ -225,41 +225,36 @@
             flex-direction: column;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .juego-card:hover {
+        .juego-card:hover, .plataforma-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         }
-        .juego-portada {
+        .juego-portada, .plataforma-portada {
             width: 100%;
-            height: 160px;
-            background-color: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-size: 0.9rem;
-            border-bottom: 1px solid #e2e8f0;
+            height: 150px;
             object-fit: cover;
+            border-bottom: 1px solid #e2e8f0;
+            background-color: #f1f5f9;
         }
-        .juego-info {
-            padding: 20px;
+        .juego-info, .plataforma-info {
+            padding: 18px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
-        .juego-info h3 {
-            font-size: 1.15rem;
+        .juego-info h3, .plataforma-info h3 {
+            font-size: 1.1rem;
             color: #111111;
             margin-bottom: 8px;
             font-weight: 700;
         }
-        .juego-info p {
-            font-size: 0.88rem;
+        .juego-info p, .plataforma-info p {
+            font-size: 0.85rem;
             color: #64748b;
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             flex-grow: 1;
         }
-        .juego-btn {
+        .juego-btn, .plataforma-btn {
             text-align: center;
             text-decoration: none;
             color: #ffffff;
@@ -271,10 +266,10 @@
             transition: all 0.1s ease;
             box-shadow: 0 4px 0 #003db3;
         }
-        .juego-btn:hover {
+        .juego-btn:hover, .plataforma-btn:hover {
             background-color: #004ce6;
         }
-        .juego-btn:active {
+        .juego-btn:active, .plataforma-btn:active {
             transform: translateY(3px);
             box-shadow: 0 1px 0 #003db3;
         }
@@ -348,7 +343,6 @@
             </table>
         </section>
 
-        <!-- Galería -->
         <section id="galeria-primaria" class="nosotros-bloque">
             <h2>Galería Institucional</h2>
             <p>Explora los ambientes, aulas didácticas y actividades recreativas diseñadas especialmente para el desarrollo de nuestros estudiantes de primaria:</p>
@@ -359,54 +353,93 @@
             </div>
         </section>
 
-        <!-- Juegos Educativos con enlaces integrados según estructura de GitHub -->
         <section id="juegos-educativos" class="nosotros-bloque">
             <h2>Juegos Educativos Interactivos</h2>
-            <p>¡Aprender jugando es más divertido! Selecciona cualquiera de las dinámicas lúdicas interactivas desarrolladas para nuestros alumnos:</p>
+            <p>¡Aprender jugando es más divertido! Selecciona cualquiera de las dinámicas lúdicas desarrolladas para nuestros alumnos:</p>
             
             <div class="juegos-grid">
                 
-                <!-- Tarjeta Juego 1: Matemática Mario Bross -->
                 <div class="juego-card">
-                    <!-- Espacio listo para la portada del juego cuando lo decidas -->
-                    <div class="juego-portada">Portada (IMG/mario.jpg)</div>
-                    <div class="juego-info">
-                        <h3>Matemática Mario Bross</h3>
-                        <p>Resuelve desafíos lógicos y operaciones matemáticas saltando mundos divertidos junto a Mario.</p>
-                        <!-- ENLACE CORREGIDO: Sale de SantaRosa y busca el archivo en Juegos -->
-                        <a href="../Juegos/MAT_MARIO_BROSS.html" class="juego-btn">¡JUGAR AHORA!</a>
-                    </div>
-                </div>
-
-                <!-- Tarjeta Juego 2: Robótica / Robo -->
-                <div class="juego-card">
-                    <div class="juego-portada">Portada (IMG/robo.jpg)</div>
-                    <div class="juego-info">
-                        <h3>Aventuras con Robo</h3>
-                        <p>Aprende conceptos básicos de secuencias y pensamiento computacional programando a nuestro amigo robot.</p>
-                        <!-- ENLACE CORREGIDO -->
-                        <a href="../Juegos/robo.html" class="juego-btn">¡JUGAR AHORA!</a>
-                    </div>
-                </div>
-
-                <!-- Tarjeta Juego 3: 12 Casas (Subcarpeta) -->
-                <div class="juego-card">
-                    <div class="juego-portada">Portada (IMG/12casas.jpg)</div>
+                    <img src="../IMG/Portada12C.png" alt="Reto de las 12 Casas" class="juego-portada">
                     <div class="juego-info">
                         <h3>El Reto de las 12 Casas</h3>
-                        <p>Un emocionante viaje interactivo superando cuestionarios de cultura general y habilidades de primaria.</p>
-                        <!-- ENLACE CORREGIDO: Redirige al index.html que está dentro de la subcarpeta del juego -->
+                        <p>Supera cuestionarios interactivos de conocimiento general avanzando por los templos.</p>
                         <a href="../Juegos/12 casas/index.html" class="juego-btn">¡JUGAR AHORA!</a>
                     </div>
                 </div>
 
-            </div>
+                <div class="juego-card">
+                    <img src="../IMG/PortadaH.png" alt="Juego Monitor" class="juego-portada">
+                    <div class="juego-info">
+                        <h3>Monitor Didáctico</h3>
+                        <p>Interactúa con este módulo para evaluar y registrar actividades lúdicas grupales.</p>
+                        <a href="../Juegos/Monitor/index.html" class="juego-btn">¡JUGAR AHORA!</a>
+                    </div>
+                </div>
+
+                <div class="juego-card">
+                    <img src="../IMG/PortadaM.png" alt="Matemática Mario Bross" class="juego-portada">
+                    <div class="juego-info">
+                        <h3>Matemática Mario Bross</h3>
+                        <p>Resuelve desafíos aritméticos y ayuda a avanzar a través de los mundos numéricos.</p>
+                        <a href="../Juegos/MAT_MARIO_BROSS.html" class="juego-btn">¡JUGAR AHORA!</a>
+                    </div>
+                </div>
+
+                <div class="juego-card" style="opacity: 0.65;">
+                    <div class="juego-portada" style="display:flex; justify-content:center; align-items:center;">Próximamente</div>
+                    <div class="juego-info">
+                        <h3>Juego Educativo 4</h3>
+                        <p>Nueva experiencia lúdica interactiva en desarrollo para el nivel primaria.</p>
+                        <a href="#" class="juego-btn" onclick="return false;" style="background-color:#94a3b8; box-shadow:0 4px 0 #64748b;">BLOQUEADO</a>
+                    </div>
+                </div>
+                </div>
         </section>
 
-        <!-- Plataformas Educativas -->
         <section id="plataformas-educativas" class="nosotros-bloque">
             <h2>Plataformas Educativas Digitales</h2>
-            <p>Acceso directo a las herramientas virtuales oficiales y entornos complementarios de aprendizaje supervisados por el equipo docente:</p>
+            <p>Acceso directo a las herramientas virtuales y recursos interactivos de soporte escolar externo:</p>
+            
+            <div class="plataformas-grid">
+                
+                <div class="plataforma-card">
+                    <img src="../IMG/plataforma_logo.png" alt="Aprendo en Casa" class="plataforma-portada">
+                    <div class="plataforma-info">
+                        <h3>Aprendo en Casa</h3>
+                        <p>Portal oficial del Ministerio de Educación con contenidos y fichas de trabajo complementario.</p>
+                        <a href="https://www.aprendoencasa.pe" target="_blank" class="plataforma-btn">INGRESAR AQUÍ</a>
+                    </div>
+                </div>
+
+                <div class="plataforma-card">
+                    <img src="../IMG/plataforma_logo.png" alt="Plataforma 2" class="plataforma-portada">
+                    <div class="plataforma-info">
+                        <h3>Educared Telefónica</h3>
+                        <p>Espacio de aprendizaje interactivo y talleres digitales dirigidos a estudiantes y docentes.</p>
+                        <a href="https://educared.fundaciontelefonica.com.pe" target="_blank" class="plataforma-btn">INGRESAR AQUÍ</a>
+                    </div>
+                </div>
+
+                <div class="plataforma-card">
+                    <img src="../IMG/plataforma_logo.png" alt="Plataforma 3" class="plataforma-portada">
+                    <div class="plataforma-info">
+                        <h3>PerúEduca</h3>
+                        <p>Sistema digital de aprendizaje interactivo para la comunidad educativa peruana.</p>
+                        <a href="https://www.perueduca.pe" target="_blank" class="plataforma-btn">INGRESAR AQUÍ</a>
+                    </div>
+                </div>
+
+                <div class="plataforma-card">
+                    <img src="../IMG/plataforma_logo.png" alt="Plataforma Auxiliar" class="plataforma-portada">
+                    <div class="plataforma-info">
+                        <h3>Enlace Educativo 4</h3>
+                        <p>Descripción breve del recurso pedagógico interactivo de libre acceso para el aula.</p>
+                        <a href="https://www.google.com" target="_blank" class="plataforma-btn">INGRESAR AQUÍ</a>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
     </main>
