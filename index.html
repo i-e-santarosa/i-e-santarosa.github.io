@@ -110,7 +110,7 @@
         .modal-subtitle {
             text-align: center;
             font-size: 13px;
-            color: var(--texto-mutated);
+            color: var(--texto-mutado);
             margin: 0 0 25px 0;
         }
 
@@ -173,7 +173,6 @@
         <div class="modal-card">
             
             <span class="close-modal-btn">&times;</span>
-            
             <span class="back-roles-link" id="btnBackToRoles"><i class="fa-solid fa-arrow-left"></i> Volver</span>
 
             <div class="modal-header-icon">
@@ -202,7 +201,6 @@
     </div>
 
     <script type="module">
-        // Importar librerías oficiales del SDK Modular v9+
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
@@ -218,12 +216,10 @@
             measurementId: "G-VTJN5HBVVY"
         };
 
-        // Inicializar las instancias de Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Captura del evento submit del formulario
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -232,33 +228,31 @@
             const errorDiv = document.getElementById('loginError');
             const btnSubmit = document.getElementById('submitBtn');
             
-            // Resetear estados visuales
             errorDiv.style.display = 'none';
             btnSubmit.disabled = true;
             btnSubmit.textContent = 'Autenticando usuario...';
 
-            // 1. Validar credenciales básicas en Firebase Authentication
+            // 1. Autenticar en Firebase Auth
             signInWithEmailAndPassword(auth, email, password)
                 .then(async (userCredential) => {
                     const user = userCredential.user;
 
                     try {
-                        // 2. Apuntar al documento del usuario dentro de la colección "usuarios" usando su UID
+                        // 2. Obtener el documento del usuario usando su UID exacto
                         const userDocRef = doc(db, "usuarios", user.uid);
                         const userDocSnap = await getDoc(userDocRef);
 
                         if (userDocSnap.exists()) {
                             const userData = userDocSnap.data();
                             
-                            // Extraer propiedades mapeadas en tu Firestore
                             const nombreUsuario = userData.nombre || "Usuario"; 
                             const rolUsuario = userData.rol || "Invitado"; 
 
-                            // 3. Persistir la información del perfil en el almacenamiento local del cliente
+                            // 3. Almacenar datos de sesión en LocalStorage
                             localStorage.setItem('session_user_name', nombreUsuario);
                             localStorage.setItem('session_user_role', rolUsuario);
 
-                            // 4. Enrutamiento e inyección automática en base al rol de la base de datos
+                            // 4. Enrutamiento según el rol de la base de datos
                             if (rolUsuario === 'Estudiante') {
                                 window.location.href = 'SantaRosa/primaria.html';
                             } else if (rolUsuario === 'Docente') {
@@ -268,36 +262,33 @@
                             } else if (rolUsuario === 'Soporte TI') {
                                 window.location.href = 'SantaRosa/soporte.html';
                             } else {
-                                // Redirección por defecto si no coincide con los roles del flujo primario
                                 window.location.href = 'index.html';
                             }
 
                         } else {
-                            // Documento no encontrado (UID sin mapear en la colección de usuarios)
                             errorDiv.style.display = 'block';
-                            errorDiv.textContent = 'Su cuenta no cuenta con un perfil asignado en Cloud Firestore.';
+                            errorDiv.textContent = 'Su cuenta no tiene un perfil asignado en Cloud Firestore.';
                             btnSubmit.disabled = false;
                             btnSubmit.textContent = 'Ingresar a la Plataforma';
                         }
                     } catch (dbError) {
-                        console.error("Fallo al leer la colección 'usuarios':", dbError);
+                        console.error("Fallo al leer Firestore:", dbError);
                         errorDiv.style.display = 'block';
-                        errorDiv.textContent = 'Error de comunicación al verificar los privilegios de su rol.';
+                        errorDiv.textContent = 'Error de permisos o conexión al verificar el rol.';
                         btnSubmit.disabled = false;
                         btnSubmit.textContent = 'Ingresar a la Plataforma';
                     }
                 })
                 .catch((error) => {
-                    console.error("Código de error de Auth interceptado:", error.code);
+                    console.error("Código de error de Auth:", error.code);
                     errorDiv.style.display = 'block';
                     btnSubmit.disabled = false;
                     btnSubmit.textContent = 'Ingresar a la Plataforma';
                     
-                    // Manejo preciso de excepciones de credenciales
                     if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-                        errorDiv.textContent = 'El correo electrónico o la contraseña ingresados son incorrectos.';
+                        errorDiv.textContent = 'El correo electrónico o la contraseña son incorrectos.';
                     } else if (error.code === 'auth/invalid-email') {
-                        errorDiv.textContent = 'El formato del correo electrónico ingresado no es válido.';
+                        errorDiv.textContent = 'El formato del correo electrónico no es válido.';
                     } else {
                         errorDiv.textContent = 'Ocurrió un problema al intentar iniciar sesión. Inténtelo más tarde.';
                     }
