@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I.E. Santa Rosa - Plataforma Académica</title>
+    <!-- FontAwesome para los íconos de la interfaz -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -169,6 +170,7 @@
 </head>
 <body>
 
+    <!-- INTERFAZ DEL MODAL DE ACCESO DIRECTO -->
     <div id="loginModal" class="modal-backdrop">
         <div class="modal-card">
             
@@ -181,6 +183,7 @@
             <h3 class="modal-title" id="modalMainTitle">Acceso para Soporte</h3>
             <p class="modal-subtitle">I.E. Santa Rosa - Huarmey</p>
 
+            <!-- Contenedor de Alertas de Error de Firebase -->
             <div id="loginError" class="error-message-box"></div>
 
             <form id="loginForm">
@@ -200,6 +203,7 @@
         </div>
     </div>
 
+    <!-- INTEGRACIÓN MODULAR CON FIREBASE (SDK v9 MODULAR) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
@@ -232,27 +236,28 @@
             btnSubmit.disabled = true;
             btnSubmit.textContent = 'Autenticando usuario...';
 
-            // 1. Autenticar en Firebase Auth
+            // 1. Iniciar sesión en Firebase Auth
             signInWithEmailAndPassword(auth, email, password)
                 .then(async (userCredential) => {
                     const user = userCredential.user;
 
                     try {
-                        // 2. Obtener el documento del usuario usando su UID exacto
+                        // 2. Extraer el documento mapeado por el UID único del usuario
                         const userDocRef = doc(db, "usuarios", user.uid);
                         const userDocSnap = await getDoc(userDocRef);
 
                         if (userDocSnap.exists()) {
                             const userData = userDocSnap.data();
                             
+                            // Obtención de variables dinámicas
                             const nombreUsuario = userData.nombre || "Usuario"; 
                             const rolUsuario = userData.rol || "Invitado"; 
 
-                            // 3. Almacenar datos de sesión en LocalStorage
+                            // 3. Guardar las variables en la memoria local del explorador
                             localStorage.setItem('session_user_name', nombreUsuario);
                             localStorage.setItem('session_user_role', rolUsuario);
 
-                            // 4. Enrutamiento según el rol de la base de datos
+                            // 4. Enrutamiento dinámico institucional según el rol de Firestore
                             if (rolUsuario === 'Estudiante') {
                                 window.location.href = 'SantaRosa/primaria.html';
                             } else if (rolUsuario === 'Docente') {
@@ -267,20 +272,20 @@
 
                         } else {
                             errorDiv.style.display = 'block';
-                            errorDiv.textContent = 'Su cuenta no tiene un perfil asignado en Cloud Firestore.';
+                            errorDiv.textContent = 'Su cuenta no tiene un perfil asignado en la base de datos de Cloud Firestore.';
                             btnSubmit.disabled = false;
                             btnSubmit.textContent = 'Ingresar a la Plataforma';
                         }
                     } catch (dbError) {
-                        console.error("Fallo al leer Firestore:", dbError);
+                        console.error("Fallo al leer la colección 'usuarios' desde el cliente:", dbError);
                         errorDiv.style.display = 'block';
-                        errorDiv.textContent = 'Error de permisos o conexión al verificar el rol.';
+                        errorDiv.textContent = 'Error de privilegios o reglas de seguridad al consultar su perfil.';
                         btnSubmit.disabled = false;
                         btnSubmit.textContent = 'Ingresar a la Plataforma';
                     }
                 })
                 .catch((error) => {
-                    console.error("Código de error de Auth:", error.code);
+                    console.error("Excepción controlada en Auth:", error.code);
                     errorDiv.style.display = 'block';
                     btnSubmit.disabled = false;
                     btnSubmit.textContent = 'Ingresar a la Plataforma';
